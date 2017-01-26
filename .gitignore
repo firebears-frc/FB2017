@@ -1,3 +1,10 @@
 /bin/
 /build/
 /dist/
+*.class
+*.bak
+*.orig
+*~
+FRCUserProgram.jar
+sysProps.xml
+.DS_Store
