@@ -55,5 +55,18 @@ public class Chassis extends Subsystem {
     public void drive(double x, double y, double rotation) {
     	robotDrive.mecanumDrive_Cartesian(x, y, rotation, 0);
     }
+    
+	/**
+	 * Note:
+	 *     double direction = Math.atan2(y, x) * 180 / Math.PI;
+     *     double magnitude = Math.sqrt(x * x + y * y);
+     * 
+	 * @param magnitude The speed that the robot should drive in the range [-1.0..1.0].
+	 * @param direction The direction the robot should drive in degrees.
+	 * @param rotation The rate of rotation in the range [-1.0..1.0].
+	 */
+	public void drivePolar(double magnitude, double direction, double rotation) {
+		robotDrive.mecanumDrive_Polar(magnitude, direction + 90.0, rotation);
+	}
 }
 
