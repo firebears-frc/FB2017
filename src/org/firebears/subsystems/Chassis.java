@@ -68,5 +68,9 @@ public class Chassis extends Subsystem {
 	public void drivePolar(double magnitude, double direction, double rotation) {
 		robotDrive.mecanumDrive_Polar(magnitude, direction + 90.0, rotation);
 	}
+	
+	public void stopDriving(){
+		drive(0.0, 0.0, 0.0);
+	}
 }
 
