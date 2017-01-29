@@ -5,6 +5,7 @@
 *.bak
 *.orig
 *~
+/dist/FRCUserProgram.jar
 FRCUserProgram.jar
 sysProps.xml
 .DS_Store

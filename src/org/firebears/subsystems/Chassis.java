@@ -53,7 +53,9 @@ public class Chassis extends Subsystem {
     }
     
     public void drive(double x, double y, double rotation) {
-    	robotDrive.mecanumDrive_Cartesian(x, y, rotation, 0);
+    	double angle = 0;
+//    	angle = RobotMap.navXBoard.getAngle();
+    	robotDrive.mecanumDrive_Cartesian(x, y, rotation, angle);
     }
     
 	/**
@@ -66,7 +68,7 @@ public class Chassis extends Subsystem {
 	 * @param rotation The rate of rotation in the range [-1.0..1.0].
 	 */
 	public void drivePolar(double magnitude, double direction, double rotation) {
-		robotDrive.mecanumDrive_Polar(magnitude, direction + 90.0, rotation);
+		robotDrive.mecanumDrive_Polar(magnitude, direction, rotation);
 	}
 	
 	public void stopDriving(){

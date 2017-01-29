@@ -45,5 +45,17 @@ public class Acquisition extends Subsystem {
         // Set the default command for a subsystem here.
         // setDefaultCommand(new MySpecialCommand());
     }
+    
+    public void startAcquisition() {
+    	acquisitionMotor.set(-1.0);
+    }
+    
+    public void stopAcquisition() {
+    	acquisitionMotor.set(0.0);
+    }
+    
+    public boolean isRunning() {
+    	return Math.abs(acquisitionMotor.get()) > 0.1;
+    }
 }
 
