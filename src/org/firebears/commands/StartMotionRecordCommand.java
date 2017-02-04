@@ -33,7 +33,8 @@ public class StartMotionRecordCommand extends Command {
 		try {
 			recording = true;
 			startTime = System.currentTimeMillis();
-			f = new File("/tmp/Record.csv");
+			f = new File("/tmp/Recording.csv");
+//			f = File.createTempFile("Recording", ".csv");
 			w = new PrintWriter(f);
 		} catch (IOException i) {
 			i.printStackTrace();
@@ -44,13 +45,14 @@ public class StartMotionRecordCommand extends Command {
 
 	protected void execute() {
 		long time = System.currentTimeMillis() - startTime;
-		double frontLeft = RobotMap.chassisfrontLeft.getSpeed();
-		double frontRight = RobotMap.chassisfrontRight.getSpeed();
-		double backLeft = RobotMap.chassisrearLeft.getSpeed();
-		double backRight = RobotMap.chassisrearRight.getSpeed();
+		double forwardAmount = Robot.chassis.getDriveY();
+		double strafeAmount = Robot.chassis.getDriveX();
+		double rotateAmount = Robot.chassis.getDriveRotation();
 		
-		w.printf("%d, %10.2f, %10.2f, %10.2f, %10.2f, %n", time, frontLeft, frontRight, backLeft, backRight);
-	}
+		
+		w.printf("%d,%.2f,%.2f,%.2f,%n", time, forwardAmount, strafeAmount, rotateAmount);
+		
+			}
 
 	protected boolean isFinished() {
 		return !recording;
