@@ -134,6 +134,9 @@ public class Robot extends IterativeRobot {
 		
 		SmartDashboard.putNumber("ErearRight distT5", talon5.getEncPosition());
 		SmartDashboard.putNumber("ErearRight rateT5", talon5.getEncVelocity());
+		
+		SmartDashboard.putNumber("rangeFinderDistance", gearChute.getRangeFinderDistance());
+		SmartDashboard.putNumber("voltage", RobotMap.rangeFinder.getAverageVoltage());
 
 		SmartDashboard.putDouble("Angle:", RobotMap.navXBoard.getAngle());
     }
