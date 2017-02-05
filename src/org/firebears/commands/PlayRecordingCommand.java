@@ -10,21 +10,25 @@ import org.firebears.Robot;
  *
  */
 public class PlayRecordingCommand extends Command {
-	File f;
+	InputStream stream;
 	Scanner scanner;
 	long time;
 	long startTime;
 	double forwardAmount;
 	double strafeAmount;
 	double rotateAmount;
-	InputStream stream;
 	boolean hasMore;
+	final String fileName;
 
 	public PlayRecordingCommand() {
-		requires(Robot.chassis);
-
+		this("/tmp/Recording.csv");
 	}
-	
+
+	public PlayRecordingCommand(String name) {
+		requires(Robot.chassis);
+		fileName = name;
+	}
+
 	public boolean readLine() {
 		if (!scanner.hasNext()) {
 			return false;
@@ -35,15 +39,19 @@ public class PlayRecordingCommand extends Command {
 		rotateAmount = scanner.nextDouble();
 		scanner.nextLine();
 		return true;
-		
+
 	}
 
 	protected void initialize() {
 		try {
 			startTime = System.currentTimeMillis();
-			f = new File("/tmp/Recording.csv");
-			stream = new FileInputStream(f);
-			scanner = new Scanner(stream);
+			if (fileName.startsWith("/tmp/") || fileName.startsWith("/home/lvuser/")) {
+				File f = new File(fileName);
+				stream = new FileInputStream(f);
+			} else {
+				stream = ClassLoader.getSystemResourceAsStream(fileName);
+			}
+			scanner = (new Scanner(stream)).useDelimiter(",");
 			hasMore = readLine();
 		} catch (IOException i) {
 			i.printStackTrace();
@@ -63,18 +71,10 @@ public class PlayRecordingCommand extends Command {
 	}
 
 	protected void end() {
-		try {
-			stream.close();
-		} catch (IOException i) {
-			i.printStackTrace();
-		}
+		scanner.close();
 	}
 
 	protected void interrupted() {
-		try {
-			stream.close();
-		} catch (IOException i) {
-			i.printStackTrace();
-		}
+		scanner.close();
 	}
 }
