@@ -12,7 +12,6 @@ package org.firebears.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
 import org.firebears.Robot;
-import org.firebears.RobotMap;
 
 import java.io.*;
 
@@ -34,13 +33,11 @@ public class StartMotionRecordCommand extends Command {
 			recording = true;
 			startTime = System.currentTimeMillis();
 			f = new File("/tmp/Recording.csv");
-//			f = File.createTempFile("Recording", ".csv");
 			w = new PrintWriter(f);
 		} catch (IOException i) {
 			i.printStackTrace();
 			recording = false;
-		}
-
+		} 
 	}
 
 	protected void execute() {
@@ -48,11 +45,8 @@ public class StartMotionRecordCommand extends Command {
 		double forwardAmount = Robot.chassis.getDriveY();
 		double strafeAmount = Robot.chassis.getDriveX();
 		double rotateAmount = Robot.chassis.getDriveRotation();
-		
-		
 		w.printf("%d,%.2f,%.2f,%.2f,%n", time, forwardAmount, strafeAmount, rotateAmount);
-		
-			}
+	}
 
 	protected boolean isFinished() {
 		return !recording;
