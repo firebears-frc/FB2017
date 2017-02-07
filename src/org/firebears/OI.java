@@ -80,6 +80,8 @@ public class OI {
 			SmartDashboard.putData("StartRecording", new StartMotionRecordCommand());
 			SmartDashboard.putData("StopRecording", new StopMotionRecordCommand());
 			SmartDashboard.putData("PlayRecording", new PlayRecordingCommand());
+			SmartDashboard.putData("Vision Drive:", new VisionDrive());
+	        SmartDashboard.putData("Strafe (hopefully) Straight:", new StrafeStraightCommand());
 		}
     }
 

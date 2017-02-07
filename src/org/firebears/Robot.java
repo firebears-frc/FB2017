@@ -104,7 +104,6 @@ public class Robot extends IterativeRobot {
 
     public void teleopInit() {
 
-    	RobotMap.gearLightRing.set(Relay.Value.kOn);
     	RobotMap.gearLightRing.set(Relay.Value.kForward);
         // This makes sure that the autonomous stops running when
         // teleop starts running. If you want the autonomous to
