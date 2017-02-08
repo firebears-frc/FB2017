@@ -97,7 +97,7 @@ public class VisionDrive extends PIDCommand {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-    	if (System.currentTimeMillis() >= timeout){
+    	if (System.currentTimeMillis() >= timeout || Robot.gearChute.getRangeFinderDistance() < 8.0){
     		return true;
     	}
         return currentDistance <= targetDistance;

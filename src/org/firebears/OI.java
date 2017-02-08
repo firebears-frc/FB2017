@@ -82,6 +82,7 @@ public class OI {
 			SmartDashboard.putData("PlayRecording", new PlayRecordingCommand());
 			SmartDashboard.putData("Vision Drive:", new VisionDrive());
 	        SmartDashboard.putData("Strafe (hopefully) Straight:", new StrafeStraightCommand());
+	        SmartDashboard.putData("Angle Adjust:", new VisionAngleAdjustCommand());
 		}
     }
 
