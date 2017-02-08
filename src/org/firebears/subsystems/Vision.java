@@ -31,7 +31,21 @@ public class Vision extends Subsystem {
     }
     
     public float getAngle(){
+//    	float[] angles = new float[5];
+//    	
+//    	for (int i = 0; i < 6; i++){
+//    		angles[i] = udp_receiver.angle;
+//    		System.out.print(angles[i]);
+//    		
+//    	}
+    	
+//    	float angle1 = udp_receiver.angle;
+//    	float angle2 = udp_receiver.angle;
+//    	float angle3 = udp_receiver.angle;
+//    	float angle4 = udp_receiver.angle;
+//    	float angle5 = udp_receiver.angle;
     	return udp_receiver.angle;
+//    	return 5.0f;
     }
     
     public float getDistance(){

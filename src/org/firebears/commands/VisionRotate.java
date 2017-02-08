@@ -1,29 +1,28 @@
 package org.firebears.commands;
 
 import org.firebears.*;
-import org.firebears.Robot;
 
+import edu.wpi.first.wpilibj.Relay;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.PIDCommand;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
- *Initialize with a target angle rotation and turn to that angle using the Navex
- *There is no continuous target update during the command
+ *
  */
-public class AutoRotate extends PIDCommand {
+public class VisionRotate extends PIDCommand {
 
-	float turnValue;//number of degrees to turn Robot
+	float turnValue;
 	float driveValue;
 	long timeout;
-	float targetAngle;//  Navex target angle
-	protected final double SPEED = 0.5;
+	float targetAngle;
+	protected final double SPEED = 0.25;
 	protected double angleTolerance = 1.0;
 	
-    public AutoRotate(float angle) { //Apparently the angle remains constant throughout this command
-    	super(.0066, 0.0, 0.0);
+    public VisionRotate() {
+    	//PID Values not correct
+    	super(0.1, 0.0, 0.0);
         requires(Robot.chassis);
-        turnValue = angle;
 //        driveValue = (float)distance;
         
         getPIDController().setContinuous(true);
@@ -31,31 +30,51 @@ public class AutoRotate extends PIDCommand {
 		getPIDController().setAbsoluteTolerance(angleTolerance);
     }
     
-    private double getAngleDifference() {//From Navex angle
-		return (float)RobotMap.navXBoard.getAngle() - targetAngle;
+    private double getAngleDifference() {
+		return bound((float)RobotMap.navXBoard.getAngle() - targetAngle);
 	}
 
+    public static float bound(float angle) {
+		while (angle > 180) angle -= 360;
+		while (angle < -180) angle += 360;
+		return angle;
+	}
+    
     // Called just before this Command runs the first time
     protected void initialize() {
-    	timeout = System.currentTimeMillis() + 1000 * 10;//10 seconds?
-    	targetAngle = (float)RobotMap.navXBoard.getAngle() + turnValue;//Navex target angle
-    	getPIDController().setSetpoint(0.0);//???????
-    	SmartDashboard.putString("Target:", "RotationCommand(" + targetAngle + ")");
+//    	RobotMap.gearLightRing.set(Relay.Value.kForward);
+    	timeout = System.currentTimeMillis() + 1000 * 10;
+    	turnValue = Robot.vision.getAngle();
+    	targetAngle = bound((float)RobotMap.navXBoard.getAngle() + turnValue);
+    	getPIDController().setSetpoint(0);
+    	SmartDashboard.putNumber("VisionTarget:", targetAngle);
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+    	
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-    	double difference = getAngleDifference();//Navex vs Navex target angles
-    	return Math.abs(difference) < angleTolerance ||System.currentTimeMillis() >= timeout;
+    	double difference = getAngleDifference();
+//    	SmartDashboard.putString("End:", "" + difference);
+    	if (System.currentTimeMillis() >= timeout){
+    		return true;
+    	}
+    	
+    	if (Math.abs(difference) < angleTolerance){
+//    		RobotMap.gearLightRing.set(Relay.Value.kOff);
+    		return true;
+    	}
+    	
+    	return false;
     }
 
     // Called once after isFinished returns true
     protected void end() {
     	Robot.chassis.stopDriving();
+//    	RobotMap.gearLightRing.set(Relay.Value.kOff);
     }
 
     // Called when another command which requires one or more of the same
