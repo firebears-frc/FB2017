@@ -44,6 +44,7 @@ public class Robot extends IterativeRobot {
 	public static Climber climber;
 	public static SRX_PID sRX_PID;
 
+
 	public static GearChute gearChute;
 	public static Lights lights;
 
@@ -51,6 +52,8 @@ public class Robot extends IterativeRobot {
 	// public static SRX_PID sRX_PID;
 
 	public static Vision vision;
+	public static SelectAuto selectAuto;
+	private final LcdOverLay lcdol = new LcdOverLay();
 
 	/**
 	 * This function is run when the robot is first started up and should be
@@ -93,6 +96,12 @@ public class Robot extends IterativeRobot {
 
 	public void disabledPeriodic() {
 		Scheduler.getInstance().run();
+		
+		lcdol.execute();
+        
+        if (Robot.oi.autoSwichButton.valueChanged()) {
+			selectAuto.execute();
+		}
 		if ((count++) % 15 == 0) {
 			lights.disabledMode();
 		}
