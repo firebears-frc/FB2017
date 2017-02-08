@@ -11,7 +11,9 @@ import edu.wpi.first.wpilibj.networktables.NetworkTable;
  * to the pi through the Network Tables.
  */
 public class Lights extends Subsystem {
-
+	
+	double testrange;
+	
 	static NetworkTable table;
 	boolean isCelebrateMode = false;
 
@@ -37,13 +39,9 @@ public class Lights extends Subsystem {
 	public void teleopMode() {
 
 		String allianceColor = getAllianceColor();
+		
+		testrange = Robot.gearChute.getRangeFinderDistance();
 
-//		if (Robot.vision.isOnTarget()) {
-//			setStrip(Lights.STRIP_CELEBRATE, Lights.ANIM_EXPLODING_R_W_B);
-//			setStrip(Lights.STRIP_CHASSIS_LEFT, Lights.ANIM_EXPLODING_R_W_B);
-//			setStrip(Lights.STRIP_CHASSIS_RIGHT, Lights.ANIM_EXPLODING_R_W_B);
-//			return;
-//		}
 		if (isCelebrateMode) {
 			setStrip(Lights.STRIP_SIGNAL, Lights.ANIM_EXPLODE);
 			setStrip(Lights.STRIP_CHASSIS_BACK, Lights.ANIM_EXPLODE);
@@ -51,36 +49,14 @@ public class Lights extends Subsystem {
 			setStrip(Lights.STRIP_CHASSIS_BOTTOM, Lights.ANIM_EXPLODE);
 			return;
 		}
-//		if (Robot.shooter.hasBall()) {
-//			setStrip(Lights.STRIP_CHASSIS_LEFT, Lights.ANIM_PULSING_GREEN);
-//			setStrip(Lights.STRIP_CHASSIS_RIGHT, Lights.ANIM_PULSING_GREEN);
-//			if (Robot.shooter.isSpinning()) {
-//				setStrip(Lights.STRIP_CELEBRATE, Lights.ANIM_SPARK);
-//			} else
-//				setStrip(Lights.STRIP_CELEBRATE, allianceColor);
-//		} else if (Robot.shooter.isSpinning()) {
-//			setStrip(Lights.STRIP_CELEBRATE, Lights.ANIM_FIRE);
-//			setStrip(Lights.STRIP_CHASSIS_LEFT, Lights.ANIM_FIRE);
-//			setStrip(Lights.STRIP_CHASSIS_RIGHT, Lights.ANIM_FIRE);
-//		} else {
-//			setStrip(Lights.STRIP_CHASSIS_LEFT, allianceColor);
-//			setStrip(Lights.STRIP_CHASSIS_RIGHT, allianceColor);
-//			setStrip(Lights.STRIP_CELEBRATE, allianceColor);
-//		}
+		setValue(STRIP_SIGNAL, testrange);
+		
+		if (testrange <= 5){
+			setStrip(Lights.STRIP_SIGNAL, Lights.ANIM_EXPLODING_R_W_B);
+		}
 	}
 
 	public void autonomousMode() {
-//		if (Robot.vision.isOnTarget()) {
-//			setStrip(Lights.STRIP_CHASSIS_LEFT, Lights.ANIM_EXPLODING_R_W_B);
-//			setStrip(Lights.STRIP_CHASSIS_RIGHT, Lights.ANIM_EXPLODING_R_W_B);
-//			if (Robot.shooter.isSpinning()) {
-//				setStrip(Lights.STRIP_CELEBRATE, Lights.ANIM_EXPLODING_R_W_B);
-//			}
-//		} else {
-//			setStrip(Lights.STRIP_CELEBRATE, Lights.ANIM_SPARK);
-//			setStrip(Lights.STRIP_CHASSIS_LEFT, Lights.ANIM_SPARK);
-//			setStrip(Lights.STRIP_CHASSIS_RIGHT, Lights.ANIM_SPARK);
-//		}
 
 	}
 
