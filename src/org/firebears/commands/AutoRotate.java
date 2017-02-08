@@ -8,18 +8,19 @@ import edu.wpi.first.wpilibj.command.PIDCommand;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
- *
+ *Initialize with a target angle rotation and turn to that angle using the Navex
+ *There is no continuous target update during the command
  */
 public class AutoRotate extends PIDCommand {
 
-	float turnValue;
+	float turnValue;//number of degrees to turn Robot
 	float driveValue;
 	long timeout;
-	float targetAngle;
+	float targetAngle;//  Navex target angle
 	protected final double SPEED = 0.5;
 	protected double angleTolerance = 1.0;
 	
-    public AutoRotate(double angle) {
+    public AutoRotate(double angle) {//Apparently the angle remains constant throughout this command
     	super(.0066, 0.0, 0.0);
         requires(Robot.chassis);
         turnValue = (float)angle;
@@ -30,15 +31,15 @@ public class AutoRotate extends PIDCommand {
 		getPIDController().setAbsoluteTolerance(angleTolerance);
     }
     
-    private double getAngleDifference() {
+    private double getAngleDifference() {//From Navex angle
 		return (float)RobotMap.navXBoard.getAngle() - targetAngle;
 	}
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	timeout = System.currentTimeMillis() + 1000 * 10;
-    	targetAngle = (float)RobotMap.navXBoard.getAngle() + turnValue;
-    	getPIDController().setSetpoint(0.0);
+    	timeout = System.currentTimeMillis() + 1000 * 10;//10 seconds?
+    	targetAngle = (float)RobotMap.navXBoard.getAngle() + turnValue;//Navex target angle
+    	getPIDController().setSetpoint(0.0);//???????
     	SmartDashboard.putString("Target:", "RotationCommand(" + targetAngle + ")");
     }
 
@@ -48,7 +49,7 @@ public class AutoRotate extends PIDCommand {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-    	double difference = getAngleDifference();
+    	double difference = getAngleDifference();//Navex vs Navex target angles
     	return Math.abs(difference) < angleTolerance ||System.currentTimeMillis() >= timeout;
     }
 
