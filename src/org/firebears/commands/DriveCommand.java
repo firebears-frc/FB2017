@@ -58,12 +58,7 @@ public class DriveCommand extends Command {
     	
     	double forward = Robot.oi.joystick1.getY();
     	double strafe = Robot.oi.joystick1.getX(); 
-<<<<<<< HEAD
-    	double rotation = Robot.oi.joystick1.getZ();
-=======
     	double rotation = Robot.oi.joystick2.getX();
->>>>>>> f9daeb4c3f6abfdc0a63877778b6212801b9b847
-    	
     	
     	
     	//set to minimum joystick value were the robot moves(Only do this if you do NOT have PID Driving!AKA lEAVE AT ZERO WHEN PID)
