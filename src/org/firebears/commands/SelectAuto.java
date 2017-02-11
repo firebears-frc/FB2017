@@ -22,10 +22,15 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  *
  */
 public class SelectAuto extends Command {
-	DriverStation driverStation;
+//	DriverStation driverStation;
 
 
 	int x = 0;
+
+	
+	Command[] commandlist = {
+			new PlayRecordingCommand(),
+	};
 
 
 
@@ -33,7 +38,7 @@ public class SelectAuto extends Command {
 
 	public SelectAuto() {
 		// requires(Robot.chassis);
-    	driverStation = DriverStation.getInstance();
+//    	driverStation = DriverStation.getInstance();
 
 
 	}
@@ -48,6 +53,12 @@ public class SelectAuto extends Command {
 //	}
 
 	public void initialize() {
+		LiquidCrystal lcd = RobotMap.lcd;
+
+		lcd.home();
+		lcd.print("Auto:");
+		
+		
 
 	}
 
@@ -65,6 +76,22 @@ public class SelectAuto extends Command {
 		x++;
 		lcd.home();
 		lcd.print("Auto:");
+		
+		if (x >= commandlist.length){
+    		x = 0;
+        	Robot.autonomousCommand = commandlist[x];
+
+    	}
+		
+		
+		
+		lcd.home();
+		
+		String name = commandlist[x].toString();
+		
+    	lcd.print(name);
+    	
+
 
 		
 
