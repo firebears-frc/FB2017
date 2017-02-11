@@ -7,40 +7,44 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.PIDCommand;
 
 /**
- *
+ * Do rotation and strafing at the same time to align up to the target.
  */
-public class VisionTestStrafe extends PIDCommand {
+public class VisionHybridCommand extends PIDCommand {
 
-	long timeout;
+	double moveDistance;
+	double startDistance;
+	double targetDistance;
+	double timeout;
+	protected final double SPEED = 0.25;
+	protected final double tolerance = 0.25;
+	
 	double startAngle;
 	double currentAngle;
-	double tolerance = 2.5;
 	
-    public VisionTestStrafe() {
-    	super(0.025, 0.0, 0.0);
-        // Use requires() here to declare subsystem dependencies
-        // eg. requires(chassis);
+    public VisionHybridCommand() {
+    	super(.025, 0.0, 0.0);
     	requires(Robot.chassis);
     	
-    	getPIDController().setInputRange(-180.0, 180.0);
     	getPIDController().setAbsoluteTolerance(tolerance);
-    	getPIDController().setContinuous();
     }
     
-    public double getAngleDifference(){
-    	return currentAngle - startAngle;
+    public double toInches(double EncoderValue){
+    	return EncoderValue/26.5;
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	moveDistance = -1.0 * (Robot.vision.getDistance() * Math.sin(Robot.vision.getAngle() * Math.PI / 180));
     	timeout = System.currentTimeMillis() + 1000 * 5;
-    	startAngle = RobotMap.navXBoard.getAngle()/* + ( Robot.vision.getTilt() * 4 )*/;
-    	getPIDController().setSetpoint(0.0);
+    	startDistance = toInches(RobotMap.chassisfrontLeft.getEncPosition());
+    	targetDistance = startDistance - moveDistance;
+    	getPIDController().setSetpoint(targetDistance);
+    	
+    	startAngle = RobotMap.navXBoard.getAngle() + ( Robot.vision.getTilt() * 4 );
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	currentAngle = RobotMap.navXBoard.getAngle();
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -48,8 +52,7 @@ public class VisionTestStrafe extends PIDCommand {
     	if (System.currentTimeMillis() >= timeout){
     		return true;
     	}
-    	
-    	if (Robot.gearChute.getRangeFinderDistance() < 15.0){
+    	if (Math.abs(toInches(RobotMap.chassisfrontLeft.getEncPosition()) - targetDistance) < tolerance) {
     		return true;
     	}
         return false;
@@ -69,12 +72,18 @@ public class VisionTestStrafe extends PIDCommand {
 	@Override
 	protected double returnPIDInput() {
 		// TODO Auto-generated method stub
-		return getAngleDifference();
+		return toInches(RobotMap.chassisfrontLeft.getEncPosition());
 	}
 
+    public double getAngleDifference(){
+    	return currentAngle - startAngle;
+    }
+	
 	@Override
 	protected void usePIDOutput(double output) {
-		// TODO Auto-generated method stub
-		Robot.chassis.drive(0.5, 0.0, output);
+    	currentAngle = RobotMap.navXBoard.getAngle();
+		output = Math.max(-SPEED, Math.min(output, SPEED));
+		Robot.chassis.drive(0.0, output, getAngleDifference());
 	}
+	
 }

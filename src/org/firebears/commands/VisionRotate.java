@@ -19,7 +19,9 @@ public class VisionRotate extends PIDCommand {
 	protected final double SPEED = 0.25;
 	protected double angleTolerance = 1.5;
 	
-    public VisionRotate() {
+	private boolean useTilt = false;
+	
+    public VisionRotate(boolean p_useTilt) {
     	//PID Values not correct
     	super(0.066, 0.0, 0.0);
         requires(Robot.chassis);
@@ -28,6 +30,8 @@ public class VisionRotate extends PIDCommand {
         getPIDController().setContinuous(true);
 		getPIDController().setInputRange(-180.0, 180.0);
 		getPIDController().setAbsoluteTolerance(angleTolerance);
+		
+		useTilt = p_useTilt;
     }
     
     private double getAngleDifference() {
@@ -44,8 +48,12 @@ public class VisionRotate extends PIDCommand {
     protected void initialize() {
 //    	RobotMap.gearLightRing.set(Relay.Value.kForward);
     	timeout = System.currentTimeMillis() + 1000 * 10;
-    	turnValue = Robot.vision.getAngle();
-    	targetAngle = bound((float)RobotMap.navXBoard.getAngle() + turnValue);
+    	if(useTilt) {
+    		turnValue = Robot.vision.getTilt() * 4;
+    	}else{
+    		turnValue = Robot.vision.getAngle();
+    	}
+    	targetAngle = bound((float)RobotMap.navXBoard.getAngle() - turnValue);
     	getPIDController().setSetpoint(0);
     	SmartDashboard.putNumber("VisionTarget:", targetAngle);
     }
