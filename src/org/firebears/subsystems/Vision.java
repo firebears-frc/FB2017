@@ -90,7 +90,9 @@ public class Vision extends Subsystem {
     				tilt = info3;
     				confidence = info4;
     				String receivedmessage = "Received a message: "+ info1 + " " + info2 + " " + info3 + " " + info4;
-    				SmartDashboard.putString("Info:", receivedmessage);
+    				SmartDashboard.putNumber("Vision Angle:", info1);
+    				SmartDashboard.putNumber("Vision Distance:", info2);
+    				SmartDashboard.putNumber("Vision Tilt:", info3);
     			}
     		} catch (IOException ex) {
     			ex.printStackTrace();

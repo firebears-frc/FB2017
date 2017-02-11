@@ -17,11 +17,11 @@ public class VisionRotate extends PIDCommand {
 	long timeout;
 	float targetAngle;
 	protected final double SPEED = 0.25;
-	protected double angleTolerance = 1.0;
+	protected double angleTolerance = 1.5;
 	
     public VisionRotate() {
     	//PID Values not correct
-    	super(0.1, 0.0, 0.0);
+    	super(0.066, 0.0, 0.0);
         requires(Robot.chassis);
 //        driveValue = (float)distance;
         
@@ -58,6 +58,7 @@ public class VisionRotate extends PIDCommand {
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
     	double difference = getAngleDifference();
+    	SmartDashboard.putNumber("Angle Difference:", difference);
 //    	SmartDashboard.putString("End:", "" + difference);
     	if (System.currentTimeMillis() >= timeout){
     		return true;
