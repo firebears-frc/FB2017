@@ -45,5 +45,16 @@ public class Floor extends Subsystem {
         // Set the default command for a subsystem here.
         // setDefaultCommand(new MySpecialCommand());
     }
+    public void goUp(){
+    	floorLift.set(1);
+    }
+    
+    public void goDown(){
+    	floorLift.set(-1);
+    }
+    
+    public double getFloorDirection(){
+    	return floorLift.get();
+    }
 }
 
