@@ -12,9 +12,8 @@ import edu.wpi.first.wpilibj.networktables.NetworkTable;
  */
 public class Lights extends Subsystem {
 
-	
 	double range;
-	
+
 	static NetworkTable table;
 	boolean isCelebrateMode = false;
 
@@ -52,55 +51,42 @@ public class Lights extends Subsystem {
 		}
 		setValue(STRIP_SIGNAL, range);
 
-		if (range <= 60) {
-			setStrip(Lights.STRIP_SIGNAL, Lights.ANIM_RANGE);
-		}
-		if (Robot.gearChute.isGearInChute()) {
+		if (Robot.climber.isRunning()) {
 
-		}
-		if (Robot.acquisition.isRunning()){
-			
-		}
-		if (!Robot.acquisition.isRunning()){
-			
-		}
-		if (Robot.acquisition.isRunningForward()) {
+		} else if (!Robot.climber.isRunning()) {
+			if (Robot.vision.isTargetVisible()) {
+				if (range <= 60) {
+					setStrip(Lights.STRIP_SIGNAL, Lights.ANIM_RANGE);
+				}
+			} else if (!Robot.vision.isTargetVisible()) {
+				if (Robot.gearChute.isGearInChute()) {
 
-		}
-		if (Robot.acquisition.isRunningBackward()) {
+				}
+				if (!Robot.acquisition.isNotRunning()) {
+					if (Robot.acquisition.isRunningForward()) {
+					}
+					if (Robot.acquisition.isRunningBackward()) {
 
-		}
-		if (Robot.vision.isTargetVisible()) {
+					}
+				} else if (Robot.acquisition.isNotRunning()) {
+					if (Robot.dumper.isFloorHigh()) {
 
-		}
-		if (!Robot.vision.isTargetVisible()) {
-			
-		}
-		if (Robot.vision.isTargetVisible()) {
-			
-		}
-		if (Robot.dumper.isFloorHigh()){
-			
-		}
-		if (Robot.dumper.isFloorLow()){
-			
-		}
-		if (Robot.dumper.isGoingDown()){
-			
-		}
-		if (Robot.dumper.isGoingUp()){
-			
-		}
-		if (Robot.climber.isRunning()){
-			
-		}
-		if (!Robot.climber.isRunning()){
-			
+					}
+					if (Robot.dumper.isFloorLow()) {
+
+					}
+					if (Robot.dumper.isGoingDown()) {
+
+					}
+					if (Robot.dumper.isGoingUp()) {
+					}
+				}
+			}
 		}
 	}
 
 	public void autonomousMode() {
-
+		setStrip(STRIP_CHASSIS_BOTTOM, ANIM_IGNITE);
 	}
 
 	public void disabledMode() {

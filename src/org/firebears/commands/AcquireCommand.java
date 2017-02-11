@@ -41,7 +41,7 @@ public class AcquireCommand extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	if (Robot.acquisition.isRunning())  {
+    	if (!Robot.acquisition.isNotRunning())  {
     		Robot.acquisition.stopAcquisition();
     	} else {
     		Robot.acquisition.startAcquisition();
