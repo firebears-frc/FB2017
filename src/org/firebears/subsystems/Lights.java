@@ -69,16 +69,16 @@ public class Lights extends Subsystem {
 
 					}
 				} else if (Robot.acquisition.isNotRunning()) {
-					if (Robot.dumper.isFloorHigh()) {
+					if (Robot.floor.isFloorHigh()) {
 
 					}
-					if (Robot.dumper.isFloorLow()) {
+					if (Robot.floor.isFloorLow()) {
 
 					}
-					if (Robot.dumper.isGoingDown()) {
+					if (Robot.floor.isGoingDown()) {
 
 					}
-					if (Robot.dumper.isGoingUp()) {
+					if (Robot.floor.isGoingUp()) {
 					}
 				}
 			}

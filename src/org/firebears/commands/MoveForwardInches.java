@@ -19,7 +19,7 @@ public class MoveForwardInches extends PIDCommand {
 	protected final double tolerance = 0.25;
 	
     public MoveForwardInches(double inches) {
-    	super(.075, 0.0, 0.0);
+    	super(.025, 0.0, 0.0);
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(Robot.chassis);
