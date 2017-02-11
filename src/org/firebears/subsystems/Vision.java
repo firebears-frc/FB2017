@@ -99,5 +99,9 @@ public class Vision extends Subsystem {
     		}
     	}
     }
+//Someone add this soon 
+    public boolean isDetecting(){
+    	return false;
+    }
 }
 

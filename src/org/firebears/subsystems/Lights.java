@@ -11,8 +11,9 @@ import edu.wpi.first.wpilibj.networktables.NetworkTable;
  * to the pi through the Network Tables.
  */
 public class Lights extends Subsystem {
+
 	
-	double testrange;
+	double range;
 	
 	static NetworkTable table;
 	boolean isCelebrateMode = false;
@@ -39,8 +40,8 @@ public class Lights extends Subsystem {
 	public void teleopMode() {
 
 		String allianceColor = getAllianceColor();
-		
-		testrange = Robot.gearChute.getRangeFinderDistance();
+
+		range = Robot.gearChute.getRangeFinderDistance();
 
 		if (isCelebrateMode) {
 			setStrip(Lights.STRIP_SIGNAL, Lights.ANIM_EXPLODE);
@@ -49,10 +50,52 @@ public class Lights extends Subsystem {
 			setStrip(Lights.STRIP_CHASSIS_BOTTOM, Lights.ANIM_EXPLODE);
 			return;
 		}
-		setValue(STRIP_SIGNAL, testrange);
-		
-		if (testrange <= 5){
-			setStrip(Lights.STRIP_SIGNAL, Lights.ANIM_EXPLODING_R_W_B);
+		setValue(STRIP_SIGNAL, range);
+
+		if (range <= 60) {
+			setStrip(Lights.STRIP_SIGNAL, Lights.ANIM_RANGE);
+		}
+		if (Robot.gearChute.isGearInChute()) {
+
+		}
+		if (Robot.acquisition.isRunning()){
+			
+		}
+		if (!Robot.acquisition.isRunning()){
+			
+		}
+		if (Robot.acquisition.isRunningForward()) {
+
+		}
+		if (Robot.acquisition.isRunningBackward()) {
+
+		}
+		if (Robot.vision.isDetecting()) {
+
+		}
+		if (!Robot.vision.isDetecting()){
+			
+		}
+		if (Robot.vision.isDetecting()){
+			
+		}
+		if (Robot.dumper.isFloorHigh()){
+			
+		}
+		if (Robot.dumper.isFloorLow()){
+			
+		}
+		if (Robot.dumper.isGoingDown()){
+			
+		}
+		if (Robot.dumper.isGoingUp()){
+			
+		}
+		if (Robot.climber.isRunning()){
+			
+		}
+		if (!Robot.climber.isRunning()){
+			
 		}
 	}
 
@@ -104,5 +147,7 @@ public class Lights extends Subsystem {
 	public static final String ANIM_SPARK = "ANIM_SPARK";
 	public static final String ANIM_THEATER = "ANIM_THEATER";
 	public static final String ANIM_EXPLODE = "ANIM_EXPLODE";
+	public static final String ANIM_RANGE = "ANIM_RANGE";
+	public static final String ANIM_IGNITE = "ANIM_IGNITE";
 
 }
