@@ -62,42 +62,32 @@ public class Lights extends Subsystem {
 				if (Robot.gearChute.isGearInChute()) {
 
 				}
-				if (Robot.acquisition.isNotRunning()) {
+				if (!Robot.acquisition.isNotRunning()) {
+					if (Robot.acquisition.isRunningForward()) {
 
-				}
-				if (Robot.acquisition.isRunningForward()) {
+					}
+					if (Robot.acquisition.isRunningBackward()) {
 
-				}
-				if (Robot.acquisition.isRunningBackward()) {
+					}
+				} else if (Robot.acquisition.isNotRunning()) {
+					if (Robot.dumper.isFloorHigh()) {
 
-				}
-				if (Robot.vision.isDetecting()) {
+					}
+					if (Robot.dumper.isFloorLow()) {
 
-				}
-				if (!Robot.vision.isDetecting()) {
+					}
+					if (Robot.dumper.isGoingDown()) {
 
-				}
-				if (Robot.vision.isDetecting()) {
-
-				}
-				if (Robot.dumper.isFloorHigh()) {
-
-				}
-				if (Robot.dumper.isFloorLow()) {
-
-				}
-				if (Robot.dumper.isGoingDown()) {
-
-				}
-				if (Robot.dumper.isGoingUp()) {
-
+					}
+					if (Robot.dumper.isGoingUp()) {
+					}
 				}
 			}
 		}
 	}
 
 	public void autonomousMode() {
-
+		setStrip(STRIP_CHASSIS_BOTTOM, ANIM_IGNITE);
 	}
 
 	public void disabledMode() {
