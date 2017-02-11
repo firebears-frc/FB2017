@@ -7,17 +7,28 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class GoDownCommand extends Command {
+public class DumperServoToggleCommand extends Command {
+	
+	int servoMode = 2;
+	final int RAISE_SERVO = 1;
+	final int LOWER_SERVO = 2;
 
-    public GoDownCommand() {
+	
+    public DumperServoToggleCommand() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(Robot.hopper);
     }
-
+    
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.hopper.goDown();
+    	if (servoMode == RAISE_SERVO){
+    		Robot.hopper.raiseDumperServo();
+    		servoMode = 2;
+    	}else if (servoMode == LOWER_SERVO){
+    		Robot.hopper.lowerDumperServo();
+    		servoMode = 1;
+    	}
     }
 
     // Called repeatedly when this Command is scheduled to run

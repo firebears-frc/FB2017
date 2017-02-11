@@ -204,10 +204,10 @@ public class RobotMap {
         //Auto generated stuff
             	
         dumperdumperServo = new Servo(0);
-        LiveWindow.addActuator("Dumper", "dumperServo", dumperdumperServo);
+        LiveWindow.addActuator("Hopper", "dumperServo", dumperdumperServo);
         
         floorfloorLift = new CANTalon(12);
-        LiveWindow.addActuator("Floor", "floorLift", floorfloorLift);
+        LiveWindow.addActuator("Hopper", "floorLift", floorfloorLift);
         
         climberclimbMotor = new CANTalon(11);
         LiveWindow.addActuator("Climber", "climbMotor", climberclimbMotor);
@@ -223,7 +223,7 @@ public class RobotMap {
 		lcd.begin(20, 4);
 		lcd.clear();
         
-        gearLightRing = new Relay(0, Relay.Direction.kForward);
+//        gearLightRing = new Relay(0, Relay.Direction.kForward);
         
 		try {
 			navXBoard = new AHRS(SPI.Port.kMXP);

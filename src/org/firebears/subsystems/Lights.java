@@ -62,20 +62,20 @@ public class Lights extends Subsystem {
 		} else if (!Robot.vision.isTargetVisible()) {
 			if (Robot.gearChute.isGearInChute()) {
 			} else if (Robot.acquisition.isNotRunning()) {
-					if (Robot.floor.isFloorHigh()) {
+					if (Robot.hopper.isFloorHigh()) {
 
 					}
-					if (Robot.floor.isFloorLow()) {
+					if (Robot.hopper.isFloorLow()) {
 
 					}
-					if (Robot.floor.isGoingDown()) {
+					if (Robot.hopper.isGoingDown()) {
 
 					}
-					if (Robot.floor.isGoingUp()) {
+					if (Robot.hopper.isGoingUp()) {
 					}
 				}
 			}
-			if (Robot.floor.isGoingUp()) {
+			if (Robot.hopper.isGoingUp()) {
 			}
 		if (!Robot.acquisition.isNotRunning()) {
 			if (Robot.acquisition.isRunningForward()) {

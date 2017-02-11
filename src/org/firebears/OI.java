@@ -71,6 +71,7 @@ public class OI {
 	        SmartDashboard.putData("Angle Adjust:", new VisionAngleAdjustCommand());
 	        SmartDashboard.putData("Vision Group Command (3 step):", new VisionCommandGroup());
 	        SmartDashboard.putData("Drive Forward:", new MoveForwardInches(10.0));
+	        SmartDashboard.putData("Servo Toggle:", new DumperServoToggleCommand());
 //	        SmartDashboard.putData("ClimbDown", new ClimbCommand(true));
 //	        SmartDashboard.putData("ClimbUp", new ClimbCommand(false));
 		}
