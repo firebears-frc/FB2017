@@ -45,5 +45,24 @@ public class Dumper extends Subsystem {
         // Set the default command for a subsystem here.
         // setDefaultCommand(new MySpecialCommand());
     }
+	public boolean isFloorHigh() {
+		return false;
+	}
+
+	public boolean isFloorLow() {
+		return false;
+	}
+
+	public boolean isRunning() {
+		return false;
+	}
+
+	public boolean isGoingDown() {
+		return false;
+	}
+
+	public boolean isGoingUp() {
+		return false;
+	}
 }
 

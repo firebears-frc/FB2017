@@ -88,6 +88,8 @@ public class OI {
 			SmartDashboard.putData("Vision Drive:", new VisionDrive());
 	        SmartDashboard.putData("Strafe (hopefully) Straight:", new StrafeStraightCommand());
 	        SmartDashboard.putData("Angle Adjust:", new VisionAngleAdjustCommand());
+	        SmartDashboard.putData("Vision Group Command (3 step):", new VisionCommandGroup());
+	        SmartDashboard.putData("Drive Forward:", new MoveForwardInches(10.0));
 		}
     }
 

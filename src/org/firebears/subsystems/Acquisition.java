@@ -54,8 +54,19 @@ public class Acquisition extends Subsystem {
     	acquisitionMotor.set(0.0);
     }
     
-    public boolean isRunning() {
+    public void reverseAcuisition(){
+    	acquisitionMotor.set(1.0);
+    }
+    
+    public boolean isRunningForward() {
     	return Math.abs(acquisitionMotor.get()) > 0.1;
+    }
+    
+    public boolean isRunningBackward() {
+    	return Math.abs(acquisitionMotor.get()) < 0.1;
+    }
+    public boolean isRunning() {
+    	return Math.abs(acquisitionMotor.get()) != 0;
     }
 }
 

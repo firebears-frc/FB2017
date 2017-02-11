@@ -45,5 +45,8 @@ public class Climber extends Subsystem {
         // Set the default command for a subsystem here.
         // setDefaultCommand(new MySpecialCommand());
     }
+	public boolean isRunning() {
+		return false;
+	}
 }
 
