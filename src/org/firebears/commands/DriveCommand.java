@@ -40,25 +40,25 @@ public class DriveCommand extends Command {
     }
     
     
-    double strafe3;
-    double forward3;
-    double rotation3;
-    double strafe4;
-    double forward4;
-    double rotation4;
-    double oy;
-    double ox;
-    double oz;
+    double strafe3 = 0.0;
+    double forward3 = 0.0;
+    double rotation3 = 0.0;
+    double strafe4 = 0.0;
+    double forward4 = 0.0;
+    double rotation4 = 0.0;
+    double oy = 0.0;
+    double ox = 0.0;
+    double oz = 0.0;
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-//    	double strafe = Robot.oi.joystick1.getRawAxis(0);
-//    	double forward = Robot.oi.joystick1.getRawAxis(1);
-//    	double rotation = Robot.oi.joystick1.getRawAxis(2);
+    	double strafe = Robot.oi.joystick1.getRawAxis(0);
+    	double forward = Robot.oi.joystick1.getRawAxis(1);
+    	double rotation = Robot.oi.joystick1.getRawAxis(2);
     	
-    	double forward = Robot.oi.joystick1.getY();
-    	double strafe = Robot.oi.joystick1.getX(); 
-    	double rotation = Robot.oi.joystick2.getX();
+//    	double forward = Robot.oi.joystick1.getY();
+//    	double strafe = Robot.oi.joystick1.getX(); 
+//    	double rotation = Robot.oi.joystick2.getX();
     	
     	
     	//set to minimum joystick value were the robot moves(Only do this if you do NOT have PID Driving!AKA lEAVE AT ZERO WHEN PID)
@@ -118,32 +118,32 @@ public class DriveCommand extends Command {
     	
     	//strafe sense
     	
-    	if (strafe < 0){
+    	if (strafe < 0.0){
     		double ox = strafe3 * -1;
     		strafe4 = -Math.pow(ox, sensxy);
     	}
     	
-    	else if (strafe > 0){
+    	else if (strafe > 0.0){
     		strafe4 = Math.pow(strafe3, sensxy);
     	}
     	
     	//forward sense
     	
-    	if (forward > 0){
+    	if (forward > 0.0){
     		forward4 = Math.pow(forward3, sensxy);
     	}
-    	else if (forward < 0){
+    	else if (forward < 0.0){
     		double oy = forward3 * -1;
     		forward4 = -Math.pow(oy, sensxy);
     	}
     	
     	//rotation sense
     	
-    	if (rotation < 0){
+    	if (rotation < 0.0){
     		double oz = rotation3 * -1;
     		rotation4 = -Math.pow(oz, sensez);
     	}
-    	else if (rotation > 0){
+    	else if (rotation > 0.0){
     		rotation4 = Math.pow(rotation3, sensez);
     	}
     	

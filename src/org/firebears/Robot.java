@@ -179,7 +179,7 @@ public class Robot extends IterativeRobot {
 				SmartDashboard.putNumber("DistanceInInches", Robot.gearChute.getRangeFinderDistance());
 
 				SmartDashboard.putNumber("Angle:", VisionRotate.bound((float) RobotMap.navXBoard.getAngle()));
-				selectAuto.debug();
+//				selectAuto.debug();
 			}
 		}
 	}

@@ -38,14 +38,14 @@ public class SelectAuto extends Command {
 
 	}
 	
-	public void debug(){
-		LiquidCrystal lcd = RobotMap.lcd;
-		lcd.home();
-		lcd.print("Debugging:");
-		lcd.setCursor(11, 0);
-		lcd.print(String.format("%6.2f", driverStation.getMatchTime()));
-
-	}
+//	public void debug(){
+//		LiquidCrystal lcd = RobotMap.lcd;
+//		lcd.home();
+//		lcd.print("Debugging:");
+//		lcd.setCursor(11, 0);
+//		lcd.print(String.format("%6.2f", driverStation.getMatchTime()));
+//
+//	}
 
 	public void initialize() {
 
@@ -66,12 +66,7 @@ public class SelectAuto extends Command {
 		lcd.home();
 		lcd.print("Auto:");
 
-		// lcd.home();
-		// if () {
-		// lcd.print("0");
-		// } else {
-		// lcd.print("1");
-		// }
+		
 
 		// Note: if the lcd goes out of bounds of the lcd it will send an error
 		// and disable the INTER ROBOT
