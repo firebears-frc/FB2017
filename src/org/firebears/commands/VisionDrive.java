@@ -19,7 +19,7 @@ public class VisionDrive extends PIDCommand {
 	float targetDistance;
 	float currentDistance;
 	
-	protected final double SPEED = 0.5;
+	protected final double SPEED = 0.25;
 	
 	long timeout;
 	
@@ -127,6 +127,6 @@ public class VisionDrive extends PIDCommand {
 	protected void usePIDOutput(double output) {
 		// TODO Auto-generated method stub
 		output = Math.max(-SPEED, Math.min(output, SPEED));
-		Robot.chassis.drive(output, 0.0, adjust);
+		Robot.chassis.drive(-output, 0.0, adjust);
 	}
 }

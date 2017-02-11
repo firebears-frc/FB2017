@@ -52,13 +52,13 @@ public class DriveCommand extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-//    	double strafe = Robot.oi.joystick1.getRawAxis(0);
-//    	double forward = Robot.oi.joystick1.getRawAxis(1);
-//    	double rotation = Robot.oi.joystick1.getRawAxis(2);
+    	double strafe = Robot.oi.joystick1.getRawAxis(0);
+    	double forward = Robot.oi.joystick1.getRawAxis(1);
+    	double rotation = Robot.oi.joystick1.getRawAxis(2);
     	
-    	double forward = Robot.oi.joystick1.getY();
-    	double strafe = Robot.oi.joystick1.getX(); 
-    	double rotation = Robot.oi.joystick2.getX();
+//    	double forward = Robot.oi.joystick1.getY();
+//    	double strafe = Robot.oi.joystick1.getX(); 
+//    	double rotation = Robot.oi.joystick2.getX();
     	
     	
     	//set to minimum joystick value were the robot moves(Only do this if you do NOT have PID Driving!AKA lEAVE AT ZERO WHEN PID)

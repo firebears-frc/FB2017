@@ -99,9 +99,9 @@ public class Robot extends IterativeRobot {
 		
 		lcdol.execute();
         
-        if (Robot.oi.autoSwichButton.valueChanged()) {
-			selectAuto.execute();
-		}
+     //   if (Robot.oi.autoSwichButton.valueChanged()) {
+		//	selectAuto.execute();
+	//	}
 		if ((count++) % 15 == 0) {
 			lights.disabledMode();
 		}
