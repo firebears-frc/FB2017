@@ -26,8 +26,7 @@ import org.firebears.subsystems.*;
 public class OI {
  
     public JoystickButton acquisitionToggle;
-    public JoystickButton climbUp;
-    public JoystickButton climbDown;
+    public JoystickButton climbRope;
     public JoystickButton floorGoUp;
     public JoystickButton floorGoDown;
     public Joystick joystick1;
@@ -47,11 +46,8 @@ public class OI {
         acquisitionToggle = new JoystickButton(joystick1, 2);
         acquisitionToggle.whenPressed(new AcquireCommand());
         
-        climbUp = new JoystickButton(joystick1, 9);
-        climbUp.whileHeld(new ClimbCommand(true));
-        
-        climbDown = new JoystickButton(joystick1, 10);
-        climbDown.whileHeld(new ClimbCommand(false));
+        climbRope = new JoystickButton(joystick1, 9);
+        climbRope.whileHeld(new ClimbCommand());
         
         autoSwichButton = new DigitalButton(0);
 		autoSwichButton.whenActive(new SelectAuto());
