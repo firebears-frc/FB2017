@@ -9,40 +9,38 @@ import edu.wpi.first.wpilibj.command.PIDCommand;
 /**
  *
  */
-public class MoveForwardInches extends PIDCommand {
+public class VisionTestStrafe extends PIDCommand {
 
-	double moveDistance;
-	double startDistance;
-	double targetDistance;
-	double timeout;
-	protected final double SPEED = 0.25;
-	protected final double tolerance = 0.25;
+	long timeout;
+	double startAngle;
+	double currentAngle;
+	double tolerance = 2.5;
 	
-    public MoveForwardInches(double inches) {
-    	super(.025, 0.0, 0.0);
+    public VisionTestStrafe() {
+    	super(0.025, 0.0, 0.0);
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(Robot.chassis);
     	
+    	getPIDController().setInputRange(-180.0, 180.0);
     	getPIDController().setAbsoluteTolerance(tolerance);
-    	
-    	moveDistance = inches;
+    	getPIDController().setContinuous();
     }
     
-    public double toInches(double EncoderValue){
-    	return EncoderValue/26.5;
+    public double getAngleDifference(){
+    	return currentAngle - startAngle;
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
     	timeout = System.currentTimeMillis() + 1000 * 5;
-    	startDistance = toInches(RobotMap.chassisfrontLeft.getEncPosition());
-    	targetDistance = startDistance - moveDistance;
-    	getPIDController().setSetpoint(targetDistance);
+    	startAngle = RobotMap.navXBoard.getAngle();
+    	getPIDController().setSetpoint(0.0);
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+    	currentAngle = RobotMap.navXBoard.getAngle();
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -50,7 +48,8 @@ public class MoveForwardInches extends PIDCommand {
     	if (System.currentTimeMillis() >= timeout){
     		return true;
     	}
-    	if (Math.abs(toInches(RobotMap.chassisfrontLeft.getEncPosition()) - targetDistance) < tolerance) {
+    	
+    	if (Robot.gearChute.getRangeFinderDistance() < 8.0){
     		return true;
     	}
         return false;
@@ -70,12 +69,12 @@ public class MoveForwardInches extends PIDCommand {
 	@Override
 	protected double returnPIDInput() {
 		// TODO Auto-generated method stub
-		return toInches(RobotMap.chassisfrontLeft.getEncPosition());
+		return getAngleDifference();
 	}
 
 	@Override
 	protected void usePIDOutput(double output) {
-		output = Math.max(-SPEED, Math.min(output, SPEED));
-		Robot.chassis.drive(0.0, output, 0.0);
+		// TODO Auto-generated method stub
+		Robot.chassis.drive(0.5, 0.0, output);
 	}
 }

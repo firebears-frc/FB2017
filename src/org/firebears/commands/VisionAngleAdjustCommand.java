@@ -1,16 +1,26 @@
 package org.firebears.commands;
 
-import org.firebears.*;
-
-import edu.wpi.first.wpilibj.Relay;
-import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.PIDCommand;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import org.firebears.Robot;
+import org.firebears.RobotMap;
 
 /**
- *
+ * This command drives the robot forward or backward so that the vision camera faces the target.
  */
-public class VisionAngleAdjustCommand extends PIDCommand {
+public class VisionAngleAdjustCommand extends MoveForwardInches {
+
+	public VisionAngleAdjustCommand() {
+		super(0.0);
+	}
+
+	@Override
+    protected void initialize() {
+		moveDistance = -1.0 * (Robot.vision.getDistance() * Math.sin(Robot.vision.getAngle() * Math.PI / 180));
+		super.initialize();
+	}
+}
+
+/*public class VisionAngleAdjustCommand extends PIDCommand {
 
 	float turnValue;
 	float driveValue;
@@ -85,4 +95,4 @@ public class VisionAngleAdjustCommand extends PIDCommand {
     public String toString() {
     	return "VisionAngleCommand(" + targetAngle + ")";
     }
-}
+}*/

@@ -4,33 +4,21 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.command.WaitCommand;
 
 /**
- *
+ * The complete vision process.
  */
 public class VisionCommandGroup extends CommandGroup {
 
     public VisionCommandGroup() {
-        // Add Commands here:
-        // e.g. addSequential(new Command1());
-        //      addSequential(new Command2());
-        // these will run in order.
-
+    	// Drive the robot backwards or forwards so that the vision camera faces the target
     	addSequential(new VisionAngleAdjustCommand());
-    	addSequential(new WaitCommand(.5));
+    	addSequential(new WaitCommand(1.5));
+    	
+    	// Rotate the robot based on difference between sizes of targets so that vision camera is straight on the target
     	addSequential(new VisionRotate());
-    	addSequential(new WaitCommand(.5));
-    	addSequential(new VisionDrive());
+    	addSequential(new WaitCommand(1.5));
     	
-    	
-        // To run multiple commands at the same time,
-        // use addParallel()
-        // e.g. addParallel(new Command1());
-        //      addSequential(new Command2());
-        // Command1 and Command2 will run in parallel.
-
-        // A command group will require all of the subsystems that each member
-        // would require.
-        // e.g. if Command1 requires chassis, and Command2 requires arm,
-        // a CommandGroup containing them would require both the chassis and the
-        // arm.
+    	// Drive straight until the robot hits the target and gets the gear on it.
+    	addSequential(new VisionTestStrafe());
+//    	addSequential(new VisionDrive());
     }
 }

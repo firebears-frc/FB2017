@@ -45,8 +45,11 @@ public class Climber extends Subsystem {
         // Set the default command for a subsystem here.
         // setDefaultCommand(new MySpecialCommand());
     }
-	public boolean isRunning() {
-		return false;
+	public void climb(double speed) {
+		climbMotor.set(speed);
+	}
+    public boolean isRunning() {
+    	return Math.abs(climbMotor.get()) > 0.1;
 	}
 }
 
