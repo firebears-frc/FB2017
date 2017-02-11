@@ -12,6 +12,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class LcdOverLay extends Command {
 	DriverStation driverStation;
+	
+
 
     public LcdOverLay() {
         // Use requires() here to declare subsystem dependencies
@@ -25,6 +27,24 @@ public class LcdOverLay extends Command {
     	
     	
     }
+    
+    public void disabled(){
+    	LiquidCrystal lcd = RobotMap.lcd;
+
+		lcd.clear();
+		lcd.setCursor(6, 3);
+
+		lcd.print("Disabled");
+	}
+	public void enabled(){
+		LiquidCrystal lcd = RobotMap.lcd;
+
+//		lcd.clear();
+		lcd.setCursor(6, 3);
+		lcd.print(" ");
+		lcd.setCursor(7, 3);
+		lcd.print("Enalbed");
+	}
 
     // Called repeatedly when this Command is scheduled to run
     public void execute() {

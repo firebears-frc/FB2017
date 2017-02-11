@@ -14,6 +14,7 @@ import org.firebears.RobotMap;
 //import org.firebears.commands.defenses.RoughTerrainCommand;
 import org.firebears.util.LiquidCrystal;
 
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -21,13 +22,28 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  *
  */
 public class SelectAuto extends Command {
-	
+	DriverStation driverStation;
+
 
 	int x = 0;
+
+
+
 	// double rf = Robot.shooter.getRangeFinderDistance();
 
 	public SelectAuto() {
-				requires(Robot.chassis);
+		// requires(Robot.chassis);
+    	driverStation = DriverStation.getInstance();
+
+
+	}
+	
+	public void debug(){
+		LiquidCrystal lcd = RobotMap.lcd;
+		lcd.home();
+		lcd.print("Debugging:");
+		lcd.setCursor(11, 0);
+		lcd.print(String.format("%6.2f", driverStation.getMatchTime()));
 
 	}
 
@@ -36,20 +52,29 @@ public class SelectAuto extends Command {
 	}
 
 	public void execute() {
-		
-// 		lcd commands
-//		clear();					Clears the display at the curser
-//		home();						places the curser at home(0,0)
-//		setCursor(int col, int row);Yeah
-//		write(int character); 		Litary useless
-//		print(String message);		prints stuff
-		
-		
 		LiquidCrystal lcd = RobotMap.lcd;
+
+
+		// lcd commands
+		// clear(); Clears the display at the curser
+		// home(); places the curser at home(0,0)
+		// setCursor(int col, int row);Yeah
+		// write(int character); Litary useless
+		// print(String message); prints stuff
+
 		x++;
-		
-		
-		// Note: if the lcd goes out of bounds of the lcd it will send an error and disable the INTER ROBOT
+		lcd.home();
+		lcd.print("Auto:");
+
+		// lcd.home();
+		// if () {
+		// lcd.print("0");
+		// } else {
+		// lcd.print("1");
+		// }
+
+		// Note: if the lcd goes out of bounds of the lcd it will send an error
+		// and disable the INTER ROBOT
 	}
 
 	protected boolean isFinished() {
