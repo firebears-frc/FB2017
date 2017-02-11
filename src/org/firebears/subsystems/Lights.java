@@ -58,17 +58,10 @@ public class Lights extends Subsystem {
 				if (range <= 60) {
 					setStrip(Lights.STRIP_SIGNAL, Lights.ANIM_RANGE);
 				}
-			} else if (!Robot.vision.isTargetVisible()) {
-				if (Robot.gearChute.isGearInChute()) {
-
-				}
-				if (!Robot.acquisition.isNotRunning()) {
-					if (Robot.acquisition.isRunningForward()) {
-					}
-					if (Robot.acquisition.isRunningBackward()) {
-
-					}
-				} else if (Robot.acquisition.isNotRunning()) {
+			}
+		} else if (!Robot.vision.isTargetVisible()) {
+			if (Robot.gearChute.isGearInChute()) {
+			} else if (Robot.acquisition.isNotRunning()) {
 					if (Robot.floor.isFloorHigh()) {
 
 					}
@@ -82,6 +75,16 @@ public class Lights extends Subsystem {
 					}
 				}
 			}
+			if (Robot.floor.isGoingUp()) {
+			}
+		if (!Robot.acquisition.isNotRunning()) {
+			if (Robot.acquisition.isRunningForward()) {
+				setStrip(Lights.STRIP_CHASSIS_FRONT, Lights.ANIM_SWEEPERFORWARDS);
+			}
+			if (Robot.acquisition.isRunningBackward()) {
+				setStrip(Lights.STRIP_CHASSIS_FRONT, Lights.ANIM_SWEEPERBACKWARDS);
+			}
+		} else if (Robot.acquisition.isNotRunning()) {
 		}
 	}
 
@@ -135,5 +138,8 @@ public class Lights extends Subsystem {
 	public static final String ANIM_EXPLODE = "ANIM_EXPLODE";
 	public static final String ANIM_RANGE = "ANIM_RANGE";
 	public static final String ANIM_IGNITE = "ANIM_IGNITE";
+	public static final String ANIM_SWEEPERFORWARDS = "ANIM_SWEEPERFORWARDS";
+	public static final String ANIM_SWEEPERBACKWARDS = "ANIM_SWEEPERBACKWARDS";
+	
 
 }
