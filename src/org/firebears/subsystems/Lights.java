@@ -70,13 +70,13 @@ public class Lights extends Subsystem {
 		if (Robot.acquisition.isRunningBackward()) {
 
 		}
-		if (Robot.vision.isDetecting()) {
+		if (Robot.vision.isTargetVisible()) {
 
 		}
-		if (!Robot.vision.isDetecting()){
+		if (!Robot.vision.isTargetVisible()) {
 			
 		}
-		if (Robot.vision.isDetecting()){
+		if (Robot.vision.isTargetVisible()) {
 			
 		}
 		if (Robot.dumper.isFloorHigh()){

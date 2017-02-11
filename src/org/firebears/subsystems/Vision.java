@@ -10,56 +10,54 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
- *
+ * This subsystem is for gathering information from the raspberry pi about where the target is.
  */
 public class Vision extends Subsystem {
 
 	Receiver2 udp_receiver;
 	Thread udp_receiver_thread;
 	
-	public Vision(){
+	public Vision() {
+		// Gather Information from Raspberry Pi on a separate thread.
 		udp_receiver = new Receiver2(5810);
     	udp_receiver_thread = new Thread(udp_receiver);
     	udp_receiver_thread.start();
 	}
-	
-    // Put methods for controlling this subsystem
-    // here. Call these from Commands.
 
     public void initDefaultCommand() {
-        // Set the default command for a subsystem here.
     }
-    
+
+    /*
+     * Get the angle based on the target's offset from the center ( in degrees ).
+     */
     public float getAngle(){
-//    	float[] angles = new float[5];
-//    	
-//    	for (int i = 0; i < 6; i++){
-//    		angles[i] = udp_receiver.angle;
-//    		System.out.print(angles[i]);
-//    		
-//    	}
-    	
-//    	float angle1 = udp_receiver.angle;
-//    	float angle2 = udp_receiver.angle;
-//    	float angle3 = udp_receiver.angle;
-//    	float angle4 = udp_receiver.angle;
-//    	float angle5 = udp_receiver.angle;
     	return udp_receiver.angle;
-//    	return 5.0f;
     }
     
+    /*
+     * Get the distance ( in inches ) to the target.
+     */
     public float getDistance(){
     	return udp_receiver.distance;
     }
     
+    /*
+     * Get the angle based on the difference in size of the two sides of the target ( in pixels ).
+     */
     public float getTilt(){
     	return udp_receiver.tilt;
     }
     
-    public int getConfidence(){
-    	return udp_receiver.confidence;
+    /*
+     * Returns true if camera can see target, returns false if it is off camera.
+     */
+    public boolean isTargetVisible() {
+    	return udp_receiver.confidence == 1;
     }
     
+    /*
+     * The thread that communicates with the raspberry pi.
+     */
     public class Receiver2 implements Runnable {
     	
     	final SocketAddress address;
@@ -99,9 +97,6 @@ public class Vision extends Subsystem {
     		}
     	}
     }
-//Someone add this soon 
-    public boolean isDetecting(){
-    	return false;
-    }
+
 }
 
