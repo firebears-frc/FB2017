@@ -223,6 +223,7 @@ public class RobotMap {
         lcd = new LiquidCrystal_roboRio(0x27);
 		lcd.begin(20, 4);
 		lcd.clear();
+		
  
         
         
