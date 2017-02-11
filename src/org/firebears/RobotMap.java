@@ -213,7 +213,7 @@ public class RobotMap {
         floorfloorLift = new CANTalon(12);
         LiveWindow.addActuator("Floor", "floorLift", floorfloorLift);
         
-        climberclimbMotor = new CANTalon(13);
+        climberclimbMotor = new CANTalon(11);
         LiveWindow.addActuator("Climber", "climbMotor", climberclimbMotor);
         
         
