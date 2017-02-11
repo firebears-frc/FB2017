@@ -91,7 +91,7 @@ public class VisionRotate extends PIDCommand {
 	@Override
 	protected void usePIDOutput(double output) {
 		output = Math.max(-SPEED, Math.min(output, SPEED));
-		Robot.chassis.drive(0.0, output, output);
+		Robot.chassis.drive(0.0, 0.0, output);
 	}
 	
 	@Override

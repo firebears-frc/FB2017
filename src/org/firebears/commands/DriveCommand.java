@@ -52,10 +52,13 @@ public class DriveCommand extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+    	
+    	//Drive with one Joystick
     	double strafe = Robot.oi.joystick1.getRawAxis(0);
     	double forward = Robot.oi.joystick1.getRawAxis(1);
     	double rotation = Robot.oi.joystick1.getRawAxis(2);
     	
+    	//Drive with two Joysticks
 //    	double forward = Robot.oi.joystick1.getY();
 //    	double strafe = Robot.oi.joystick1.getX(); 
 //    	double rotation = Robot.oi.joystick2.getX();
