@@ -15,7 +15,7 @@ public class VisionAngleAdjustCommand extends MoveForwardInches {
 
 	@Override
     protected void initialize() {
-		moveDistance = Robot.vision.getDistance() * Math.sin(Robot.vision.getAngle() * Math.PI / 180);
+		moveDistance = -1.0 * (Robot.vision.getDistance() * Math.sin(Robot.vision.getAngle() * Math.PI / 180));
 		super.initialize();
 	}
 }

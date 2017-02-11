@@ -50,7 +50,7 @@ public class MoveForwardInches extends PIDCommand {
     	if (System.currentTimeMillis() >= timeout){
     		return true;
     	}
-    	if (toInches(RobotMap.chassisfrontLeft.getEncPosition()) - targetDistance < tolerance){
+    	if (Math.abs(toInches(RobotMap.chassisfrontLeft.getEncPosition()) - targetDistance) < tolerance) {
     		return true;
     	}
         return false;
