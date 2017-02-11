@@ -26,6 +26,7 @@ import org.firebears.subsystems.*;
 public class OI {
  
     public JoystickButton acquisitionToggle;
+    public JoystickButton climbRope;
     public JoystickButton floorGoUp;
     public JoystickButton floorGoDown;
     public Joystick joystick1;
@@ -44,6 +45,9 @@ public class OI {
         
         acquisitionToggle = new JoystickButton(joystick1, 2);
         acquisitionToggle.whenPressed(new AcquireCommand());
+        
+        climbRope = new JoystickButton(joystick1, 9);
+        climbRope.whileHeld(new ClimbCommand());
         
         autoSwichButton = new DigitalButton(0);
 		autoSwichButton.whenActive(new SelectAuto());
@@ -65,6 +69,9 @@ public class OI {
 	        SmartDashboard.putData("Vision Group Command (3 step):", new VisionCommandGroup());
 	        SmartDashboard.putData("Vision Hybrid Command", new VisionHybridCommand());
 	        SmartDashboard.putData("Drive Forward:", new MoveForwardInches(10.0));
+	        SmartDashboard.putData("Servo Toggle:", new DumperServoToggleCommand());
+//	        SmartDashboard.putData("ClimbDown", new ClimbCommand(true));
+//	        SmartDashboard.putData("ClimbUp", new ClimbCommand(false));
 		}
     }
 
