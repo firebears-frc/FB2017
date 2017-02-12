@@ -19,6 +19,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.firebears.commands.*;
 import org.firebears.subsystems.*;
+import static org.firebears.RobotMap.boundAngle;
 
 import com.ctre.CANTalon;
 
@@ -176,7 +177,7 @@ public class Robot extends IterativeRobot {
 
 				SmartDashboard.putNumber("DistanceInInches", Robot.gearChute.getRangeFinderDistance());
 
-				SmartDashboard.putNumber("Corrected NavX Angle:", VisionRotate.bound((float) RobotMap.navXBoard.getAngle()));
+				SmartDashboard.putNumber("Corrected NavX Angle:", boundAngle((float) RobotMap.navXBoard.getAngle()));
 				SmartDashboard.putNumber("NavX Angle:", RobotMap.navXBoard.getAngle());
 				
 				SmartDashboard.putNumber("Dumper Servo Pos:", RobotMap.dumperdumperServo.get());
