@@ -26,8 +26,7 @@ import org.firebears.subsystems.*;
 public class OI {
  
     public JoystickButton acquisitionToggle;
-    public JoystickButton climbUp;
-    public JoystickButton climbDown;
+    public JoystickButton climbRope;
     public JoystickButton floorGoUp;
     public JoystickButton floorGoDown;
     public Joystick joystick1;
@@ -47,11 +46,8 @@ public class OI {
         acquisitionToggle = new JoystickButton(joystick1, 2);
         acquisitionToggle.whenPressed(new AcquireCommand());
         
-        climbUp = new JoystickButton(joystick1, 9);
-        climbUp.whileHeld(new ClimbCommand(true));
-        
-        climbDown = new JoystickButton(joystick1, 10);
-        climbDown.whileHeld(new ClimbCommand(false));
+        climbRope = new JoystickButton(joystick1, 9);
+        climbRope.whileHeld(new ClimbCommand());
         
         autoSwichButton = new DigitalButton(0);
 		autoSwichButton.whenActive(new SelectAuto());
@@ -62,7 +58,8 @@ public class OI {
 		if (RobotMap.DEBUG) {
 			SmartDashboard.putData("Turn:", new AutoRotate((float) 90.0));
 			SmartDashboard.putData("Reset NavX:", new NavXReset());
-			SmartDashboard.putData("VisionTurn:", new VisionRotate());
+			SmartDashboard.putData("Original VisionTurn:", new VisionRotate(false));
+			SmartDashboard.putData("Bar Ratio VisionTurn:", new VisionRotate(true));
 			SmartDashboard.putData("StartRecording", new StartMotionRecordCommand());
 			SmartDashboard.putData("StopRecording", new StopMotionRecordCommand());
 			SmartDashboard.putData("PlayRecording", new PlayRecordingCommand());
@@ -70,7 +67,9 @@ public class OI {
 	        SmartDashboard.putData("Strafe (hopefully) Straight:", new StrafeStraightCommand());
 	        SmartDashboard.putData("Angle Adjust:", new VisionAngleAdjustCommand());
 	        SmartDashboard.putData("Vision Group Command (3 step):", new VisionCommandGroup());
+	        SmartDashboard.putData("Vision Hybrid Command", new VisionHybridCommand());
 	        SmartDashboard.putData("Drive Forward:", new MoveForwardInches(10.0));
+	        SmartDashboard.putData("Servo Toggle:", new DumperServoToggleCommand());
 //	        SmartDashboard.putData("ClimbDown", new ClimbCommand(true));
 //	        SmartDashboard.putData("ClimbUp", new ClimbCommand(false));
 		}

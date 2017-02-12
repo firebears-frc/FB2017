@@ -81,7 +81,7 @@ public class VisionDrive extends PIDCommand {
 //    	RobotMap.gearLightRing.set(Relay.Value.kForward);
     	targetDistance = 10.0f;
     	timeout = System.currentTimeMillis() + 1000 * 10;
-    	startAngle = RobotMap.navXBoard.getAngle();
+    	startAngle = RobotMap.navXBoard.getAngle() + Robot.vision.getAngle();
 
     	driveStraight.enable();
 

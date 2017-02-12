@@ -12,12 +12,12 @@ public class GoUpCommand extends Command {
     public GoUpCommand() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	requires(Robot.floor);
+    	requires(Robot.hopper);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.floor.goUp();
+    	Robot.hopper.goUp();
     	
     }
 
