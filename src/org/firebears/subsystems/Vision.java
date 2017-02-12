@@ -16,6 +16,7 @@ public class Vision extends Subsystem {
 
 	Receiver2 udp_receiver;
 	Thread udp_receiver_thread;
+	long lastGoodObservation = System.currentTimeMillis();
 	
 	public Vision() {
 		// Gather Information from Raspberry Pi on a separate thread.
@@ -52,7 +53,11 @@ public class Vision extends Subsystem {
      * Returns true if camera can see target, returns false if it is off camera.
      */
     public boolean isTargetVisible() {
-    	return udp_receiver.confidence == 1;
+    	return millisecondsSinceLastGoodVision() < 5 * 1000L;
+    }
+    
+    public long millisecondsSinceLastGoodVision() {
+    	return System.currentTimeMillis() - lastGoodObservation;
     }
     
     /*
@@ -85,10 +90,13 @@ public class Vision extends Subsystem {
     				info2 = buffer.getFloat();
     				info3 = buffer.getFloat();
     				info4 = buffer.getInt();
-    				angle = info1;
-    				distance = info2;
-    				tilt = info3;
     				confidence = info4;
+					if (confidence == 1) {
+						angle = info1;
+						distance = info2;
+						tilt = info3;
+						lastGoodObservation = System.currentTimeMillis();
+					}
     				String receivedmessage = "Received a message: "+ info1 + " " + info2 + " " + info3 + " " + info4;
     				SmartDashboard.putNumber("Vision Angle:", info1);
     				SmartDashboard.putNumber("Vision Distance:", info2);
