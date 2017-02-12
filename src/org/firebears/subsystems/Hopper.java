@@ -55,10 +55,12 @@ public class Hopper extends Subsystem {
     public void goUp(){
     	floorLift.set(1);
     	floorGoingUp = true;
+        floorGoingDown = false;
     }
     
     public void goDown(){
     	floorLift.set(-1);
+    	floorGoingUp = false;
         floorGoingDown = true;
     }
     

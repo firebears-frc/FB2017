@@ -59,14 +59,14 @@ public class Acquisition extends Subsystem {
     }
     
     public boolean isRunningForward() {
-    	return Math.abs(acquisitionMotor.get()) > 0.1;
+    	return acquisitionMotor.get() < -0.1;
     }
     
     public boolean isRunningBackward() {
-    	return Math.abs(acquisitionMotor.get()) < 0.1;
+    	return acquisitionMotor.get() > 0.1;
     }
     public boolean isNotRunning() {
-    	return Math.abs(acquisitionMotor.get()) == 0;
+    	return Math.abs(acquisitionMotor.get()) < 0.1;
     }
 }
 
