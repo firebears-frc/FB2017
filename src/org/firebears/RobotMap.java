@@ -238,4 +238,20 @@ public class RobotMap {
 		}
 
     }
+    
+    /**
+     * @return current NavXBoard angle wrapped to the range -180 to 180.
+     */
+    public static double getNavXAngle() {
+    	return boundAngle(navXBoard.getAngle());
+    }
+    
+    /**
+     * @return the angle wrapped into the range -180 to 180.
+     */
+    public static double boundAngle(double angle) {
+		while (angle > 180) angle -= 360;
+		while (angle < -180) angle += 360;
+		return angle;
+	}
 }
