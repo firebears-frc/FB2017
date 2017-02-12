@@ -56,6 +56,8 @@ public class VisionRotate extends PIDCommand {
     	targetAngle = bound((float)RobotMap.navXBoard.getAngle() - turnValue);
     	getPIDController().setSetpoint(0);
     	SmartDashboard.putNumber("VisionTarget:", targetAngle);
+    	
+    	System.out.println("Vision Rotate Start At " + getAngleDifference() + " degrees off");
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -84,6 +86,7 @@ public class VisionRotate extends PIDCommand {
     protected void end() {
     	Robot.chassis.stopDriving();
 //    	RobotMap.gearLightRing.set(Relay.Value.kOff);
+    	System.out.println("Vision Rotate End At " + getAngleDifference() + " degrees off");
     }
 
     // Called when another command which requires one or more of the same

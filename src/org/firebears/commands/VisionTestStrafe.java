@@ -34,8 +34,10 @@ public class VisionTestStrafe extends PIDCommand {
     // Called just before this Command runs the first time
     protected void initialize() {
     	timeout = System.currentTimeMillis() + 1000 * 5;
-    	startAngle = RobotMap.navXBoard.getAngle()/* + ( Robot.vision.getTilt() * 4 )*/;
+    	startAngle = RobotMap.navXBoard.getAngle() + Robot.vision.getAngle()/* + ( Robot.vision.getTilt() * 4 )*/;
     	getPIDController().setSetpoint(0.0);
+    	
+    	System.out.println("Vision Strafe Start At " + (RobotMap.navXBoard.getAngle() - startAngle) + " degrees off");
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -58,6 +60,7 @@ public class VisionTestStrafe extends PIDCommand {
     // Called once after isFinished returns true
     protected void end() {
     	Robot.chassis.stopDriving();
+    	System.out.println("Vision Strafe End At " + (RobotMap.navXBoard.getAngle() - startAngle) + " degrees off");
     }
 
     // Called when another command which requires one or more of the same

@@ -223,7 +223,7 @@ public class RobotMap {
 		lcd.begin(20, 4);
 		lcd.clear();
         
-//        gearLightRing = new Relay(0, Relay.Direction.kForward);
+        gearLightRing = new Relay(0, Relay.Direction.kForward);
         
 		try {
 			navXBoard = new AHRS(SPI.Port.kMXP);
