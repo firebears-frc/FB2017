@@ -6,6 +6,9 @@ import java.net.SocketAddress;
 import java.nio.ByteBuffer;
 import java.nio.channels.DatagramChannel;
 
+import org.firebears.RobotMap;
+
+import edu.wpi.first.wpilibj.Relay;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -17,6 +20,7 @@ public class Vision extends Subsystem {
 	Receiver2 udp_receiver;
 	Thread udp_receiver_thread;
 	long lastGoodObservation = System.currentTimeMillis();
+	long lightRingTimeout = 0;
 	
 	public Vision() {
 		// Gather Information from Raspberry Pi on a separate thread.
@@ -58,6 +62,22 @@ public class Vision extends Subsystem {
     
     public long millisecondsSinceLastGoodVision() {
     	return System.currentTimeMillis() - lastGoodObservation;
+    }
+    
+    public void setLightRingOn() {
+    	lightRingTimeout = 0;
+    	RobotMap.gearLightRing.set(Relay.Value.kForward);
+    }
+    
+    public void setLightRingOff() {
+    	lightRingTimeout = System.currentTimeMillis() + 3 * 1000L;
+    }
+    
+    public void update() {
+    	if (lightRingTimeout > 0 && System.currentTimeMillis() > lightRingTimeout)  {
+    		RobotMap.gearLightRing.set(Relay.Value.kOff);
+    		lightRingTimeout = 0;
+    	}
     }
     
     /*

@@ -78,7 +78,7 @@ public class VisionDrive extends PIDCommand {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-//    	RobotMap.gearLightRing.set(Relay.Value.kForward);
+    	Robot.vision.setLightRingOn();
     	targetDistance = 10.0f;
     	timeout = System.currentTimeMillis() + 1000 * 10;
     	startAngle = RobotMap.navXBoard.getAngle() + Robot.vision.getAngle();
@@ -106,7 +106,7 @@ public class VisionDrive extends PIDCommand {
 
     // Called once after isFinished returns true
     protected void end() {
-//		RobotMap.gearLightRing.set(Relay.Value.kOff);
+    	Robot.vision.setLightRingOff();
     	driveStraight.disable();
     	Robot.chassis.stopDriving();
     }

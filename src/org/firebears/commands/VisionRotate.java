@@ -6,6 +6,8 @@ import edu.wpi.first.wpilibj.Relay;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.PIDCommand;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import static org.firebears.RobotMap.boundAngle;
+import static org.firebears.RobotMap.getNavXAngle;
 
 /**
  *
@@ -15,7 +17,7 @@ public class VisionRotate extends PIDCommand {
 	float turnValue;
 	float driveValue;
 	long timeout;
-	float targetAngle;
+	double targetAngle;
 	protected final double SPEED = 0.25;
 	protected double angleTolerance = 1.5;
 	
@@ -35,25 +37,19 @@ public class VisionRotate extends PIDCommand {
     }
     
     private double getAngleDifference() {
-		return bound((float)RobotMap.navXBoard.getAngle() - targetAngle);
-	}
-
-    public static float bound(float angle) {
-		while (angle > 180) angle -= 360;
-		while (angle < -180) angle += 360;
-		return angle;
+		return boundAngle(getNavXAngle() - targetAngle);
 	}
     
     // Called just before this Command runs the first time
     protected void initialize() {
-//    	RobotMap.gearLightRing.set(Relay.Value.kForward);
+    	Robot.vision.setLightRingOn();
     	timeout = System.currentTimeMillis() + 1000 * 10;
     	if(useTilt) {
     		turnValue = Robot.vision.getTilt() * 4;
     	}else{
     		turnValue = Robot.vision.getAngle();
     	}
-    	targetAngle = bound((float)RobotMap.navXBoard.getAngle() - turnValue);
+    	targetAngle = boundAngle(getNavXAngle() - turnValue);
     	getPIDController().setSetpoint(0);
     	SmartDashboard.putNumber("VisionTarget:", targetAngle);
     }
@@ -73,7 +69,7 @@ public class VisionRotate extends PIDCommand {
     	}
     	
     	if (Math.abs(difference) < angleTolerance){
-//    		RobotMap.gearLightRing.set(Relay.Value.kOff);
+        	Robot.vision.setLightRingOff();
     		return true;
     	}
     	
@@ -83,7 +79,7 @@ public class VisionRotate extends PIDCommand {
     // Called once after isFinished returns true
     protected void end() {
     	Robot.chassis.stopDriving();
-//    	RobotMap.gearLightRing.set(Relay.Value.kOff);
+    	Robot.vision.setLightRingOff();
     }
 
     // Called when another command which requires one or more of the same

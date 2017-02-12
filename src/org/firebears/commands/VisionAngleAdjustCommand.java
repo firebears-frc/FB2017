@@ -1,5 +1,6 @@
 package org.firebears.commands;
 
+import edu.wpi.first.wpilibj.Relay;
 import edu.wpi.first.wpilibj.command.PIDCommand;
 import org.firebears.Robot;
 import org.firebears.RobotMap;
@@ -15,9 +16,18 @@ public class VisionAngleAdjustCommand extends MoveForwardInches {
 
 	@Override
     protected void initialize() {
+    	Robot.vision.setLightRingOn();
 		moveDistance = -1.0 * (Robot.vision.getDistance() * Math.sin(Robot.vision.getAngle() * Math.PI / 180));
 		super.initialize();
+		System.out.printf("::: %b distance=%4.2f  angle=%3.1f  moveDistance=%4.2f %n", 
+				Robot.vision.isTargetVisible(), Robot.vision.getDistance(), Robot.vision.getAngle(), moveDistance);
 	}
+	
+    protected void end() {
+    	super.end();
+    	Robot.vision.setLightRingOff();
+    }
+
 }
 
 /*public class VisionAngleAdjustCommand extends PIDCommand {

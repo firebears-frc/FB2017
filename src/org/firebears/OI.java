@@ -67,6 +67,8 @@ public class OI {
 			SmartDashboard.putData("Vision Hybrid Command", new VisionHybridCommand());
 			SmartDashboard.putData("Drive Forward:", new MoveForwardInches(10.0));
 			SmartDashboard.putData("Servo Toggle:", new DumperServoToggleCommand());
+			SmartDashboard.putData("Light ring on:", new VisionLightRingCommand(true));
+			SmartDashboard.putData("Light ring off:", new VisionLightRingCommand(false));
 			// SmartDashboard.putData("ClimbDown", new ClimbCommand(true));
 			// SmartDashboard.putData("ClimbUp", new ClimbCommand(false));
 		}

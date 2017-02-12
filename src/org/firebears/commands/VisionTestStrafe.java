@@ -2,6 +2,8 @@ package org.firebears.commands;
 
 import org.firebears.Robot;
 import org.firebears.RobotMap;
+import static org.firebears.RobotMap.boundAngle;
+import static org.firebears.RobotMap.getNavXAngle;
 
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.PIDCommand;
@@ -28,19 +30,19 @@ public class VisionTestStrafe extends PIDCommand {
     }
     
     public double getAngleDifference(){
-    	return currentAngle - startAngle;
+		return boundAngle(getNavXAngle() - startAngle);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
     	timeout = System.currentTimeMillis() + 1000 * 5;
-    	startAngle = RobotMap.navXBoard.getAngle()/* + ( Robot.vision.getTilt() * 4 )*/;
+    	startAngle = getNavXAngle() /* + ( Robot.vision.getTilt() * 4 )*/;
     	getPIDController().setSetpoint(0.0);
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	currentAngle = RobotMap.navXBoard.getAngle();
+    	currentAngle = getNavXAngle();
     }
 
     // Make this return true when this Command no longer needs to run execute()
