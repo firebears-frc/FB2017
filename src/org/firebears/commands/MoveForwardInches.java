@@ -39,6 +39,8 @@ public class MoveForwardInches extends PIDCommand {
     	startDistance = toInches(RobotMap.chassisfrontLeft.getEncPosition());
     	targetDistance = startDistance - moveDistance;
     	getPIDController().setSetpoint(targetDistance);
+    	
+    	System.out.println("Vision Forward Move " + moveDistance + "inches, Start At " + (toInches(RobotMap.chassisfrontLeft.getEncPosition()) - targetDistance) + " degrees off");
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -48,9 +50,11 @@ public class MoveForwardInches extends PIDCommand {
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
     	if (System.currentTimeMillis() >= timeout){
+    		System.out.println("Vision Forward: Timeout");
     		return true;
     	}
     	if (Math.abs(toInches(RobotMap.chassisfrontLeft.getEncPosition()) - targetDistance) < tolerance) {
+    		System.out.println("Vision Forward: Within Tolerance");
     		return true;
     	}
         return false;
@@ -59,6 +63,7 @@ public class MoveForwardInches extends PIDCommand {
     // Called once after isFinished returns true
     protected void end() {
     	Robot.chassis.stopDriving();
+    	System.out.println("Vision Forward Start At " + (toInches(RobotMap.chassisfrontLeft.getEncPosition()) - targetDistance) + " degrees off");
     }
 
     // Called when another command which requires one or more of the same

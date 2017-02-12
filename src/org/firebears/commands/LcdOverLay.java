@@ -31,7 +31,7 @@ public class LcdOverLay extends Command {
     public void disabled(){
     	LiquidCrystal lcd = RobotMap.lcd;
 
-		lcd.clear();
+//		lcd.clear();
 		lcd.setCursor(6, 3);
 
 		lcd.print("Disabled");
