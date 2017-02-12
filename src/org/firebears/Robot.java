@@ -95,10 +95,12 @@ public class Robot extends IterativeRobot {
 	 * to reset subsystems before shutting down.
 	 */
 	public void disabledInit() {
+<<<<<<< HEAD
 		selectAuto.initialize();
+=======
+		count = 0;
+>>>>>>> 6a336b90b2afcaebab37dc8edf756e1b8dbcfd36
 		lcdol.disabled();
-		
-
 	}
 
 	public void disabledPeriodic() {
@@ -115,6 +117,7 @@ public class Robot extends IterativeRobot {
 	}
 
 	public void autonomousInit() {
+		count = 0;
 		// schedule the autonomous command (example)
 		if (autonomousCommand != null)
 			autonomousCommand.start();
@@ -132,7 +135,7 @@ public class Robot extends IterativeRobot {
 	}
 
 	public void teleopInit() {
-		
+		count = 0;
 		lcdol.enabled();
 		
 		

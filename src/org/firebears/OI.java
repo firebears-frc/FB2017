@@ -8,7 +8,6 @@
 // update. Deleting the comments indicating the section will prevent
 // it from being updated in the future.
 
-
 package org.firebears;
 
 import org.firebears.commands.*;
@@ -18,42 +17,40 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 import org.firebears.subsystems.*;
 
-
 /**
  * This class is the glue that binds the controls on the physical operator
  * interface to the commands and command groups that allow control of the robot.
  */
 public class OI {
- 
-    public JoystickButton acquisitionToggle;
-    public JoystickButton climbRope;
-    public JoystickButton floorGoUp;
-    public JoystickButton floorGoDown;
-    public Joystick joystick1;
-    public Joystick joystick2;
+
+	public JoystickButton acquisitionToggle;
+	public JoystickButton climbRope;
+	public JoystickButton floorGoUp;
+	public JoystickButton floorGoDown;
+	public Joystick joystick1;
+	public Joystick joystick2;
 	public DigitalButton autoSwichButton;
-    
+
 	public OI() {
 
 		floorGoUp = new JoystickButton(joystick1, 11);
-		
+
 		floorGoDown = new JoystickButton(joystick1, 12);
-		
-        joystick2 = new Joystick(1);
-        
-        joystick1 = new Joystick(0);
-        
-        acquisitionToggle = new JoystickButton(joystick1, 2);
-        acquisitionToggle.whenPressed(new AcquireCommand());
-        
-        climbRope = new JoystickButton(joystick1, 9);
-        climbRope.whileHeld(new ClimbCommand());
-        
-        autoSwichButton = new DigitalButton(0);
+
+		joystick2 = new Joystick(1);
+
+		joystick1 = new Joystick(0);
+
+		acquisitionToggle = new JoystickButton(joystick1, 2);
+		acquisitionToggle.whenPressed(new AcquireCommand());
+
+		climbRope = new JoystickButton(joystick1, 9);
+		climbRope.whileHeld(new ClimbCommand());
+
+		autoSwichButton = new DigitalButton(0);
 		autoSwichButton.whenActive(new SelectAuto());
 
-
-        // SmartDashboard Buttons
+		// SmartDashboard Buttons
 
 		if (RobotMap.DEBUG) {
 			SmartDashboard.putData("Turn:", new AutoRotate((float) 90.0));
@@ -64,24 +61,23 @@ public class OI {
 			SmartDashboard.putData("StopRecording", new StopMotionRecordCommand());
 			SmartDashboard.putData("PlayRecording", new PlayRecordingCommand());
 			SmartDashboard.putData("Vision Drive:", new VisionDrive());
-	        SmartDashboard.putData("Strafe (hopefully) Straight:", new StrafeStraightCommand());
-	        SmartDashboard.putData("Angle Adjust:", new VisionAngleAdjustCommand());
-	        SmartDashboard.putData("Vision Group Command (3 step):", new VisionCommandGroup());
-	        SmartDashboard.putData("Vision Hybrid Command", new VisionHybridCommand());
-	        SmartDashboard.putData("Drive Forward:", new MoveForwardInches(10.0));
-	        SmartDashboard.putData("Servo Toggle:", new DumperServoToggleCommand());
-//	        SmartDashboard.putData("ClimbDown", new ClimbCommand(true));
-//	        SmartDashboard.putData("ClimbUp", new ClimbCommand(false));
+			SmartDashboard.putData("Strafe (hopefully) Straight:", new StrafeStraightCommand());
+			SmartDashboard.putData("Angle Adjust:", new VisionAngleAdjustCommand());
+			SmartDashboard.putData("Vision Group Command (3 step):", new VisionCommandGroup());
+			SmartDashboard.putData("Vision Hybrid Command", new VisionHybridCommand());
+			SmartDashboard.putData("Drive Forward:", new MoveForwardInches(10.0));
+			SmartDashboard.putData("Servo Toggle:", new DumperServoToggleCommand());
+			// SmartDashboard.putData("ClimbDown", new ClimbCommand(true));
+			// SmartDashboard.putData("ClimbUp", new ClimbCommand(false));
 		}
-    }
+	}
 
-      public Joystick getJoystick1() {
-        return joystick1;
-    }
+	public Joystick getJoystick1() {
+		return joystick1;
+	}
 
-    public Joystick getJoystick2() {
-        return joystick2;
-    }
+	public Joystick getJoystick2() {
+		return joystick2;
+	}
 
 }
-
