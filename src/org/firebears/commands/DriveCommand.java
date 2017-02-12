@@ -11,7 +11,10 @@
 
 package org.firebears.commands;
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
 import org.firebears.Robot;
+
 
 /**
  *
@@ -40,23 +43,27 @@ public class DriveCommand extends Command {
     }
     
     
-    double strafe3;
-    double forward3;
-    double rotation3;
-    double strafe4;
-    double forward4;
-    double rotation4;
-    double oy;
-    double ox;
-    double oz;
+    double strafe3 = 0.0;
+    double forward3 = 0.0;
+    double rotation3 = 0.0;
+    double strafe4 = 0.0;
+    double forward4 = 0.0;
+    double rotation4 = 0.0;
+    double oy = 0.0;
+    double ox = 0.0;
+    double oz = 0.0;
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	
+
     	//Drive with one Joystick
     	double strafe = Robot.oi.joystick1.getRawAxis(0);
     	double forward = Robot.oi.joystick1.getRawAxis(1);
     	double rotation = Robot.oi.joystick1.getRawAxis(2);
+    	
+//    	double forward = Robot.oi.joystick1.getY();
+//    	double strafe = Robot.oi.joystick1.getX(); 
+//    	double rotation = Robot.oi.joystick1.getZ();
     	
     	//Drive with two Joysticks
 //    	double forward = Robot.oi.joystick1.getY();
@@ -70,13 +77,13 @@ public class DriveCommand extends Command {
     	double robotdedz = 0.00;
     	
     	//Deadzone of the joysticks
-    	double Joydedy = 0.1;
+    	double Joydedy = 0.11;
     	double Joydedx = 0.04;
     	double Joydedz = 0.07;
     	
     	//Add a powercurve (((senativaty in the lower and upper values)))
-    	double sensxy = 1.1;
-    	double sensez = 1.15;
+//    	double sensxy = 1.1;
+//    	double sensez = 1.15;
     	
 //    	SmartDashboard.putNumber("JoyY", forward);
 //    	SmartDashboard.putNumber("JoyX", strafe);
@@ -121,45 +128,44 @@ public class DriveCommand extends Command {
     	
     	//strafe sense
     	
-    	if (strafe < 0){
-    		double ox = strafe3 * -1;
-    		strafe4 = -Math.pow(ox, sensxy);
-    	}
+//    	if (strafe < 0.0){
+//    		double ox = strafe3 * -1;
+//    		strafe4 = -Math.pow(ox, sensxy);
+//    	}
+//    	
+//    	else if (strafe > 0.0){
+//    		strafe4 = Math.pow(strafe3, sensxy);
+//    	}
+//    	
+//    	//forward sense
+//    	
+//    	if (forward > 0.0){
+//    		forward4 = Math.pow(forward3, sensxy);
+//    	}
+//    	else if (forward < 0.0){
+//    		double oy = forward3 * -1;
+//    		forward4 = -Math.pow(oy, sensxy);
+//    	}
+//    	
+//    	//rotation sense
+//    	
+//    	if (rotation < 0.0){
+//    		double oz = rotation3 * -1;
+//    		rotation4 = -Math.pow(oz, sensez);
+//    	}
+//    	else if (rotation > 0.0){
+//    		rotation4 = Math.pow(rotation3, sensez);
+//    	}
     	
-    	else if (strafe > 0){
-    		strafe4 = Math.pow(strafe3, sensxy);
-    	}
+//    	SmartDashboard.putNumber("Rotation4", rotation3);
+//    	SmartDashboard.putNumber("JoyZ", rotation);
+//    	SmartDashboard.putNumber("Strafe4", strafe3);
+//    	SmartDashboard.putNumber("JoyX", strafe);
+//    	SmartDashboard.putNumber("Forward4", forward3);
+//    	SmartDashboard.putNumber("JoyY", forward);
+
     	
-    	//forward sense
-    	
-    	if (forward > 0){
-    		forward4 = Math.pow(forward3, sensxy);
-    	}
-    	else if (forward < 0){
-    		double oy = forward3 * -1;
-    		forward4 = -Math.pow(oy, sensxy);
-    	}
-    	
-    	//rotation sense
-    	
-    	if (rotation < 0){
-    		double oz = rotation3 * -1;
-    		rotation4 = -Math.pow(oz, sensez);
-    	}
-    	else if (rotation > 0){
-    		rotation4 = Math.pow(rotation3, sensez);
-    	}
-    	
-    	
-    	
-    	
-    	
-    	
-    	
-    	
-    	
-    	
-    	Robot.chassis.drive(strafe4, forward4, rotation4);
+    	Robot.chassis.drive(strafe3, forward3, rotation3);
     	
     }
 

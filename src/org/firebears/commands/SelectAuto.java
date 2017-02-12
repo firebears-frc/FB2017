@@ -22,10 +22,15 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  *
  */
 public class SelectAuto extends Command {
-	DriverStation driverStation;
+//	DriverStation driverStation;
 
 
 	int x = 0;
+
+	
+	Command[] commandlist = {
+			new PlayRecordingCommand(),
+	};
 
 
 
@@ -33,21 +38,27 @@ public class SelectAuto extends Command {
 
 	public SelectAuto() {
 		// requires(Robot.chassis);
-    	driverStation = DriverStation.getInstance();
+//    	driverStation = DriverStation.getInstance();
 
 
 	}
 	
-	public void debug(){
-		LiquidCrystal lcd = RobotMap.lcd;
-		lcd.home();
-		lcd.print("Debugging:");
-		lcd.setCursor(11, 0);
-		lcd.print(String.format("%6.2f", driverStation.getMatchTime()));
-
-	}
+//	public void debug(){
+//		LiquidCrystal lcd = RobotMap.lcd;
+//		lcd.home();
+//		lcd.print("Debugging:");
+//		lcd.setCursor(11, 0);
+//		lcd.print(String.format("%6.2f", driverStation.getMatchTime()));
+//
+//	}
 
 	public void initialize() {
+		LiquidCrystal lcd = RobotMap.lcd;
+
+		lcd.home();
+		lcd.print("Auto:");
+		
+		
 
 	}
 
@@ -65,13 +76,24 @@ public class SelectAuto extends Command {
 		x++;
 		lcd.home();
 		lcd.print("Auto:");
+		
+		if (x >= commandlist.length){
+    		x = 0;
+        	Robot.autonomousCommand = commandlist[x];
 
-		// lcd.home();
-		// if () {
-		// lcd.print("0");
-		// } else {
-		// lcd.print("1");
-		// }
+    	}
+		
+		
+		
+		lcd.home();
+		
+		String name = commandlist[x].toString();
+		
+    	lcd.print(name);
+    	
+
+
+		
 
 		// Note: if the lcd goes out of bounds of the lcd it will send an error
 		// and disable the INTER ROBOT
