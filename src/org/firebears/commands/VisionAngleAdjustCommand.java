@@ -23,6 +23,10 @@ public class VisionAngleAdjustCommand extends MoveForwardInches {
 				Robot.vision.isTargetVisible(), Robot.vision.getDistance(), Robot.vision.getAngle(), moveDistance);
 	}
 	
+	protected void execute() {
+		
+	}
+	
     protected void end() {
     	super.end();
     	Robot.vision.setLightRingOff();

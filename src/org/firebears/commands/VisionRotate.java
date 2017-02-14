@@ -49,7 +49,7 @@ public class VisionRotate extends PIDCommand {
     	}else{
     		turnValue = Robot.vision.getAngle();
     	}
-    	targetAngle = boundAngle(getNavXAngle() - turnValue);
+    	targetAngle = boundAngle(getNavXAngle() + turnValue);
     	getPIDController().setSetpoint(0);
     	SmartDashboard.putNumber("VisionTarget:", targetAngle);
     }
@@ -69,7 +69,7 @@ public class VisionRotate extends PIDCommand {
     	}
     	
     	if (Math.abs(difference) < angleTolerance){
-        	Robot.vision.setLightRingOff();
+//        	Robot.vision.setLightRingOff();
     		return true;
     	}
     	

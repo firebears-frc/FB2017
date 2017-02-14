@@ -93,6 +93,7 @@ public class VisionDrive extends PIDCommand {
     	currentDistance = Robot.vision.getDistance();
     	currentAngle = RobotMap.navXBoard.getAngle();
 
+    	
     }
 
     // Make this return true when this Command no longer needs to run execute()
