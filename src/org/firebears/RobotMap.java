@@ -28,6 +28,7 @@ import edu.wpi.first.wpilibj.Ultrasonic;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.AnalogInput;
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Relay;
@@ -55,6 +56,7 @@ public class RobotMap {
     public static CANTalon floorfloorLift;
     public static CANTalon climberclimbMotor;
     public static Ultrasonic gearChuteultrasonic;
+    public static DigitalInput breakBeam;
     
     public static AnalogInput rangeFinder;
 	public static LiquidCrystal lcd;
@@ -226,6 +228,8 @@ public class RobotMap {
         lcd = new LiquidCrystal_roboRio(0x27);
 		lcd.begin(20, 4);
 		lcd.clear();
+		
+		breakBeam = new DigitalInput(1);
 
 		
         

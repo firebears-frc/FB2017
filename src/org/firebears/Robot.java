@@ -159,6 +159,12 @@ public class Robot extends IterativeRobot {
 		Scheduler.getInstance().run();
 		vision.update();
 		pitchwheelStop.execute();
+		
+		if(RobotMap.breakBeam.get() == true){
+			SmartDashboard.putString("?", "True");
+		}else{
+			SmartDashboard.putString("?", "false");
+		}
 
 		if ((count++) % 15 == 0) {
 			lights.teleopMode();

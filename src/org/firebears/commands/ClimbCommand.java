@@ -22,10 +22,10 @@ import org.firebears.RobotMap;
 public class ClimbCommand extends Command {
 	final double speed;
 
-	public ClimbCommand() {
-		requires(Robot.climber);
-		speed = 1;
-	}
+//	public ClimbCommand() {
+//		requires(Robot.climber);
+////		speed = 1;
+//	}
 	
 	public ClimbCommand(double s) {
 		requires(Robot.climber);

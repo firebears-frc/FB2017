@@ -11,6 +11,8 @@
 package org.firebears.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
 import org.firebears.Robot;
 
 /**
@@ -34,10 +36,23 @@ public class DumpCommand extends Command {
 
 	// Called just before this Command runs the first time
 	protected void initialize() {
+		switch(Robot.hopper.floorpostion){
+		case(1):
+			Robot.hopper.goDown();
+			Robot.hopper.floorpostion = 2;
+//			SmartDashboard.putString("?", "lower");
+			break;
+		case(2):
+			Robot.hopper.goUp();
+			Robot.hopper.floorpostion = 1;
+//			SmartDashboard.putString("?", "upper");
+			break;
+		}
 	}
 
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
+		
 	}
 
 	// Make this return true when this Command no longer needs to run execute()

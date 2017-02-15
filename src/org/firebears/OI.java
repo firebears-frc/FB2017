@@ -33,9 +33,7 @@ public class OI {
 
 	public OI() {
 
-		floorGoUp = new JoystickButton(joystick1, 11);
-
-		floorGoDown = new JoystickButton(joystick1, 12);
+		
 
 		joystick2 = new Joystick(1);
 
@@ -45,10 +43,19 @@ public class OI {
 		acquisitionToggle.whenPressed(new AcquireCommand());
 
 		climbRope = new JoystickButton(joystick1, 9);
-		climbRope.whileHeld(new ClimbCommand());
+		climbRope.whileHeld(new ClimbCommand(1.0));
+		
+		climbRope = new JoystickButton(joystick1, 10);
+		climbRope.whileHeld(new ClimbCommand(-1.0));
 
 		autoSwichButton = new DigitalButton(0);
 		autoSwichButton.whenActive(new SelectAuto());
+		
+		floorGoUp = new JoystickButton(joystick1, 11);
+		floorGoUp.whenPressed(new DumpCommand());
+
+		floorGoDown = new JoystickButton(joystick1, 12);
+		
 
 		// SmartDashboard Buttons
 
