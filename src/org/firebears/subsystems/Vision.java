@@ -21,6 +21,8 @@ public class Vision extends Subsystem {
 	Thread udp_receiver_thread;
 	long lastGoodObservation = System.currentTimeMillis();
 	long lightRingTimeout = 0;
+	int[] lastFiveConfidence = new int[5];
+	int nextConfidence = 0;
 	
 	public Vision() {
 		// Gather Information from Raspberry Pi on a separate thread.
@@ -57,7 +59,14 @@ public class Vision extends Subsystem {
      * Returns true if camera can see target, returns false if it is off camera.
      */
     public boolean isTargetVisible() {
-    	return millisecondsSinceLastGoodVision() < 5 * 1000L;
+    	double averageConfidence;
+    	double confidenceSum = 0;
+    	for (int i = 0; i < lastFiveConfidence.length; i++){
+    		confidenceSum += lastFiveConfidence[i];
+    	}
+    	averageConfidence = confidenceSum / lastFiveConfidence.length;
+    	return averageConfidence > 0.5;
+//    	return millisecondsSinceLastGoodVision() < 5 * 1000L;
     }
     
     public long millisecondsSinceLastGoodVision() {
@@ -111,6 +120,8 @@ public class Vision extends Subsystem {
     				info3 = buffer.getFloat();
     				info4 = buffer.getInt();
     				confidence = info4;
+    				lastFiveConfidence[nextConfidence] = info4;
+    				nextConfidence = (nextConfidence + 1) % lastFiveConfidence.length;
 					if (confidence == 1) {
 						angle = info1;
 						distance = info2;
@@ -121,6 +132,7 @@ public class Vision extends Subsystem {
     				SmartDashboard.putNumber("Vision Angle:", info1);
     				SmartDashboard.putNumber("Vision Distance:", info2);
     				SmartDashboard.putNumber("Vision Tilt:", info3);
+    				SmartDashboard.putNumber("Vision Confidence:", info4);
     			}
     		} catch (IOException ex) {
     			ex.printStackTrace();

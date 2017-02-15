@@ -60,7 +60,7 @@ public class OI {
 			SmartDashboard.putData("StartRecording", new StartMotionRecordCommand());
 			SmartDashboard.putData("StopRecording", new StopMotionRecordCommand());
 			SmartDashboard.putData("PlayRecording", new PlayRecordingCommand());
-			SmartDashboard.putData("Vision Drive:", new VisionDrive());
+			SmartDashboard.putData("Vision Drive:", new VisionTestStrafe());
 			SmartDashboard.putData("Strafe (hopefully) Straight:", new StrafeStraightCommand());
 			SmartDashboard.putData("Angle Adjust:", new VisionAngleAdjustCommand());
 			SmartDashboard.putData("Vision Group Command (3 step):", new VisionCommandGroup());
@@ -69,6 +69,7 @@ public class OI {
 			SmartDashboard.putData("Servo Toggle:", new DumperServoToggleCommand());
 			SmartDashboard.putData("Light ring on:", new VisionLightRingCommand(true));
 			SmartDashboard.putData("Light ring off:", new VisionLightRingCommand(false));
+			SmartDashboard.putData("Wait for Vision:", new WaitForVisionCommand());
 			// SmartDashboard.putData("ClimbDown", new ClimbCommand(true));
 			// SmartDashboard.putData("ClimbUp", new ClimbCommand(false));
 		}

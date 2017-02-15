@@ -196,7 +196,7 @@ public class Robot extends IterativeRobot {
 				
 				SmartDashboard.putNumber("Dumper Servo Pos:", RobotMap.dumperdumperServo.get());
 				
-				
+				SmartDashboard.putBoolean("Vision On Target:", vision.isTargetVisible());
 			}
 		}
 	}
