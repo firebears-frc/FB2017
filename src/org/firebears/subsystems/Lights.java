@@ -54,29 +54,33 @@ public class Lights extends Subsystem {
 		if (Robot.climber.isRunning()) {
 
 		} else if (!Robot.climber.isRunning()) {
-			if (Robot.vision.isTargetVisible()) {
-				if (range <= 60) {
-					setStrip(Lights.STRIP_SIGNAL, Lights.ANIM_RANGE);
+			if (Robot.vision.isLightRingOn()) {
+				if (Robot.vision.isTargetVisible()) {
+					if (range <= 60) {
+						setStrip(Lights.STRIP_SIGNAL, Lights.ANIM_RANGE);
+					}
 				}
+			} else if (!Robot.vision.isTargetVisible()) {
+				setStrip(Lights.STRIP_SIGNAL, Lights.ANIM_VISIONFAIL);
 			}
-		} else if (!Robot.vision.isTargetVisible()) {
-			if (Robot.gearChute.isGearInChute()) {
-			} else if (Robot.acquisition.isNotRunning()) {
-					if (Robot.hopper.isFloorHigh()) {
+		} else if (Robot.acquisition.isNotRunning()) {
+			if (Robot.hopper.isFloorHigh()) {
 
-					}
-					if (Robot.hopper.isFloorLow()) {
+			}
+			if (Robot.hopper.isFloorLow()) {
 
-					}
-					if (Robot.hopper.isGoingDown()) {
+			}
+			if (Robot.hopper.isGoingDown()) {
 
-					}
-					if (Robot.hopper.isGoingUp()) {
-					}
-				}
 			}
 			if (Robot.hopper.isGoingUp()) {
+
 			}
+			if (Robot.gearChute.isGearInChute()) {
+			}
+		}
+		if (Robot.hopper.isGoingUp()) {
+		}
 		if (!Robot.acquisition.isNotRunning()) {
 			if (Robot.acquisition.isRunningForward()) {
 				setStrip(Lights.STRIP_CHASSIS_FRONT, Lights.ANIM_SWEEPERFORWARDS);
@@ -112,10 +116,6 @@ public class Lights extends Subsystem {
 		}
 	}
 
-	// public void shootMode() {
-	// setStrip(Lights.STRIP_CELEBRATE, Lights.ANIM_SPARK);
-	// }
-
 	// Constants for pixel strips
 	public static final String STRIP_CHASSIS_FRONT = "strip_chassis_front";
 	public static final String STRIP_CHASSIS_BACK = "strip_chassis_back";
@@ -140,6 +140,6 @@ public class Lights extends Subsystem {
 	public static final String ANIM_IGNITE = "ANIM_IGNITE";
 	public static final String ANIM_SWEEPERFORWARDS = "ANIM_SWEEPERFORWARDS";
 	public static final String ANIM_SWEEPERBACKWARDS = "ANIM_SWEEPERBACKWARDS";
-	
+	public static final String ANIM_VISIONFAIL = "ANIM_VISIONFAIL";
 
 }

@@ -82,6 +82,10 @@ public class Vision extends Subsystem {
     	lightRingTimeout = System.currentTimeMillis() + 3 * 1000L;
     }
     
+    public boolean isLightRingOn() {
+    return RobotMap.gearLightRing.get() != Relay.Value.kOff;	
+    }
+    
     public void update() {
     	if (lightRingTimeout > 0 && System.currentTimeMillis() > lightRingTimeout)  {
     		RobotMap.gearLightRing.set(Relay.Value.kOff);
