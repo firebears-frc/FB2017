@@ -46,12 +46,12 @@ public class DriveCommand extends Command {
     double strafe3 = 0.0;
     double forward3 = 0.0;
     double rotation3 = 0.0;
-    double strafe4 = 0.0;
-    double forward4 = 0.0;
-    double rotation4 = 0.0;
-    double oy = 0.0;
-    double ox = 0.0;
-    double oz = 0.0;
+//    double strafe4 = 0.0;
+//    double forward4 = 0.0;
+//    double rotation4 = 0.0;
+//    double oy = 0.0;
+//    double ox = 0.0;
+//    double oz = 0.0;
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
