@@ -53,41 +53,41 @@ public class Lights extends Subsystem {
 
 		if (Robot.climber.isRunning()) {
 
-		} else if (!Robot.climber.isRunning()) {
+		} else {
 			if (Robot.vision.isLightRingOn()) {
 				if (Robot.vision.isTargetVisible()) {
 					if (range <= 60) {
 						setStrip(Lights.STRIP_SIGNAL, Lights.ANIM_RANGE);
 					}
+				} else {
+					setStrip(Lights.STRIP_SIGNAL, Lights.ANIM_FAIL);
 				}
-			} else if (!Robot.vision.isTargetVisible()) {
-				setStrip(Lights.STRIP_SIGNAL, Lights.ANIM_FAIL);
 			}
-		}
-		if (Robot.gearChute.isGearInChute()) {
-			setStrip(Lights.STRIP_CHASSIS_BACK, Lights.ANIM_SUCCESS);
-		} else if (!Robot.gearChute.isGearInChute()) {
-			setStrip(Lights.STRIP_CHASSIS_BACK, Lights.ANIM_FAIL);
-		}
-		if (!Robot.acquisition.isNotRunning()) {
-			if (Robot.acquisition.isRunningForward()) {
-				setStrip(Lights.STRIP_CHASSIS_FRONT, Lights.ANIM_SWEEPERFORWARDS);
+			if (Robot.gearChute.isGearInChute()) {
+				setStrip(Lights.STRIP_CHASSIS_BACK, Lights.ANIM_SUCCESS);
+			} else {
+				setStrip(Lights.STRIP_CHASSIS_BACK, Lights.ANIM_FAIL);
 			}
-			if (Robot.acquisition.isRunningBackward()) {
-				setStrip(Lights.STRIP_CHASSIS_FRONT, Lights.ANIM_SWEEPERBACKWARDS);
-			}
-		} else if (Robot.acquisition.isNotRunning()) {
-			if (Robot.hopper.isFloorHigh()) {
-				setStrip(Lights.STRIP_CHASSIS_FRONT, Lights.ANIM_HIGH);
-			}
-			if (Robot.hopper.isFloorLow()) {
-				setStrip(Lights.STRIP_CHASSIS_FRONT, Lights.ANIM_LOW);
-			}
-			if (Robot.hopper.isGoingDown()) {
+			if (!Robot.acquisition.isNotRunning()) {
+				if (Robot.acquisition.isRunningForward()) {
+					setStrip(Lights.STRIP_CHASSIS_FRONT, Lights.ANIM_SWEEPERFORWARDS);
+				}
+				if (Robot.acquisition.isRunningBackward()) {
+					setStrip(Lights.STRIP_CHASSIS_FRONT, Lights.ANIM_SWEEPERBACKWARDS);
+				}
+			} else {
+				if (Robot.hopper.isFloorHigh()) {
+					setStrip(Lights.STRIP_CHASSIS_FRONT, Lights.ANIM_HIGH);
+				}
+				if (Robot.hopper.isFloorLow()) {
+					setStrip(Lights.STRIP_CHASSIS_FRONT, Lights.ANIM_LOW);
+				}
+				if (Robot.hopper.isGoingDown()) {
 
-			}
-			if (Robot.hopper.isGoingUp()) {
+				}
+				if (Robot.hopper.isGoingUp()) {
 
+				}
 			}
 		}
 	}
