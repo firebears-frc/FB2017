@@ -61,25 +61,13 @@ public class Lights extends Subsystem {
 					}
 				}
 			} else if (!Robot.vision.isTargetVisible()) {
-				setStrip(Lights.STRIP_SIGNAL, Lights.ANIM_VISIONFAIL);
-			}
-		} else if (Robot.acquisition.isNotRunning()) {
-			if (Robot.hopper.isFloorHigh()) {
-
-			}
-			if (Robot.hopper.isFloorLow()) {
-
-			}
-			if (Robot.hopper.isGoingDown()) {
-
-			}
-			if (Robot.hopper.isGoingUp()) {
-
-			}
-			if (Robot.gearChute.isGearInChute()) {
+				setStrip(Lights.STRIP_SIGNAL, Lights.ANIM_FAIL);
 			}
 		}
-		if (Robot.hopper.isGoingUp()) {
+		if (Robot.gearChute.isGearInChute()) {
+			setStrip(Lights.STRIP_CHASSIS_BACK, Lights.ANIM_SUCCESS);
+		} else if (!Robot.gearChute.isGearInChute()) {
+			setStrip(Lights.STRIP_CHASSIS_BACK, Lights.ANIM_FAIL);
 		}
 		if (!Robot.acquisition.isNotRunning()) {
 			if (Robot.acquisition.isRunningForward()) {
@@ -89,6 +77,18 @@ public class Lights extends Subsystem {
 				setStrip(Lights.STRIP_CHASSIS_FRONT, Lights.ANIM_SWEEPERBACKWARDS);
 			}
 		} else if (Robot.acquisition.isNotRunning()) {
+			if (Robot.hopper.isFloorHigh()) {
+				setStrip(Lights.STRIP_CHASSIS_FRONT, Lights.ANIM_HIGH);
+			}
+			if (Robot.hopper.isFloorLow()) {
+				setStrip(Lights.STRIP_CHASSIS_FRONT, Lights.ANIM_LOW);
+			}
+			if (Robot.hopper.isGoingDown()) {
+
+			}
+			if (Robot.hopper.isGoingUp()) {
+
+			}
 		}
 	}
 
@@ -140,6 +140,8 @@ public class Lights extends Subsystem {
 	public static final String ANIM_IGNITE = "ANIM_IGNITE";
 	public static final String ANIM_SWEEPERFORWARDS = "ANIM_SWEEPERFORWARDS";
 	public static final String ANIM_SWEEPERBACKWARDS = "ANIM_SWEEPERBACKWARDS";
-	public static final String ANIM_VISIONFAIL = "ANIM_VISIONFAIL";
-
+	public static final String ANIM_FAIL = "ANIM_FAIL";
+	public static final String ANIM_SUCCESS = "ANIM_SUCCESS";
+	public static final String ANIM_LOW = "ANIM_LOW";
+	public static final String ANIM_HIGH = "ANIM_HIGH";
 }
