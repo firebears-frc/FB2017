@@ -27,6 +27,7 @@ public class OI {
 	public JoystickButton climbRope;
 	public JoystickButton floorGoUp;
 	public JoystickButton floorGoDown;
+    public JoystickButton autoGear;
 	public Joystick joystick1;
 	public Joystick joystick2;
 	public DigitalButton autoSwichButton;
@@ -38,6 +39,9 @@ public class OI {
 		joystick2 = new Joystick(1);
 
 		joystick1 = new Joystick(0);
+		
+		//for putting the gear on autonomously, currently does nothing though
+		autoGear = new JoystickButton(joystick2, 12);
 
 		acquisitionToggle = new JoystickButton(joystick1, 2);
 		acquisitionToggle.whenPressed(new AcquireCommand());

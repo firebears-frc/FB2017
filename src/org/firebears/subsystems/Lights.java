@@ -53,38 +53,42 @@ public class Lights extends Subsystem {
 
 		if (Robot.climber.isRunning()) {
 
-		} else if (!Robot.climber.isRunning()) {
-			if (Robot.vision.isTargetVisible()) {
-				if (range <= 60) {
-					setStrip(Lights.STRIP_SIGNAL, Lights.ANIM_RANGE);
+		} else {
+			if (Robot.vision.isLightRingOn()) {
+				if (Robot.vision.isTargetVisible()) {
+					if (range <= 60) {
+						setStrip(Lights.STRIP_SIGNAL, Lights.ANIM_RANGE);
+					}
+				} else {
+					setStrip(Lights.STRIP_SIGNAL, Lights.ANIM_FAIL);
 				}
 			}
-		} else if (!Robot.vision.isTargetVisible()) {
 			if (Robot.gearChute.isGearInChute()) {
-			} else if (Robot.acquisition.isNotRunning()) {
-					if (Robot.hopper.isFloorHigh()) {
+				setStrip(Lights.STRIP_CHASSIS_BACK, Lights.ANIM_SUCCESS);
+			} else {
+				setStrip(Lights.STRIP_CHASSIS_BACK, Lights.ANIM_FAIL);
+			}
+			if (!Robot.acquisition.isNotRunning()) {
+				if (Robot.acquisition.isRunningForward()) {
+					setStrip(Lights.STRIP_CHASSIS_FRONT, Lights.ANIM_SWEEPERFORWARDS);
+				}
+				if (Robot.acquisition.isRunningBackward()) {
+					setStrip(Lights.STRIP_CHASSIS_FRONT, Lights.ANIM_SWEEPERBACKWARDS);
+				}
+			} else {
+				if (Robot.hopper.isFloorHigh()) {
+					setStrip(Lights.STRIP_CHASSIS_FRONT, Lights.ANIM_HIGH);
+				}
+				if (Robot.hopper.isFloorLow()) {
+					setStrip(Lights.STRIP_CHASSIS_FRONT, Lights.ANIM_LOW);
+				}
+				if (Robot.hopper.isGoingDown()) {
 
-					}
-					if (Robot.hopper.isFloorLow()) {
+				}
+				if (Robot.hopper.isGoingUp()) {
 
-					}
-					if (Robot.hopper.isGoingDown()) {
-
-					}
-					if (Robot.hopper.isGoingUp()) {
-					}
 				}
 			}
-			if (Robot.hopper.isGoingUp()) {
-			}
-		if (!Robot.acquisition.isNotRunning()) {
-			if (Robot.acquisition.isRunningForward()) {
-				setStrip(Lights.STRIP_CHASSIS_FRONT, Lights.ANIM_SWEEPERFORWARDS);
-			}
-			if (Robot.acquisition.isRunningBackward()) {
-				setStrip(Lights.STRIP_CHASSIS_FRONT, Lights.ANIM_SWEEPERBACKWARDS);
-			}
-		} else if (Robot.acquisition.isNotRunning()) {
 		}
 	}
 
@@ -112,10 +116,6 @@ public class Lights extends Subsystem {
 		}
 	}
 
-	// public void shootMode() {
-	// setStrip(Lights.STRIP_CELEBRATE, Lights.ANIM_SPARK);
-	// }
-
 	// Constants for pixel strips
 	public static final String STRIP_CHASSIS_FRONT = "strip_chassis_front";
 	public static final String STRIP_CHASSIS_BACK = "strip_chassis_back";
@@ -140,6 +140,8 @@ public class Lights extends Subsystem {
 	public static final String ANIM_IGNITE = "ANIM_IGNITE";
 	public static final String ANIM_SWEEPERFORWARDS = "ANIM_SWEEPERFORWARDS";
 	public static final String ANIM_SWEEPERBACKWARDS = "ANIM_SWEEPERBACKWARDS";
-	
-
+	public static final String ANIM_FAIL = "ANIM_FAIL";
+	public static final String ANIM_SUCCESS = "ANIM_SUCCESS";
+	public static final String ANIM_LOW = "ANIM_LOW";
+	public static final String ANIM_HIGH = "ANIM_HIGH";
 }
