@@ -52,7 +52,10 @@ public class Lights extends Subsystem {
 		setValue(STRIP_SIGNAL, range);
 
 		if (Robot.climber.isRunning()) {
-
+			setStrip(Lights.STRIP_SIGNAL, Lights.ANIM_EXPLODING_R_W_B);
+			setStrip(Lights.STRIP_CHASSIS_BACK, Lights.ANIM_EXPLODING_R_W_B);
+			setStrip(Lights.STRIP_CHASSIS_FRONT, Lights.ANIM_EXPLODING_R_W_B);
+			setStrip(Lights.STRIP_CHASSIS_BOTTOM, Lights.ANIM_EXPLODING_R_W_B);
 		} else {
 			if (Robot.vision.isLightRingOn()) {
 				if (Robot.vision.isTargetVisible()) {
