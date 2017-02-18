@@ -18,14 +18,19 @@ public class VisionRotate extends PIDCommand {
 	float driveValue;
 	long timeout;
 	double targetAngle;
-	protected final double SPEED = 0.25;
-	protected double angleTolerance = 1.5;
+	protected double SPEED = 0.2;
+	protected double angleTolerance = 1.0;
 	
 	private boolean useTilt = false;
 	
+	//Amount the command overshoots from each given angle
+	public final double offsetFrom20 = 4.2;
+	public final double offsetFrom10 = 2.6;
+	public final double offsetFrom0 = .1;
+	
     public VisionRotate(boolean p_useTilt) {
     	//PID Values not correct
-    	super(0.066, 0.0, 0.0);
+    	super(0.5, 0.0, 0.0);
         requires(Robot.chassis);
 //        driveValue = (float)distance;
         
@@ -34,6 +39,12 @@ public class VisionRotate extends PIDCommand {
 		getPIDController().setAbsoluteTolerance(angleTolerance);
 		
 		useTilt = p_useTilt;
+    }
+    
+    private double getOffset(double startAngle) {
+    	double offsetAnswer;
+    	offsetAnswer = startAngle * ((offsetFrom20 - offsetFrom10)/10) + offsetFrom0;
+    	return Math.abs(offsetAnswer);
     }
     
     private double getAngleDifference() {
@@ -49,14 +60,19 @@ public class VisionRotate extends PIDCommand {
     	}else{
     		turnValue = Robot.vision.getAngle();
     	}
-    	targetAngle = boundAngle(getNavXAngle() + turnValue);
+    	targetAngle = boundAngle(getNavXAngle() + turnValue - getOffset(turnValue));
     	getPIDController().setSetpoint(0);
     	SmartDashboard.putNumber("VisionTarget:", targetAngle);
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	
+    	if (Robot.vision.isTargetVisible() == false){
+			end();
+		}
+    	if (Math.abs(getAngleDifference()) <= 5){
+    		SPEED = 0.15;
+    	}
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -79,7 +95,7 @@ public class VisionRotate extends PIDCommand {
     // Called once after isFinished returns true
     protected void end() {
     	Robot.chassis.stopDriving();
-    	Robot.vision.setLightRingOff();
+//    	Robot.vision.setLightRingOff();
     }
 
     // Called when another command which requires one or more of the same

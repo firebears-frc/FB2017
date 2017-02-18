@@ -43,6 +43,9 @@ public class VisionTestStrafe extends PIDCommand {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	currentAngle = getNavXAngle();
+    	if (Robot.vision.isTargetVisible() == false){
+			end();
+		}
     }
 
     // Make this return true when this Command no longer needs to run execute()
