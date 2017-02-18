@@ -24,7 +24,9 @@ public class VisionAngleAdjustCommand extends MoveForwardInches {
 	}
 	
 	protected void execute() {
-		
+		if (Robot.vision.isTargetVisible() == false){
+			end();
+		}
 	}
 	
     protected void end() {
