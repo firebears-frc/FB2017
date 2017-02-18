@@ -33,7 +33,7 @@ import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Encoder;
-import edu.wpi.first.wpilibj.Relay;
+//import edu.wpi.first.wpilibj.Relay;
 
 import com.kauailabs.navx.frc.AHRS;
 /**
@@ -72,7 +72,7 @@ public class RobotMap {
 	public static Encoder encoderLeft;
 	public static Encoder encoderRight;
 	
-	public static Relay gearLightRing;
+//	public static Relay gearLightRing;
 	
 	public static AHRS navXBoard;
 	
@@ -160,7 +160,7 @@ public class RobotMap {
     	chassisrobotDrive.setSafetyEnabled(true);
         chassisrobotDrive.setExpiration(0.1);
         chassisrobotDrive.setSensitivity(0.0);
-        chassisrobotDrive.setMaxOutput(600);
+        chassisrobotDrive.setMaxOutput(550);
         chassisrobotDrive.setInvertedMotor(RobotDrive.MotorType.kFrontLeft, true);
         chassisrobotDrive.setInvertedMotor(RobotDrive.MotorType.kRearLeft, true);
 		
@@ -184,7 +184,7 @@ public class RobotMap {
 		
 		//Start Open Loop Drive code
 		
-//		
+		
 //		chassisfrontLeft = new CANTalon(2);
 //        LiveWindow.addActuator("Chassis", "frontLeft", chassisfrontLeft);
 //        
@@ -206,7 +206,7 @@ public class RobotMap {
 //        chassisrobotDrive.setMaxOutput(1.0);
 //        chassisrobotDrive.setInvertedMotor(RobotDrive.MotorType.kFrontLeft, true);
 //        chassisrobotDrive.setInvertedMotor(RobotDrive.MotorType.kRearLeft, true);
-//        
+        
         
         //END Open loop code
         
@@ -245,7 +245,7 @@ public class RobotMap {
 
 		
         
-        gearLightRing = new Relay(0, Relay.Direction.kForward);
+//        gearLightRing = new Relay(0, Relay.Direction.kForward);
         
 		try {
 			navXBoard = new AHRS(SPI.Port.kMXP);

@@ -11,7 +11,7 @@
 package org.firebears;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
-import edu.wpi.first.wpilibj.Relay;
+//import edu.wpi.first.wpilibj.Relay;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
@@ -80,7 +80,7 @@ public class Robot extends IterativeRobot {
 		// pointers. Bad news. Don't move it.
 		oi = new OI();
 		
-		selectAuto = new SelectAuto();
+//		selectAuto = new SelectAuto();
 		pitchwheelStop = new PitchWheelStop();
 
 		// instantiate the command used for the autonomous period
@@ -108,9 +108,9 @@ public class Robot extends IterativeRobot {
 		
 		lcdol.execute();
         
-        if (Robot.oi.autoSwichButton.valueChanged()) {
-			selectAuto.execute();
-		}
+//        if (Robot.oi.autoSwichButton.valueChanged()) {
+////			selectAuto.execute();
+//		}
 		if ((count++) % 15 == 0) {
 			lights.disabledMode();
 		}
@@ -158,7 +158,7 @@ public class Robot extends IterativeRobot {
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
 		vision.update();
-		pitchwheelStop.execute();
+//		pitchwheelStop.execute();
 		
 		if(RobotMap.breakBeam.get() == true){
 			SmartDashboard.putString("?", "True");

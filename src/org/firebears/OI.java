@@ -28,6 +28,8 @@ public class OI {
 	public JoystickButton floorGoUp;
 	public JoystickButton floorGoDown;
     public JoystickButton autoGear;
+    public JoystickButton flap;
+
 	public Joystick joystick1;
 	public Joystick joystick2;
 	public DigitalButton autoSwichButton;
@@ -41,24 +43,27 @@ public class OI {
 		joystick1 = new Joystick(0);
 		
 		//for putting the gear on autonomously, currently does nothing though
-		autoGear = new JoystickButton(joystick2, 12);
+//		autoGear = new JoystickButton(joystick2, 12);
 
-		acquisitionToggle = new JoystickButton(joystick1, 2);
+		acquisitionToggle = new JoystickButton(joystick2, 9);
 		acquisitionToggle.whenPressed(new AcquireCommand());
 
-		climbRope = new JoystickButton(joystick1, 9);
+		climbRope = new JoystickButton(joystick2, 7);
 		climbRope.whileHeld(new ClimbCommand(1.0));
 		
-		climbRope = new JoystickButton(joystick1, 10);
-		climbRope.whileHeld(new ClimbCommand(-1.0));
-
-		autoSwichButton = new DigitalButton(0);
-		autoSwichButton.whenActive(new SelectAuto());
+		flap = new JoystickButton(joystick2, 11);
+		flap.whenPressed(new DumperServoToggleCommand());
 		
-		floorGoUp = new JoystickButton(joystick1, 11);
-		floorGoUp.whenPressed(new DumpCommand());
+//		climbRope = new JoystickButton(joystick1, 10);
+//		climbRope.whileHeld(new ClimbCommand(-1.0));
 
-		floorGoDown = new JoystickButton(joystick1, 12);
+//		autoSwichButton = new DigitalButton(0);
+//		autoSwichButton.whenActive(new SelectAuto());
+		
+//		floorGoUp = new JoystickButton(joystick1, 11);
+//		floorGoUp.whenPressed(new DumpCommand());
+
+//		floorGoDown = new JoystickButton(joystick1, 12);
 		
 
 		// SmartDashboard Buttons

@@ -66,7 +66,7 @@ public class Lights extends Subsystem {
 			setStrip(Lights.STRIP_CHASSIS_FRONT2, Lights.ANIM_EXPLODING_R_W_B);
 			setStrip(Lights.STRIP_CHASSIS_BOTTOM2, Lights.ANIM_EXPLODING_R_W_B);
 		} else {
-			if (Robot.vision.isLightRingOn()) {
+//			if (Robot.vision.isLightRingOn()) {
 				if (Robot.vision.isTargetVisible()) {
 					if (range <= 60) {
 						setStrip(Lights.STRIP_SIGNAL, Lights.ANIM_RANGE);
@@ -108,7 +108,7 @@ public class Lights extends Subsystem {
 				}
 			}
 		}
-	}
+	
 	
 
 	public void autonomousMode() {
