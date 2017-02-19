@@ -28,6 +28,7 @@ public class Vision extends Subsystem {
 		// Gather Information from Raspberry Pi on a separate thread.
 		udp_receiver = new Receiver2(5810);
     	udp_receiver_thread = new Thread(udp_receiver);
+    	udp_receiver_thread.setDaemon(true);
     	udp_receiver_thread.start();
 	}
 

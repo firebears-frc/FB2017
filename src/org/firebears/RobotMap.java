@@ -160,18 +160,18 @@ public class RobotMap {
     	chassisrobotDrive.setSafetyEnabled(true);
         chassisrobotDrive.setExpiration(0.1);
         chassisrobotDrive.setSensitivity(0.0);
-        chassisrobotDrive.setMaxOutput(550);
+        chassisrobotDrive.setMaxOutput(380);
         chassisrobotDrive.setInvertedMotor(RobotDrive.MotorType.kFrontLeft, true);
         chassisrobotDrive.setInvertedMotor(RobotDrive.MotorType.kRearLeft, true);
 		
         
-		try {
-			cameraServer = CameraServer.getInstance();
-			usbCamera1 = cameraServer.startAutomaticCapture(1);
-			usbCamera0 = cameraServer.startAutomaticCapture(0);
-		}catch(Error e) {
-			System.err.println("Couldn't Open Cameras");
-		}
+//		try {
+//			cameraServer = CameraServer.getInstance();
+//			usbCamera1 = cameraServer.startAutomaticCapture(1);
+//			usbCamera0 = cameraServer.startAutomaticCapture(0);
+//		}catch(Error e) {
+//			System.err.println("Couldn't Open Cameras");
+//		}
 
 //		//END CLOSED LOOP PID
 		
