@@ -39,6 +39,8 @@ public class Vision extends Subsystem {
      * Get the angle based on the target's offset from the center ( in degrees ).
      */
     public float getAngle(){
+    	//return udp_receiver.angle * -1f;//Upside down test robot camera
+    			
     	return udp_receiver.angle;
     }
     
@@ -76,20 +78,20 @@ public class Vision extends Subsystem {
     
     public void setLightRingOn() {
     	lightRingTimeout = 0;
-//    	RobotMap.gearLightRing.set(Relay.Value.kForward);
+    	RobotMap.gearLightRing.set(Relay.Value.kForward);
     }
     
     public void setLightRingOff() {
     	lightRingTimeout = System.currentTimeMillis() + 3 * 1000L;
     }
     
-//    public boolean isLightRingOn() {
-////    return RobotMap.gearLightRing.get() != Relay.Value.kOff;	
-//    }
+    public boolean isLightRingOn() {
+    	return RobotMap.gearLightRing.get() != Relay.Value.kOff;	
+    }
     
     public void update() {
     	if (lightRingTimeout > 0 && System.currentTimeMillis() > lightRingTimeout)  {
-//    		RobotMap.gearLightRing.set(Relay.Value.kOff);
+    		RobotMap.gearLightRing.set(Relay.Value.kOff);
     		lightRingTimeout = 0;
     	}
     }

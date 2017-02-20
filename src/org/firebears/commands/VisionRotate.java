@@ -18,15 +18,15 @@ public class VisionRotate extends PIDCommand {
 	float driveValue;
 	long timeout;
 	double targetAngle;
-	protected double SPEED = 0.2;
+	protected double SPEED = 0.35;
 	protected double angleTolerance = 1.0;
 	
 	private boolean useTilt = false;
 	
 	//Amount the command overshoots from each given angle
-	public final double offsetFrom20 = 4.2;
-	public final double offsetFrom10 = 2.6;
-	public final double offsetFrom0 = .1;
+	public final double offsetFrom20 = 10;//4.2;
+	public final double offsetFrom10 = 6;//2.6;
+	public final double offsetFrom0 = 2;//.1;
 	
     public VisionRotate(boolean p_useTilt) {
     	//PID Values not correct
@@ -71,7 +71,7 @@ public class VisionRotate extends PIDCommand {
 			end();
 		}
     	if (Math.abs(getAngleDifference()) <= 5){
-    		SPEED = 0.15;
+    		SPEED = 0.25;
     	}
     }
 
