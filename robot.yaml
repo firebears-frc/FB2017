@@ -213,7 +213,7 @@ Children:
           default: '0'
           name: Input Channel (Digital)
           validators: [DigitalChannel]
-          value: '0'
+          value: '1'
       Base: Digital Input
       Name: gearSensor
     Properties:
