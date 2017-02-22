@@ -11,14 +11,14 @@ import edu.wpi.first.wpilibj.command.PIDCommand;
 /**
  *
  */
-public class VisionTestStrafe extends PIDCommand {
+public class VisionBackIntoTarget extends PIDCommand {
 
 	long timeout;
 	double startAngle;
 	double currentAngle;
 	double tolerance = 2.5;
 	
-    public VisionTestStrafe() {
+    public VisionBackIntoTarget() {
     	super(0.025, 0.0, 0.0);
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
