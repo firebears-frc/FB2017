@@ -17,10 +17,12 @@ public class StrafeInches extends PIDCommand {
 	double targetDistance;
 	double timeout;
 	protected final double SPEED;
-	protected final double tolerance = 0.25;
+	protected final double tolerance = 3.00;
+	double incoder;
+	double in;
 
 	public StrafeInches(double inches, double speed) {
-		super(0.025, 0.0, 0.0);
+		super(0.5, 0.0, 0.0);				
 		requires(Robot.chassis);
 
 		SPEED = speed;
@@ -34,11 +36,19 @@ public class StrafeInches extends PIDCommand {
 
 	// Called just before this Command runs the first time
 	protected void initialize() {
+		if(SPEED < 0){
+			incoder = RobotMap.chassisfrontLeft.getEncPosition();
+			in = -1;
+		}else{
+			incoder = RobotMap.chassisrearLeft.getEncPosition();
+			in = 1;
+		}
 
 		timeout = System.currentTimeMillis() + 1000 * 5;
-		startDistance = toInches(RobotMap.chassisfrontLeft.getEncPosition());
+		startDistance = toInches(incoder);
 		targetDistance = startDistance - moveDistance;
 		getPIDController().setSetpoint(targetDistance);
+		
 	}
 
 	// Called repeatedly when this Command is scheduled to run
@@ -51,7 +61,7 @@ public class StrafeInches extends PIDCommand {
 			System.out.println("Strafe: Timeout");
 			return true;
 		}
-		if (Math.abs(toInches(RobotMap.chassisfrontLeft.getEncPosition()) - targetDistance) < tolerance) {
+		if (Math.abs(toInches(RobotMap.chassisrearLeft.getEncPosition()) - targetDistance) < tolerance) {
 			System.out.println("Strafe: Within Tolerance");
 			return true;
 		}
@@ -73,12 +83,12 @@ public class StrafeInches extends PIDCommand {
 	@Override
 	protected double returnPIDInput() {
 		// TODO Auto-generated method stub
-		return toInches(RobotMap.chassisfrontLeft.getEncPosition());
+		return toInches(RobotMap.chassisrearLeft.getEncPosition());
 	}
 
 	@Override
 	protected void usePIDOutput(double output) {
 		output = Math.max(-SPEED, Math.min(output, SPEED));
-		Robot.chassis.drive(output, 0.0, 0.0);
+		Robot.chassis.drive(output*in, 0.0, 0.03*in);
 	}
 }

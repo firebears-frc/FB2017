@@ -29,7 +29,8 @@ public class SelectAuto extends Command {
 
 	
 	Command[] commandlist = {
-			new PlayRecordingCommand(),
+			new StrafeInches(12, .5),
+			new MoveForwardInches(12),
 	};
 
 

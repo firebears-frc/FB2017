@@ -80,7 +80,7 @@ public class Robot extends IterativeRobot {
 		// pointers. Bad news. Don't move it.
 		oi = new OI();
 		
-//		selectAuto = new SelectAuto();
+		selectAuto = new SelectAuto();
 		pitchwheelStop = new PitchWheelStop();
 
 		// instantiate the command used for the autonomous period
@@ -108,9 +108,9 @@ public class Robot extends IterativeRobot {
 		
 		lcdol.execute();
         
-//        if (Robot.oi.autoSwichButton.valueChanged()) {
-////			selectAuto.execute();
-//		}
+        if (Robot.oi.autoSwichButton.valueChanged()) {
+			selectAuto.execute();
+		}
 		if ((count++) % 15 == 0) {
 			lights.disabledMode();
 		}
@@ -160,7 +160,7 @@ public class Robot extends IterativeRobot {
 		vision.update();
 //		pitchwheelStop.execute();
 		
-		if(RobotMap.breakBeam.get() == true){
+		if(RobotMap.gearSensor.get() == true){
 			SmartDashboard.putString("?", "True");
 		}else{
 			SmartDashboard.putString("?", "false");
