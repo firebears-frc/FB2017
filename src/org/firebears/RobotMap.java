@@ -63,6 +63,7 @@ public class RobotMap {
     public static CANTalon climberclimbMotor;
     public static Ultrasonic gearChuteultrasonic;
     public static DigitalInput breakBeam;
+    public static DigitalInput gearSensor;
     
     public static AnalogInput rangeFinder;
 	public static LiquidCrystal lcd;
@@ -235,6 +236,8 @@ public class RobotMap {
         
     	acquisitionacquisitionMotor = new CANTalon(14);
         LiveWindow.addActuator("Acquisition", "acquisitionMotor", acquisitionacquisitionMotor);
+        
+        gearSensor = new DigitalInput(1);
 
         //
         

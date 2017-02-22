@@ -87,6 +87,7 @@ public class OI {
 			SmartDashboard.putData("Light ring on:", new VisionLightRingCommand(true));
 			SmartDashboard.putData("Light ring off:", new VisionLightRingCommand(false));
 			SmartDashboard.putData("Wait for Vision:", new WaitForVisionCommand());
+			SmartDashboard.putData("GearWaitCommand", new GearWaitCommand());
 			// SmartDashboard.putData("ClimbDown", new ClimbCommand(true));
 			// SmartDashboard.putData("ClimbUp", new ClimbCommand(false));
 		}
