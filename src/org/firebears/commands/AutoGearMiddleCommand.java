@@ -8,28 +8,11 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class AutoGearMiddleCommand extends CommandGroup {
 
     public AutoGearMiddleCommand() {
-        // Add Commands here:
-        // e.g. addSequential(new Command1());
-        //      addSequential(new Command2());
-        // these will run in order.
-
-        // To run multiple commands at the same time,
-        // use addParallel()
-        // e.g. addParallel(new Command1());
-        //      addSequential(new Command2());
-        // Command1 and Command2 will run in parallel.
-
-        // A command group will require all of the subsystems that each member
-        // would require.
-        // e.g. if Command1 requires chassis, and Command2 requires arm,
-        // a CommandGroup containing them would require both the chassis and the
-        // arm.
     	addSequential(new MoveForwardInches(-3*12));
     	addSequential(new WaitForVisionCommand());
     	addSequential(new VisionRotate(false));
     	addSequential(new VisionBackIntoTarget());
-//    	addSequential(new ) // TODO: Wait for gear to be removed.
-    	// TODO Wait 2 seconds or so...
-//    	addSequential(new ) // TODO: Recorded command for moving passed auto line
+    	// TODO:   wait for gear
+    	addSequential(new PlayRecordingCommand("recording/auto_gear_middle_1.csv"));
     }
 }
