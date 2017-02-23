@@ -166,7 +166,7 @@ Children:
         validators: null
         value: &id004 []
     Base: Subsystem
-    Name: Hopper
+    Name: Floor
   - Children:
     - Children: []
       Properties:
@@ -175,7 +175,7 @@ Children:
           default: '2'
           name: CAN ID
           validators: *id002
-          value: '13'
+          value: '11'
       Base: CAN Talon
       Name: climbMotor
     Properties:

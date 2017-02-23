@@ -62,7 +62,7 @@ public class RobotMap {
     public static CANTalon floorfloorLift;
     public static CANTalon climberclimbMotor;
     public static Ultrasonic gearChuteultrasonic;
-    public static DigitalInput breakBeam;
+//    public static DigitalInput breakBeam;
     public static DigitalInput gearSensor;
     
     public static AnalogInput rangeFinder;
@@ -250,7 +250,7 @@ public class RobotMap {
 		lcd.begin(20, 4);
 		lcd.clear();
 		
-		breakBeam = new DigitalInput(1);
+//		breakBeam = new DigitalInput(1);
 
 		
         

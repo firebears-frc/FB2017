@@ -160,7 +160,7 @@ public class Robot extends IterativeRobot {
 		vision.update();
 //		pitchwheelStop.execute();
 		
-		if(RobotMap.breakBeam.get() == true){
+		if(RobotMap.gearSensor.get() == true){
 			SmartDashboard.putString("?", "True");
 		}else{
 			SmartDashboard.putString("?", "false");
