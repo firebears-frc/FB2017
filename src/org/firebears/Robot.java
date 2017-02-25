@@ -156,18 +156,17 @@ public class Robot extends IterativeRobot {
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
 		vision.update();
-//		pitchwheelStop.execute();
-		
-		if(RobotMap.gearSensor.get() == true){
-			SmartDashboard.putString("?", "True");
-		}else{
-			SmartDashboard.putString("?", "false");
-		}
 
 		if ((count++) % 15 == 0) {
 			lights.teleopMode();
 
 			if (RobotMap.DEBUG) {
+				
+				if(RobotMap.gearSensor.get() == true){
+					SmartDashboard.putString("?", "True");
+				}else{
+					SmartDashboard.putString("?", "false");
+				}
 
 				CANTalon talon2 = RobotMap.chassisfrontLeft;
 				CANTalon talon3 = RobotMap.chassisfrontRight;

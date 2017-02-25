@@ -14,6 +14,7 @@ import org.firebears.commands.*;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import edu.wpi.first.wpilibj.command.Scheduler;
 
 import org.firebears.subsystems.*;
 
@@ -93,6 +94,7 @@ public class OI {
 			// SmartDashboard.putData("ClimbDown", new ClimbCommand(true));
 			// SmartDashboard.putData("ClimbUp", new ClimbCommand(false));
 		}
+		SmartDashboard.putData(Scheduler.getInstance());
 	}
 
 	public Joystick getJoystick1() {
