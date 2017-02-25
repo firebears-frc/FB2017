@@ -30,6 +30,7 @@ public class OI {
 	public JoystickButton floorGoDown;
     public JoystickButton autoGear;
     public JoystickButton flap;
+    public JoystickButton visionToGear;
 
 	public Joystick joystick1;
 	public Joystick joystick2;
@@ -54,6 +55,9 @@ public class OI {
 		
 		flap = new JoystickButton(joystick2, 11);
 		flap.whenPressed(new DumperServoToggleCommand());
+		
+		visionToGear = new JoystickButton(joystick1, 12);
+		visionToGear.whenPressed(new VisionCommandGroup());
 		
 //		climbRope = new JoystickButton(joystick1, 10);
 //		climbRope.whileHeld(new ClimbCommand(-1.0));
@@ -90,11 +94,13 @@ public class OI {
 			SmartDashboard.putData("Wait for Vision:", new WaitForVisionCommand());
 			SmartDashboard.putData("GearWaitCommand", new GearWaitCommand());
 			SmartDashboard.putData("Autonomous Middle Test thing:", new AutoGearMiddleCommand());
+			SmartDashboard.putData("Autonomous Left Test thing:", new AutoGearLeftCommand());
+			SmartDashboard.putData("Autonomous Right Test thing:", new AutoGearRightCommand());
 			SmartDashboard.putData("Drive To Gear:", new VisionForwardIntoTarget());
 			// SmartDashboard.putData("ClimbDown", new ClimbCommand(true));
 			// SmartDashboard.putData("ClimbUp", new ClimbCommand(false));
 		}
-		SmartDashboard.putData(Scheduler.getInstance());
+		SmartDashboard.putData("Commands", Scheduler.getInstance());
 	}
 
 	public Joystick getJoystick1() {
