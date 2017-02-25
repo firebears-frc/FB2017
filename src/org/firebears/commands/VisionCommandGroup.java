@@ -25,7 +25,8 @@ public class VisionCommandGroup extends CommandGroup {
     	
     	// Drive straight until the robot hits the target and gets the gear on it.
 //    	addSequential(new StrafeStraightCommand());
-    	addSequential(new MoveForwardInches(-Robot.vision.getDistance()));
+    	addSequential(new VisionForwardIntoTarget());
+    	addSequential(new VisionLightRingCommand(false));
 //    	addSequential(new VisionDrive());
     }
 }

@@ -31,6 +31,8 @@ public class OI {
     public JoystickButton autoGear;
     public JoystickButton flap;
     public JoystickButton visionToGear;
+    public JoystickButton turnLightRingOn;
+    public JoystickButton turnLightRingOff;
 
 	public Joystick joystick1;
 	public Joystick joystick2;
@@ -58,6 +60,12 @@ public class OI {
 		
 		visionToGear = new JoystickButton(joystick1, 12);
 		visionToGear.whenPressed(new VisionCommandGroup());
+		
+		turnLightRingOn = new JoystickButton(joystick2, 5);
+		turnLightRingOn.whenPressed(new VisionLightRingCommand(true));
+		
+		turnLightRingOff = new JoystickButton(joystick2, 6);
+		turnLightRingOff.whenPressed(new VisionLightRingCommand(false));
 		
 //		climbRope = new JoystickButton(joystick1, 10);
 //		climbRope.whileHeld(new ClimbCommand(-1.0));
