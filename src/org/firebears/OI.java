@@ -89,6 +89,7 @@ public class OI {
 			SmartDashboard.putData("Wait for Vision:", new WaitForVisionCommand());
 			SmartDashboard.putData("GearWaitCommand", new GearWaitCommand());
 			SmartDashboard.putData("Autonomous Middle Test thing:", new AutoGearMiddleCommand());
+			SmartDashboard.putData("Drive To Gear:", new VisionForwardIntoTarget());
 			// SmartDashboard.putData("ClimbDown", new ClimbCommand(true));
 			// SmartDashboard.putData("ClimbUp", new ClimbCommand(false));
 		}
