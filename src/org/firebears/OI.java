@@ -92,7 +92,7 @@ public class OI {
 			SmartDashboard.putData("Light ring on:", new VisionLightRingCommand(true));
 			SmartDashboard.putData("Light ring off:", new VisionLightRingCommand(false));
 			SmartDashboard.putData("Wait for Vision:", new WaitForVisionCommand());
-			SmartDashboard.putData("GearWaitCommand", new GearWaitCommand());
+			SmartDashboard.putData("GearWaitCommand", new WaitForGearCommand());
 			SmartDashboard.putData("Autonomous Middle Test thing:", new AutoGearMiddleCommand());
 			SmartDashboard.putData("Autonomous Left Test thing:", new AutoGearLeftCommand());
 			SmartDashboard.putData("Autonomous Right Test thing:", new AutoGearRightCommand());

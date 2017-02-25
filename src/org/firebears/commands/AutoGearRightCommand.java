@@ -13,7 +13,7 @@ public class AutoGearRightCommand extends CommandGroup {
     	addSequential(new WaitForVisionCommand());
     	addSequential(new VisionRotate(false));
     	addSequential(new VisionForwardIntoTarget());
-    	addSequential(new GearWaitCommand());
+    	addSequential(new WaitForGearCommand());
     	addSequential(new PlayRecordingCommand("recording/auto_gear_right_2.csv"));
     	addSequential(new VisionLightRingCommand(false));
     }
