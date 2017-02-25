@@ -63,11 +63,12 @@ public class GearChute extends Subsystem {
     }
     
     public boolean isGearInChute(){
-    	if (RobotMap.gearSensor.get( ) == true) {
-    		return false;
-    	} else {
-    		return true;
-    	}
+    	return RobotMap.gearSensor.get();
+//    	if (RobotMap.gearSensor.get( ) == true) {
+//    		return false;
+//    	} else {
+//    		return true;
+//    	}
     }
 }
 

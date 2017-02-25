@@ -162,11 +162,7 @@ public class Robot extends IterativeRobot {
 
 			if (RobotMap.DEBUG) {
 				
-				if(RobotMap.gearSensor.get() == true){
-					SmartDashboard.putString("?", "True");
-				}else{
-					SmartDashboard.putString("?", "false");
-				}
+				SmartDashboard.putString("gearInChute", gearChute.isGearInChute() ? "true" :"false");
 
 				CANTalon talon2 = RobotMap.chassisfrontLeft;
 				CANTalon talon3 = RobotMap.chassisfrontRight;
