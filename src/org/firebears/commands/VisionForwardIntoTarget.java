@@ -11,14 +11,14 @@ import edu.wpi.first.wpilibj.command.PIDCommand;
 /**
  *
  */
-public class VisionBackIntoTarget extends PIDCommand {
+public class VisionForwardIntoTarget extends PIDCommand {
 
 	long timeout;
 	double startAngle;
 	double currentAngle;
 	double tolerance = 2.5;
 	
-    public VisionBackIntoTarget() {
+    public VisionForwardIntoTarget() {
     	super(0.025, 0.0, 0.0);
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
@@ -80,6 +80,6 @@ public class VisionBackIntoTarget extends PIDCommand {
 	@Override
 	protected void usePIDOutput(double output) {
 		// TODO Auto-generated method stub
-		Robot.chassis.drive(0.5, 0.0, output);
+		Robot.chassis.drive(0.0, -0.5, output);
 	}
 }

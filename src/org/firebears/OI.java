@@ -77,7 +77,7 @@ public class OI {
 			SmartDashboard.putData("StopRecording", new StopMotionRecordCommand());
 			SmartDashboard.putData("PlayRecording", new PlayRecordingCommand());
 //			SmartDashboard.putData("PlayRecording(1)", new PlayRecordingCommand("recording/auto_gear_middle_1.csv"));
-			SmartDashboard.putData("Vision Drive:", new VisionBackIntoTarget());
+			SmartDashboard.putData("Vision Drive:", new VisionForwardIntoTarget());
 			SmartDashboard.putData("Strafe (hopefully) Straight:", new StrafeStraightCommand());
 			SmartDashboard.putData("Angle Adjust:", new VisionAngleAdjustCommand());
 			SmartDashboard.putData("Vision Group Command (3 step):", new VisionCommandGroup());
@@ -88,6 +88,7 @@ public class OI {
 			SmartDashboard.putData("Light ring off:", new VisionLightRingCommand(false));
 			SmartDashboard.putData("Wait for Vision:", new WaitForVisionCommand());
 			SmartDashboard.putData("GearWaitCommand", new GearWaitCommand());
+			SmartDashboard.putData("Autonomous Middle Test thing:", new AutoGearMiddleCommand());
 			// SmartDashboard.putData("ClimbDown", new ClimbCommand(true));
 			// SmartDashboard.putData("ClimbUp", new ClimbCommand(false));
 		}
