@@ -1,5 +1,7 @@
 package org.firebears.commands;
 
+import org.firebears.Robot;
+
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.command.WaitCommand;
 
@@ -22,7 +24,9 @@ public class VisionCommandGroup extends CommandGroup {
 //    	addSequential(new WaitCommand(1.0));
     	
     	// Drive straight until the robot hits the target and gets the gear on it.
-    	addSequential(new StrafeStraightCommand());
+//    	addSequential(new StrafeStraightCommand());
+    	addSequential(new VisionForwardIntoTarget());
+    	addSequential(new VisionLightRingCommand(false));
 //    	addSequential(new VisionDrive());
     }
 }

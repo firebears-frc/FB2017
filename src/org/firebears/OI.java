@@ -14,6 +14,7 @@ import org.firebears.commands.*;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import edu.wpi.first.wpilibj.command.Scheduler;
 
 import org.firebears.subsystems.*;
 
@@ -29,6 +30,9 @@ public class OI {
 	public JoystickButton floorGoDown;
     public JoystickButton autoGear;
     public JoystickButton flap;
+    public JoystickButton visionToGear;
+    public JoystickButton turnLightRingOn;
+    public JoystickButton turnLightRingOff;
 
 	public Joystick joystick1;
 	public Joystick joystick2;
@@ -54,6 +58,15 @@ public class OI {
 		flap = new JoystickButton(joystick2, 11);
 		flap.whenPressed(new DumperServoToggleCommand());
 		
+		visionToGear = new JoystickButton(joystick1, 12);
+		visionToGear.whenPressed(new VisionCommandGroup());
+		
+		turnLightRingOn = new JoystickButton(joystick2, 5);
+		turnLightRingOn.whenPressed(new VisionLightRingCommand(true));
+		
+		turnLightRingOff = new JoystickButton(joystick2, 6);
+		turnLightRingOff.whenPressed(new VisionLightRingCommand(false));
+		
 //		climbRope = new JoystickButton(joystick1, 10);
 //		climbRope.whileHeld(new ClimbCommand(-1.0));
 
@@ -77,7 +90,7 @@ public class OI {
 			SmartDashboard.putData("StopRecording", new StopMotionRecordCommand());
 			SmartDashboard.putData("PlayRecording", new PlayRecordingCommand());
 //			SmartDashboard.putData("PlayRecording(1)", new PlayRecordingCommand("recording/auto_gear_middle_1.csv"));
-			SmartDashboard.putData("Vision Drive:", new VisionBackIntoTarget());
+			SmartDashboard.putData("Vision Drive:", new VisionForwardIntoTarget());
 			SmartDashboard.putData("Strafe (hopefully) Straight:", new StrafeStraightCommand());
 			SmartDashboard.putData("Angle Adjust:", new VisionAngleAdjustCommand());
 			SmartDashboard.putData("Vision Group Command (3 step):", new VisionCommandGroup());
@@ -87,12 +100,21 @@ public class OI {
 			SmartDashboard.putData("Light ring on:", new VisionLightRingCommand(true));
 			SmartDashboard.putData("Light ring off:", new VisionLightRingCommand(false));
 			SmartDashboard.putData("Wait for Vision:", new WaitForVisionCommand());
+<<<<<<< HEAD
 			SmartDashboard.putData("?2", new StrafeInches(12, 0.5));
 			SmartDashboard.putData("?5", new StrafeInches(-12, 0.5));
 			SmartDashboard.putData("GearWaitCommand", new GearWaitCommand());
+=======
+			SmartDashboard.putData("GearWaitCommand", new WaitForGearCommand());
+			SmartDashboard.putData("Autonomous Middle Test thing:", new AutoGearMiddleCommand());
+			SmartDashboard.putData("Autonomous Left Test thing:", new AutoGearLeftCommand());
+			SmartDashboard.putData("Autonomous Right Test thing:", new AutoGearRightCommand());
+			SmartDashboard.putData("Drive To Gear:", new VisionForwardIntoTarget());
+>>>>>>> cd751a3f1d3526d5168ea6e5c2e1d848f770f565
 			// SmartDashboard.putData("ClimbDown", new ClimbCommand(true));
 			// SmartDashboard.putData("ClimbUp", new ClimbCommand(false));
 		}
+		SmartDashboard.putData("Commands", Scheduler.getInstance());
 	}
 
 	public Joystick getJoystick1() {

@@ -81,6 +81,6 @@ public class StrafeStraightCommand extends PIDCommand {
 	@Override
 	protected void usePIDOutput(double output) {
 		// TODO Auto-generated method stub
-		Robot.chassis.drive(0.3, DRIFTCOMPENSATION, output);
+		Robot.chassis.drive(-0.3, DRIFTCOMPENSATION, output);
 	}
 }

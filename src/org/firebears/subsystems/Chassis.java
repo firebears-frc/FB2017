@@ -70,10 +70,10 @@ public class Chassis extends Subsystem {
     public void drive(double x, double y, double rotation) {
     	double angle = 0;
 //    	angle = RobotMap.navXBoard.getAngle();
-    	robotDrive.mecanumDrive_Cartesian(x, y, rotation, angle);
     	driveX = x;
     	driveY = y;
     	driveRotation = rotation;
+    	robotDrive.mecanumDrive_Cartesian(x * -1, y * -1, rotation, angle);
     }
     
 	/**

@@ -20,6 +20,7 @@ import org.firebears.RobotMap;
  *
  */
 public class ClimbCommand extends Command {
+	
 	final double speed;
 
 //	public ClimbCommand() {
@@ -29,7 +30,11 @@ public class ClimbCommand extends Command {
 	
 	public ClimbCommand(double s) {
 		requires(Robot.climber);
-		speed = s;
+		if (s < 0.0){
+			speed = Math.abs(s);
+		} else {
+			speed = s;
+		}
 	}
 
 	// Called just before this Command runs the first time

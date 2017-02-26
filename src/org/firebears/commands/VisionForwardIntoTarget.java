@@ -11,14 +11,14 @@ import edu.wpi.first.wpilibj.command.PIDCommand;
 /**
  *
  */
-public class VisionBackIntoTarget extends PIDCommand {
+public class VisionForwardIntoTarget extends PIDCommand {
 
 	long timeout;
 	double startAngle;
 	double currentAngle;
 	double tolerance = 2.5;
 	
-    public VisionBackIntoTarget() {
+    public VisionForwardIntoTarget() {
     	super(0.025, 0.0, 0.0);
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
@@ -35,7 +35,7 @@ public class VisionBackIntoTarget extends PIDCommand {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	timeout = System.currentTimeMillis() + 1000 * 5;
+    	timeout = System.currentTimeMillis() + 1000 * 2;
     	startAngle = getNavXAngle() /* + ( Robot.vision.getTilt() * 4 )*/;
     	getPIDController().setSetpoint(0.0);
     }
@@ -54,7 +54,7 @@ public class VisionBackIntoTarget extends PIDCommand {
     		return true;
     	}
     	
-    	if (Robot.gearChute.getRangeFinderDistance() < 15.0){
+    	if (Robot.gearChute.getRangeFinderDistance() < 7.5){
     		return true;
     	}
         return false;
@@ -80,6 +80,6 @@ public class VisionBackIntoTarget extends PIDCommand {
 	@Override
 	protected void usePIDOutput(double output) {
 		// TODO Auto-generated method stub
-		Robot.chassis.drive(0.5, 0.0, output);
+		Robot.chassis.drive(0.0, -0.3, output);
 	}
 }
