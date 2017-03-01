@@ -33,6 +33,8 @@ public class OI {
     public JoystickButton visionToGear;
     public JoystickButton turnLightRingOn;
     public JoystickButton turnLightRingOff;
+    public JoystickButton hopperGoUp;
+    public JoystickButton hopperGoDown;
 
 	public Joystick joystick1;
 	public Joystick joystick2;
@@ -49,7 +51,7 @@ public class OI {
 		//for putting the gear on autonomously, currently does nothing though
 //		autoGear = new JoystickButton(joystick2, 12);
 
-		acquisitionToggle = new JoystickButton(joystick2, 9);
+		acquisitionToggle = new JoystickButton(joystick2, 8);
 		acquisitionToggle.whenPressed(new AcquireCommand());
 
 		climbRope = new JoystickButton(joystick2, 7);
@@ -67,11 +69,17 @@ public class OI {
 		turnLightRingOff = new JoystickButton(joystick2, 6);
 		turnLightRingOff.whenPressed(new VisionLightRingCommand(false));
 		
+		hopperGoUp = new JoystickButton(joystick2, 10);
+		hopperGoUp.whileHeld(new GoUpCommand());
+		
+		hopperGoDown = new JoystickButton(joystick2, 9);
+		hopperGoDown.whileHeld(new GoDownCommand());
+		
 //		climbRope = new JoystickButton(joystick1, 10);
 //		climbRope.whileHeld(new ClimbCommand(-1.0));
 
-		autoSwichButton = new DigitalButton(0);
-		autoSwichButton.whenActive(new SelectAuto());
+//		autoSwichButton = new DigitalButton(0);
+//		autoSwichButton.whenActive(new SelectAuto());
 		
 //		floorGoUp = new JoystickButton(joystick1, 11);
 //		floorGoUp.whenPressed(new DumpCommand());
@@ -100,8 +108,6 @@ public class OI {
 			SmartDashboard.putData("Light ring on:", new VisionLightRingCommand(true));
 			SmartDashboard.putData("Light ring off:", new VisionLightRingCommand(false));
 			SmartDashboard.putData("Wait for Vision:", new WaitForVisionCommand());
-			SmartDashboard.putData("?2", new StrafeInches(12, 0.5));
-			SmartDashboard.putData("?5", new StrafeInches(-12, 0.5));
 			SmartDashboard.putData("GearWaitCommand", new WaitForGearCommand());
 			SmartDashboard.putData("Autonomous Middle Test thing:", new AutoGearMiddleCommand());
 			SmartDashboard.putData("Autonomous Left Test thing:", new AutoGearLeftCommand());

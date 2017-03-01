@@ -54,16 +54,22 @@ public class Hopper extends Subsystem {
         // Set the default command for a subsystem here.
         // setDefaultCommand(new MySpecialCommand());
     }
-    public void goUp(){
-    	floorLift.set(1);
+    public void goUp(double speed){
+    	floorLift.set(speed);
     	floorGoingUp = true;
         floorGoingDown = false;
     }
     
-    public void goDown(){
-    	floorLift.set(-1);
+    public void goDown(double speed){
+    	floorLift.set(-speed);
     	floorGoingUp = false;
         floorGoingDown = true;
+    }
+    
+    public void stopHopper(){
+    	floorLift.set(0);
+    	floorGoingUp = false;
+    	floorGoingDown = false;
     }
     
     public double getFloorDirection(){
