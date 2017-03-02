@@ -35,6 +35,7 @@ public class OI {
     public JoystickButton turnLightRingOff;
     public JoystickButton hopperGoUp;
     public JoystickButton hopperGoDown;
+    public JoystickButton dumpBalls;
 
 	public Joystick joystick1;
 	public Joystick joystick2;
@@ -50,43 +51,61 @@ public class OI {
 		
 		//for putting the gear on autonomously, currently does nothing though
 //		autoGear = new JoystickButton(joystick2, 12);
-
-		acquisitionToggle = new JoystickButton(joystick2, 8);
-		acquisitionToggle.whenPressed(new AcquireCommand());
-
-		climbRope = new JoystickButton(joystick2, 7);
-		climbRope.whileHeld(new ClimbCommand(1.0));
 		
-		flap = new JoystickButton(joystick2, 11);
-		flap.whenPressed(new DumperServoToggleCommand());
-		
-		visionToGear = new JoystickButton(joystick1, 12);
-		visionToGear.whenPressed(new VisionCommandGroup());
-		
-		turnLightRingOn = new JoystickButton(joystick2, 5);
-		turnLightRingOn.whenPressed(new VisionLightRingCommand(true));
-		
-		turnLightRingOff = new JoystickButton(joystick2, 6);
-		turnLightRingOff.whenPressed(new VisionLightRingCommand(false));
-		
-		hopperGoUp = new JoystickButton(joystick2, 10);
-		hopperGoUp.whileHeld(new GoUpCommand());
-		
-		hopperGoDown = new JoystickButton(joystick2, 9);
-		hopperGoDown.whileHeld(new GoDownCommand());
+		//Buttons for Joystick
+//		acquisitionToggle = new JoystickButton(joystick2, 8);
+//		acquisitionToggle.whenPressed(new AcquireCommand());
+//
+//		climbRope = new JoystickButton(joystick2, 7);
+//		climbRope.whileHeld(new ClimbCommand(1.0));
+//		
+//		flap = new JoystickButton(joystick2, 11);
+//		flap.whenPressed(new DumperServoToggleCommand());
+//		
+//		visionToGear = new JoystickButton(joystick1, 12);
+//		visionToGear.whenPressed(new VisionCommandGroup());
+//		
+//		turnLightRingOn = new JoystickButton(joystick2, 5);
+//		turnLightRingOn.whenPressed(new VisionLightRingCommand(true));
+//		
+//		turnLightRingOff = new JoystickButton(joystick2, 6);
+//		turnLightRingOff.whenPressed(new VisionLightRingCommand(false));
+//		
+//		hopperGoUp = new JoystickButton(joystick2, 10);
+//		hopperGoUp.whileHeld(new GoUpCommand());
+//		
+//		hopperGoDown = new JoystickButton(joystick2, 9);
+//		hopperGoDown.whileHeld(new GoDownCommand());
 		
 //		climbRope = new JoystickButton(joystick1, 10);
 //		climbRope.whileHeld(new ClimbCommand(-1.0));
 
-//		autoSwichButton = new DigitalButton(0);
-//		autoSwichButton.whenActive(new SelectAuto());
+		autoSwichButton = new DigitalButton(0);
+		autoSwichButton.whenActive(new SelectAuto());
 		
 //		floorGoUp = new JoystickButton(joystick1, 11);
 //		floorGoUp.whenPressed(new DumpCommand());
 
 //		floorGoDown = new JoystickButton(joystick1, 12);
 		
+		//Driverstation Buttons
+		visionToGear = new JoystickButton(joystick2, 1);
+		visionToGear.whenPressed(new VisionCommandGroup());
+		
+		acquisitionToggle = new JoystickButton(joystick2, 2);
+		acquisitionToggle.whenPressed(new AcquireCommand());
+		acquisitionToggle.whenReleased(new AcquireCommand());
 
+		//CelebrationButton: Joystick 2, button 3
+		
+		climbRope = new JoystickButton(joystick2, 4);
+		climbRope.whileHeld(new ClimbCommand(-1.0));
+		
+		dumpBalls = new JoystickButton(joystick2, 5);
+		dumpBalls.whenPressed(new DumpCommand());
+		
+		
+		
 		// SmartDashboard Buttons
 
 		if (RobotMap.DEBUG) {

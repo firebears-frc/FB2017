@@ -51,19 +51,19 @@ public class GearChute extends Subsystem {
     	
     }
     private double getRangeFinderVoltage() {
-//    	return RobotMap.rangeFinder.getAverageVoltage();
-    	return RobotMap.rangeFinder2.getAverageVoltage();
+    	return RobotMap.rangeFinder.getAverageVoltage();
+//    	return RobotMap.rangeFinder2.getAverageVoltage();
     }
 
     public double getRangeFinderDistance() {
-//        double distanceInInches = getRangeFinderVoltage() / VOLT_DIST_RATIO;
-        double distanceInInches = getRangeFinderVoltage() * 107.5;
+        double distanceInInches = getRangeFinderVoltage() / VOLT_DIST_RATIO;
+//        double distanceInInches = getRangeFinderVoltage() * 107.5;
 
         return distanceInInches;
     }
     
     public boolean isGearInChute(){
-    	return RobotMap.gearSensor.get();
+    	return !RobotMap.gearSensor.get();
 //    	if (RobotMap.gearSensor.get( ) == true) {
 //    		return false;
 //    	} else {

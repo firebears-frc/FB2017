@@ -54,7 +54,7 @@ public class VisionForwardIntoTarget extends PIDCommand {
     		return true;
     	}
     	
-    	if (Robot.gearChute.getRangeFinderDistance() < 7.5){
+    	if (Robot.gearChute.getRangeFinderDistance() < 6.9){
     		return true;
     	}
         return false;
