@@ -37,7 +37,7 @@ import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Relay;
 
-import edu.wpi.first.wpilibj.Relay;
+//import edu.wpi.first.wpilibj.Relay;
 
 import com.kauailabs.navx.frc.AHRS;
 /**
@@ -236,7 +236,7 @@ public class RobotMap {
         climberclimbMotor = new CANTalon(11);
         LiveWindow.addActuator("Climber", "climbMotor", climberclimbMotor);
         
-    	acquisitionacquisitionMotor = new CANTalon(14);
+    	acquisitionacquisitionMotor = new CANTalon(13);
         LiveWindow.addActuator("Acquisition", "acquisitionMotor", acquisitionacquisitionMotor);
         
         gearSensor = new DigitalInput(1);
@@ -257,8 +257,9 @@ public class RobotMap {
 //		breakBeam = new DigitalInput(1);
 
 		
-        
+       
         gearLightRing = new Relay(0, Relay.Direction.kForward);
+        System.out.println("GearLightRing" + (gearLightRing != null));
         
 		try {
 			navXBoard = new AHRS(SPI.Port.kMXP);

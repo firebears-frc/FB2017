@@ -35,7 +35,7 @@ public class VisionForwardIntoTarget extends PIDCommand {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	timeout = System.currentTimeMillis() + 1000 * 2;
+    	timeout = System.currentTimeMillis() + 1000 * 4;
     	startAngle = getNavXAngle() /* + ( Robot.vision.getTilt() * 4 )*/;
     	getPIDController().setSetpoint(0.0);
     }
@@ -54,7 +54,7 @@ public class VisionForwardIntoTarget extends PIDCommand {
     		return true;
     	}
     	
-    	if (Robot.gearChute.getRangeFinderDistance() < 6.9){
+    	if (Robot.gearChute.getRangeFinderDistance() < 7.1){
     		return true;
     	}
         return false;

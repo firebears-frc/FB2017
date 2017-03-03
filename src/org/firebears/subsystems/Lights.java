@@ -110,6 +110,7 @@ public class Lights extends Subsystem {
 		}
 	
 	
+	
 
 	public void autonomousMode() {
 		setStrip(STRIP_CHASSIS_BOTTOM1, ANIM_IGNITE);

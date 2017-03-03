@@ -89,8 +89,14 @@ public class OI {
 //		floorGoDown = new JoystickButton(joystick1, 12);
 		
 		//Driverstation Buttons
-		visionToGear = new JoystickButton(joystick2, 1);
-		visionToGear.whenPressed(new VisionCommandGroup());
+//		visionToGear = new JoystickButton(joystick2, 1);
+//		visionToGear.whenPressed(new VisionCommandGroup());
+		
+		floorGoUp = new JoystickButton(joystick2, 1);
+		floorGoUp.whenPressed(new DumpCommand(.33));
+		
+		floorGoDown = new JoystickButton(joystick2, 5);
+		floorGoDown.whenPressed(new LiftFloorCommand(.33));
 		
 		acquisitionToggle = new JoystickButton(joystick2, 2);
 		acquisitionToggle.whenPressed(new AcquireCommand());
@@ -101,8 +107,8 @@ public class OI {
 		climbRope = new JoystickButton(joystick2, 4);
 		climbRope.whileHeld(new ClimbCommand(-1.0));
 		
-		dumpBalls = new JoystickButton(joystick2, 5);
-		dumpBalls.whenPressed(new DumpCommand());
+//		dumpBalls = new JoystickButton(joystick2, 5);
+//		dumpBalls.whenPressed(new DumpCommand());
 		
 		
 		

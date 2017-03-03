@@ -86,6 +86,9 @@ public class Vision extends Subsystem {
     }
     
     public boolean isLightRingOn() {
+    	if(RobotMap.gearLightRing ==null)
+    		return false;
+    	else
     	return RobotMap.gearLightRing.get() != Relay.Value.kOff;	
     }
     
