@@ -78,14 +78,16 @@ public class SelectAuto extends Command {
 		// print(String message); prints stuff
 
 		x++;
-		lcd.home();
-		lcd.print("Auto:");
 		
 		if (x >= commandlist.length){
     		x = 0;
         	Robot.autonomousCommand = commandlist[x];
 
     	}
+		lcd.home();
+		lcd.print("Auto:");
+		
+		
 		
 		
 		
@@ -108,7 +110,6 @@ public class SelectAuto extends Command {
 	}
 
 	protected void end() {
-		System.out.println("hey");
 	}
 
 	protected void interrupted() {

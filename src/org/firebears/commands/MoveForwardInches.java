@@ -15,10 +15,10 @@ public class MoveForwardInches extends PIDCommand {
 	double startDistance;
 	double targetDistance;
 	double timeout;
-	protected final double SPEED = 0.25;
+	protected final double SPEED;
 	protected final double tolerance = 0.25;
 	
-    public MoveForwardInches(double inches) {
+    public MoveForwardInches(double inches, double speed) {
     	super(.025, 0.0, 0.0);
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
@@ -26,7 +26,12 @@ public class MoveForwardInches extends PIDCommand {
     	
     	getPIDController().setAbsoluteTolerance(tolerance);
     	
+    	SPEED = speed;
     	moveDistance = inches;
+    }
+    
+    public MoveForwardInches(double inces) {
+    	this(inces, .25);
     }
     
     public double toInches(double EncoderValue){
