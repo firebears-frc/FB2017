@@ -9,7 +9,7 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.PIDCommand;
 
 /**
- *
+ *  Drive to within 12 inches of the wall, correcting angle based on NavX.
  */
 public class VisionForwardIntoTarget extends PIDCommand {
 
@@ -17,69 +17,57 @@ public class VisionForwardIntoTarget extends PIDCommand {
 	double startAngle;
 	double currentAngle;
 	double tolerance = 2.5;
-	
-    public VisionForwardIntoTarget() {
-    	super(0.025, 0.0, 0.0);
-        // Use requires() here to declare subsystem dependencies
-        // eg. requires(chassis);
-    	requires(Robot.chassis);
-    	
-    	getPIDController().setInputRange(-180.0, 180.0);
-    	getPIDController().setAbsoluteTolerance(tolerance);
-    	getPIDController().setContinuous();
-    }
-    
-    public double getAngleDifference(){
+
+	public VisionForwardIntoTarget() {
+		super(0.025, 0.0, 0.0);
+		requires(Robot.chassis);
+
+		getPIDController().setInputRange(-180.0, 180.0);
+		getPIDController().setAbsoluteTolerance(tolerance);
+		getPIDController().setContinuous();
+	}
+
+	public double getAngleDifference() {
 		return boundAngle(getNavXAngle() - startAngle);
-    }
+	}
 
-    // Called just before this Command runs the first time
-    protected void initialize() {
-    	timeout = System.currentTimeMillis() + 1000 * 4;
-    	startAngle = getNavXAngle() /* + ( Robot.vision.getTilt() * 4 )*/;
-    	getPIDController().setSetpoint(0.0);
-    }
+	protected void initialize() {
+		timeout = System.currentTimeMillis() + 1000 * 6;
+		startAngle = getNavXAngle() /* + ( Robot.vision.getTilt() * 4 ) */;
+		getPIDController().setSetpoint(0.0);
+	}
 
-    // Called repeatedly when this Command is scheduled to run
-    protected void execute() {
-    	currentAngle = getNavXAngle();
-    	if (Robot.vision.isTargetVisible() == false){
-			end();
+	protected void execute() {
+		currentAngle = getNavXAngle();
+	}
+
+	protected boolean isFinished() {
+		if (System.currentTimeMillis() >= timeout) {
+			return true;
 		}
-    }
 
-    // Make this return true when this Command no longer needs to run execute()
-    protected boolean isFinished() {
-    	if (System.currentTimeMillis() >= timeout){
-    		return true;
-    	}
-    	
-    	if (Robot.gearChute.getRangeFinderDistance() < 7.1){
-    		return true;
-    	}
-        return false;
-    }
+		if (Robot.gearChute.getRangeFinderDistance() < 10) {
+			return true;
+		}
+		return false;
+	}
 
-    // Called once after isFinished returns true
-    protected void end() {
-    	Robot.chassis.stopDriving();
-    }
+	protected void end() {
+		Robot.chassis.stopDriving();
+	}
 
-    // Called when another command which requires one or more of the same
-    // subsystems is scheduled to run
-    protected void interrupted() {
-    	end();
-    }
+	protected void interrupted() {
+		end();
+	}
 
 	@Override
 	protected double returnPIDInput() {
-		// TODO Auto-generated method stub
 		return getAngleDifference();
 	}
 
 	@Override
 	protected void usePIDOutput(double output) {
-		// TODO Auto-generated method stub
-		Robot.chassis.drive(0.0, -0.3, output);
+		double speed = (Robot.gearChute.getRangeFinderDistance() < 24) ? -0.10 : -0.30;
+		Robot.chassis.drive(0.0, speed, output);
 	}
 }

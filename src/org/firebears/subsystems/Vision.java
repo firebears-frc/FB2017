@@ -142,7 +142,6 @@ public class Vision extends Subsystem {
     				SmartDashboard.putNumber("Vision Angle:", info1);
     				SmartDashboard.putNumber("Vision Distance:", info2);
     				SmartDashboard.putNumber("Vision Tilt:", info3);
-    				SmartDashboard.putNumber("Vision Confidence:", info4);
     			}
     		} catch (IOException ex) {
     			ex.printStackTrace();

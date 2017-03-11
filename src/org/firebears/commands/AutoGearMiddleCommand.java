@@ -13,11 +13,11 @@ public class AutoGearMiddleCommand extends CommandGroup {
 //    	addSequential(new WaitForVisionCommand());
     	addSequential(new VisionLightRingCommand(true));
 //    	addSequential(new MoveForwardInches(3.0));
-    	addSequential(new WaitCommand(1.0));
+    	addSequential(new WaitCommand(0.5));
     	addSequential(new VisionRotate(false));
     	addSequential(new VisionForwardIntoTarget());
     	addSequential(new WaitForGearCommand());
-    	addSequential(new WaitCommand(1.25));
+    	addSequential(new WaitCommand(2.0));
 //    	addSequential(new PlayRecordingCommand("recording/auto_gear_middle_1.csv"));
     	addSequential(new VisionLightRingCommand(false));
     }

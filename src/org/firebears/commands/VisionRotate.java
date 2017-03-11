@@ -24,9 +24,9 @@ public class VisionRotate extends PIDCommand {
 	private boolean useTilt = false;
 	
 	//Amount the command overshoots from each given angle
-	public final double offsetFrom20 = 10.5;//Practice Value: 12;		//Previous Values: //10;//4.2;
-	public final double offsetFrom10 = 5;//Practice Value: 6.7;		//Previous Values: //6;//2.6;
-	public final double offsetFrom0 = 0.1;//Practice Value: .4;		//Previous Values: //2;//.1;
+	public final double offsetFrom20 = /*10.5;Practice Value:*/ 12;		//Previous Values: //10;//4.2;
+	public final double offsetFrom10 = /*5;Practice Value:*/ 6.7;		//Previous Values: //6;//2.6;
+	public final double offsetFrom0 = /*0.1;Practice Value:*/ .4;		//Previous Values: //2;//.1;
 	
     public VisionRotate(boolean p_useTilt) {
     	//PID Values not correct
