@@ -35,7 +35,7 @@ public class Hopper extends Subsystem {
     private boolean floorGoingUp = false;
     private boolean floorGoingDown = false;
 
-    final double MAX_SERVO_VALUE = 0.67;
+    final double MAX_SERVO_VALUE = 1.0;
 	final double MIN_SERVO_VALUE = 0.0;
 	
 	public int floorpostion = 1;

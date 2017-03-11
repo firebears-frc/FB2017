@@ -93,10 +93,10 @@ public class OI {
 //		visionToGear.whenPressed(new VisionCommandGroup());
 		
 		floorGoUp = new JoystickButton(joystick2, 1);
-		floorGoUp.whenPressed(new DumpCommand(.33));
+		floorGoUp.whileHeld(new DumpCommand(.75));
 		
 		floorGoDown = new JoystickButton(joystick2, 5);
-		floorGoDown.whenPressed(new LiftFloorCommand(.33));
+		floorGoDown.whileHeld(new LiftFloorCommand(.75));
 		
 		acquisitionToggle = new JoystickButton(joystick2, 2);
 		acquisitionToggle.whenPressed(new AcquireCommand());
@@ -128,7 +128,7 @@ public class OI {
 			SmartDashboard.putData("Angle Adjust:", new VisionAngleAdjustCommand());
 			SmartDashboard.putData("Vision Group Command (3 step):", new VisionCommandGroup());
 			SmartDashboard.putData("Vision Hybrid Command", new VisionHybridCommand());
-			SmartDashboard.putData("Drive Forward:", new MoveForwardInches(10.0));
+			SmartDashboard.putData("Drive Forward:", new MoveForwardInches(24,.1));
 			SmartDashboard.putData("Servo Toggle:", new DumperServoToggleCommand());
 			SmartDashboard.putData("Light ring on:", new VisionLightRingCommand(true));
 			SmartDashboard.putData("Light ring off:", new VisionLightRingCommand(false));
@@ -138,6 +138,7 @@ public class OI {
 			SmartDashboard.putData("Autonomous Left Test thing:", new AutoGearLeftCommand());
 			SmartDashboard.putData("Autonomous Right Test thing:", new AutoGearRightCommand());
 			SmartDashboard.putData("Drive To Gear:", new VisionForwardIntoTarget());
+			
 			// SmartDashboard.putData("ClimbDown", new ClimbCommand(true));
 			// SmartDashboard.putData("ClimbUp", new ClimbCommand(false));
 		}
