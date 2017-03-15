@@ -1,9 +1,6 @@
 package org.firebears.commands;
 
-import org.firebears.Robot;
-
 import edu.wpi.first.wpilibj.command.CommandGroup;
-import edu.wpi.first.wpilibj.command.WaitCommand;
 
 /**
  * Automatically drives up and puts the gear on the left spike and drives away for autonomous.
@@ -21,7 +18,7 @@ public class AutoGearLeftCommand extends CommandGroup {
 //    	addSequential(new VisionForwardIntoTarget());
 //    	addSequential(new WaitForGearCommand());
 //    	addSequential(new WaitCommand(1.75));
-//    	if (Robot.gearChute.isGearInChute()){
+//    	if (Robot.gearChute.isGearInChute()){ //TODO: This is BAD no ifs in constructors!
 //    		addSequential(new MoveForwardInches(-24, .5));
 //        	addSequential(new WaitCommand(.2));
 //        	addSequential(new AutoRotate(-30),2.0);
@@ -31,10 +28,9 @@ public class AutoGearLeftCommand extends CommandGroup {
 //    	}
     	
     	
-    	
-    	
-// drive forward
-// turn 30 degrees right
+    	// TODO: Should add this line.
+    	// addSequential(new VisionLightRingCommand(true));
+// drive forward and turn 30 degrees right
     	addSequential(new PlayRecordingCommand("recording/auto_gear_left_1.csv"));
     	addSequential(new WaitForVisionCommand());
     	addSequential(new VisionRotate(false));

@@ -5,14 +5,13 @@ import org.firebears.Robot;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
- *
+ * Test command to toggle whether the servo is up or down.
  */
 public class DumperServoToggleCommand extends Command {
 	
 	int servoMode = 2;
 	final int RAISE_SERVO = 1;
 	final int LOWER_SERVO = 2;
-
 	
     public DumperServoToggleCommand() {
         // Use requires() here to declare subsystem dependencies

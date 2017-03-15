@@ -8,24 +8,19 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
- *
+ * Command that continuously sets the display on the LCD with information.
  */
 public class LcdOverLay extends Command {
 	DriverStation driverStation;
-	
-
 
     public LcdOverLay() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	driverStation = DriverStation.getInstance();
-    	
     }
 
     // Called just before this Command runs the first time
     public void initialize() {
-    	
-    	
     }
     
     public void disabled(){
@@ -43,13 +38,11 @@ public class LcdOverLay extends Command {
 		lcd.setCursor(6, 3);
 		lcd.print(" ");
 		lcd.setCursor(7, 3);
-		lcd.print("Enalbed");
+		lcd.print("Enabled");
 	}
 
     // Called repeatedly when this Command is scheduled to run
     public void execute() {
-    	
-    	
     	LiquidCrystal lcd = RobotMap.lcd;
     	lcd.setCursor(14, 3);
     	lcd.print(String.format("%6.2f",driverStation.getBatteryVoltage()));

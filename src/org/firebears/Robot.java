@@ -10,9 +10,6 @@
 
 package org.firebears;
 
-import edu.wpi.cscore.AxisCamera;
-import edu.wpi.cscore.CvSink;
-import edu.wpi.cscore.CvSource;
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.IterativeRobot;
 //import edu.wpi.first.wpilibj.Relay;
@@ -23,14 +20,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.firebears.commands.*;
 import org.firebears.subsystems.*;
-import org.opencv.core.Mat;
-import org.opencv.core.Point;
-import org.opencv.core.Scalar;
-import org.opencv.imgproc.Imgproc;
-
 import static org.firebears.RobotMap.boundAngle;
-
-import com.ctre.CANTalon;
 
 /**
  * The VM is configured to automatically run this class, and to call the

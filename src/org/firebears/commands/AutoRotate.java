@@ -3,13 +3,12 @@ package org.firebears.commands;
 import org.firebears.*;
 import org.firebears.Robot;
 
-import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.PIDCommand;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
- *Initialize with a target angle rotation and turn to that angle using the Navex
- *There is no continuous target update during the command
+ * Initialize with a target angle rotation and turn to that angle using the Navex
+ * There is no continuous target update during the command
  */
 public class AutoRotate extends PIDCommand {
 

@@ -11,10 +11,9 @@
 
 package org.firebears.commands;
 import edu.wpi.first.wpilibj.command.Command;
-import org.firebears.Robot;
 
 /**
- *
+ * TODO: Remove this unused command.
  */
 public class AutonomousCommand extends Command {
 
