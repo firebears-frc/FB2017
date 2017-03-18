@@ -20,9 +20,9 @@ public class VisionRotate extends PIDCommand {
 	private static final double ANGLE_TOLERANCE = 1.0;
 	
 	//Amount the command overshoots from each given angle
-	public final double offsetFrom20 = /*10.5;Practice Value:*/ 12;		//Previous Values: //10;//4.2;
-	public final double offsetFrom10 = /*5;Practice Value:*/ 6.7;		//Previous Values: //6;//2.6;
-	public final double offsetFrom0 = /*0.1;Practice Value:*/ .4;		//Previous Values: //2;//.1;
+	public final double offsetFrom20 = /*10.5;Practice Value:*/ 5.2;		//Previous Values: //10;//4.2;
+	public final double offsetFrom10 = /*5;Practice Value:*/ 2.5;		//Previous Values: //6;//2.6;
+	public final double offsetFrom0 = /*0.1;Practice Value:*/ .2;		//Previous Values: //2;//.1;
 	
     public VisionRotate() {
     	//PID Values not correct
@@ -49,7 +49,7 @@ public class VisionRotate extends PIDCommand {
     	Robot.vision.setLightRingOn();
     	timeout = System.currentTimeMillis() + 1000 * 10;
     	turnValue = Robot.vision.getAngle();
-    	targetAngle = boundAngle(getNavXAngle() + turnValue/* - getOffset(turnValue)*/);
+    	targetAngle = boundAngle(getNavXAngle() + turnValue - getOffset(turnValue));
     	getPIDController().setSetpoint(0);
     	SmartDashboard.putNumber("VisionTarget:", targetAngle);
     }

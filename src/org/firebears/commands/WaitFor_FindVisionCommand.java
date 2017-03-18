@@ -7,11 +7,11 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *Wait x seconds for Vision. If vision is connected or time expires the command ends.
  */
-public class WaitForVisionCommand extends Command {
+public class WaitFor_FindVisionCommand extends Command {
 	
 	long timeout;
 
-    public WaitForVisionCommand() {
+    public WaitFor_FindVisionCommand() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(Robot.chassis);
