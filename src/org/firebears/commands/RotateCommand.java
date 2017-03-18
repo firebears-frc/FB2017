@@ -11,8 +11,11 @@
 package org.firebears.commands;
 
 import edu.wpi.first.wpilibj.command.PIDCommand;
+
+import static org.firebears.RobotMap.boundAngle;
+import static org.firebears.RobotMap.getNavXAngle;
+
 import org.firebears.Robot;
-import org.firebears.RobotMap;
 
 /**
  * TODO: Remove this class - it's never used.
@@ -20,11 +23,13 @@ import org.firebears.RobotMap;
 public class RotateCommand extends PIDCommand {
 
 	private double m_angle;
+	double targetAngle;
+	private static final double ANGLE_TOLERANCE = 1.0;
 
 	public RotateCommand(double angle) {
-		super("RotateCommand", 1.0, 0.0, 0.0, 0.02);
+		super("RotateCommand", 0.5, 0.0, 0.0);
 		getPIDController().setContinuous(false);
-		getPIDController().setAbsoluteTolerance(0.2);
+		getPIDController().setAbsoluteTolerance(ANGLE_TOLERANCE);
 
 		m_angle = angle;
 
@@ -32,27 +37,35 @@ public class RotateCommand extends PIDCommand {
 
 	}
 
+	private double getAngleDifference() {
+		return boundAngle(getNavXAngle() - targetAngle);
+	}
+
 	protected double returnPIDInput() {
-		return RobotMap.navXBoard.getAngle();
+		return getAngleDifference();
 	}
 
 	protected void usePIDOutput(double output) {
-		RobotMap.chassisfrontLeft.pidWrite(output);
+		Robot.chassis.drive(0.0, 0.0, output);
 	}
 
 	protected void initialize() {
+		targetAngle = boundAngle(getNavXAngle() + m_angle);
+		getPIDController().setSetpoint(0);
 	}
 
 	protected void execute() {
 	}
 
 	protected boolean isFinished() {
-		return false;
+		return Math.abs(getAngleDifference()) < ANGLE_TOLERANCE;
 	}
 
 	protected void end() {
+		Robot.chassis.stopDriving();
 	}
 
 	protected void interrupted() {
+		end();
 	}
 }
