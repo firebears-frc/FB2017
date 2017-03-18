@@ -35,15 +35,14 @@ public class VisionRotate extends PIDCommand {
 		getPIDController().setAbsoluteTolerance(ANGLE_TOLERANCE);		
     }
     
-    private double getOffset(double startAngle) {
-    	double offsetAnswer;
-    	offsetAnswer = startAngle * ((offsetFrom20 - offsetFrom10)/10) + offsetFrom0;
-    	return offsetAnswer;
-    }
+    //TODO  a)Futz with PID and speed without offset to get as close as possible to correct turn angle. 
+    //    	If initial angle beyond 20 degrees we may be getting a false "valid" reading from vision, check this out.
+    //		If we skip over the value less than 1, (in isFinished()) this will continue to timeout!
+    //TODO  b)Swing robot from 20degrees off and write down error from smart dashboard, average 3 times, do the same for 10 degrees
+    //TODO  c)Align robot with target so robot exactly perpendicular with target and camera aligned with target, get zero offset. 
+    //TODO  d)Then uncomment getOffset() in initialize and verify within 1 degree in  turn.
     
-    private double getAngleDifference() {
-		return boundAngle(getNavXAngle() - targetAngle);
-	}
+   
     
     // Called just before this Command runs the first time
     protected void initialize() {
@@ -54,20 +53,34 @@ public class VisionRotate extends PIDCommand {
     	getPIDController().setSetpoint(0);
     	SmartDashboard.putNumber("VisionTarget:", targetAngle);
     }
-
+    
+    //To compensate for camera angle error and PID over/under error (Redneck I in PID)
+    private double getOffset(double startAngle) {
+    	double offsetAnswer;
+    	offsetAnswer = startAngle * ((offsetFrom20 - offsetFrom10)/10) + offsetFrom0;//y = m*x + b
+    	return offsetAnswer;
+    }
+    
+ 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     }
 
     // Make this return true when this Command no longer needs to run execute()
+    //If we skip over the value less than 1, this will continue to timeout!
     protected boolean isFinished() {
     	double difference = getAngleDifference();
-    	SmartDashboard.putNumber("Angle Difference:", difference);
+    	SmartDashboard.putNumber("Angle Difference:", difference);  
     	if (System.currentTimeMillis() >= timeout || Math.abs(difference) < ANGLE_TOLERANCE) {
     		return true;
     	}    	
     	return false;
     }
+    
+    
+    private double getAngleDifference() {
+		return boundAngle(getNavXAngle() - targetAngle);//This function in robot map!
+	}
 
     // Called once after isFinished returns true
     protected void end() {
