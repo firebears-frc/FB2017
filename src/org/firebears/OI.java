@@ -36,7 +36,7 @@ public class OI {
     public JoystickButton hopperGoUp;
     public JoystickButton hopperGoDown;
     public JoystickButton dumpBalls;
-
+    public JoystickButton RunningTest;
 	public Joystick joystick1;
 	public Joystick joystick2;
 	public DigitalButton autoSwichButton;
@@ -53,6 +53,9 @@ public class OI {
 //		autoGear = new JoystickButton(joystick2, 12);
 		
 		//Buttons for Joystick
+		
+		RunningTest = new JoystickButton(joystick1, 11);
+		RunningTest.whenPressed(new EncoderTestCommand(2));
 //		acquisitionToggle = new JoystickButton(joystick2, 8);
 //		acquisitionToggle.whenPressed(new AcquireCommand());
 //
