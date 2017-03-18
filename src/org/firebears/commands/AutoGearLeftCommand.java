@@ -33,7 +33,7 @@ public class AutoGearLeftCommand extends CommandGroup {
 // drive forward and turn 30 degrees right
     	addSequential(new PlayRecordingCommand("recording/auto_gear_left_1.csv"));
     	addSequential(new WaitForVisionCommand());
-    	addSequential(new VisionRotate(false));
+    	addSequential(new VisionRotate());
     	addSequential(new VisionForwardIntoTarget());
     	addSequential(new WaitForGearCommand());
 //// add the command below for the left recording after delivering the gear.

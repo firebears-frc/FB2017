@@ -14,7 +14,7 @@ public class AutoGearMiddleCommand extends CommandGroup {
     	addSequential(new VisionLightRingCommand(true));
 //    	addSequential(new MoveForwardInches(3.0));
     	addSequential(new WaitCommand(0.5));
-    	addSequential(new VisionRotate(false));
+    	addSequential(new VisionRotate());
     	addSequential(new VisionForwardIntoTarget());
     	addSequential(new WaitForGearCommand());
     	addSequential(new WaitCommand(2.0));

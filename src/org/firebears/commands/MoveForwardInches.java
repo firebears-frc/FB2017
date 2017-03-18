@@ -6,7 +6,7 @@ import org.firebears.RobotMap;
 import edu.wpi.first.wpilibj.command.PIDCommand;
 
 /**
- *
+ * Move the robot forward x inches at a specific speed or .25 if no speed is specified.
  */
 public class MoveForwardInches extends PIDCommand {
 
@@ -29,8 +29,8 @@ public class MoveForwardInches extends PIDCommand {
     	moveDistance = inches;
     }
     
-    public MoveForwardInches(double inces) {
-    	this(inces, .25);
+    public MoveForwardInches(double inches) {
+    	this(inches, .25);
     }
     
     public double toInches(double EncoderValue){
@@ -78,7 +78,6 @@ public class MoveForwardInches extends PIDCommand {
 
 	@Override
 	protected double returnPIDInput() {
-		// TODO Auto-generated method stub
 		return toInches(RobotMap.chassisfrontLeft.getEncPosition());
 	}
 

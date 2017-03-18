@@ -7,7 +7,7 @@ import java.util.Scanner;
 import org.firebears.Robot;
 
 /**
- *
+ * Play a previously recorded command.
  */
 public class PlayRecordingCommand extends Command {
 	InputStream stream;

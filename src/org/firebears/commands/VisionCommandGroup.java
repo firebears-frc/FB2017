@@ -16,7 +16,7 @@ public class VisionCommandGroup extends CommandGroup {
     	addSequential(new WaitForVisionCommand());
     	
     	// Rotate the robot based on difference between sizes of targets so that vision camera is straight on the target
-    	addSequential(new VisionRotate(false));
+    	addSequential(new VisionRotate());
     	addSequential(new WaitCommand(1.0));
     	
     	// Drive the robot backwards or forwards so that the vision camera faces the target

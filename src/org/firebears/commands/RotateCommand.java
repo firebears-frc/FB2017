@@ -15,7 +15,7 @@ import org.firebears.Robot;
 import org.firebears.RobotMap;
 
 /**
- *
+ * TODO: Remove this class - it's never used.
  */
 public class RotateCommand extends PIDCommand {
 
