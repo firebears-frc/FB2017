@@ -5,7 +5,7 @@ import org.firebears.Robot;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
- *
+ * TODO: Remove unused command.  Raise the floor.
  */
 public class GoUpCommand extends Command {
 

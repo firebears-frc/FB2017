@@ -11,18 +11,16 @@
 package org.firebears.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-
 import org.firebears.Robot;
-import org.firebears.RobotMap;
 
 /**
- *
+ * Do The climbing of the rope at the end of the match.
  */
 public class ClimbCommand extends Command {
 	
 	final double speed;
 
+	// TODO: Remove unneeded constructor.
 //	public ClimbCommand() {
 //		requires(Robot.climber);
 ////		speed = 1;

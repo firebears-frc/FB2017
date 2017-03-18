@@ -102,8 +102,8 @@ public class OI {
 		floorGoDown.whileHeld(new LiftFloorCommand(.75));
 		
 		acquisitionToggle = new JoystickButton(joystick2, 2);
-		acquisitionToggle.whenPressed(new AcquireCommand());
-		acquisitionToggle.whenReleased(new AcquireCommand());
+		acquisitionToggle.whenPressed(new AcquireCommand(true));
+		acquisitionToggle.whenReleased(new AcquireCommand(false));
 
 		//CelebrationButton: Joystick 2, button 3
 		

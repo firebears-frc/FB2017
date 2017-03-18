@@ -11,13 +11,11 @@
 
 package org.firebears.commands;
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-
 import org.firebears.Robot;
 
 
 /**
- *
+ * Command that runs continuously, turns joystick input into robot driving.
  */
 public class DriveCommand extends Command {
 
@@ -53,6 +51,7 @@ public class DriveCommand extends Command {
 //    double ox = 0.0;
 //    double oz = 0.0;
 
+    // TODO: Make this legible.
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
 

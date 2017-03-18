@@ -9,8 +9,8 @@ import edu.wpi.first.wpilibj.smartdashboard.*;
 import edu.wpi.first.wpilibj.command.Command;
 
 
-/**q
- *
+/**
+ * TODO: What does this do?  Add documentation.
  */
 public class JoyCon extends Command {
 	
@@ -30,7 +30,6 @@ public class JoyCon extends Command {
     	double speed = Robot.oi.getJoystick1().getRawAxis(1);
     	Robot.sRX_PID.setSetpointRPS(speed);
     	SmartDashboard.putNumber("CmdJoy", speed);
-
     }
 
     // Make this return true when this Command no longer needs to run execute()
