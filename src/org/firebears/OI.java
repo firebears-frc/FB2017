@@ -55,7 +55,7 @@ public class OI {
 		//Buttons for Joystick
 		
 		RunningTest = new JoystickButton(joystick1, 11);
-		RunningTest.whenPressed(new EncoderTestCommand(2));
+		RunningTest.whenPressed(new RunningTestCommand());
 //		acquisitionToggle = new JoystickButton(joystick2, 8);
 //		acquisitionToggle.whenPressed(new AcquireCommand());
 //
@@ -141,6 +141,7 @@ public class OI {
 			SmartDashboard.putData("Autonomous Left Test thing:", new AutoGearLeftCommand());
 			SmartDashboard.putData("Autonomous Right Test thing:", new AutoGearRightCommand());
 			SmartDashboard.putData("Drive To Gear:", new VisionForwardIntoTarget());
+			SmartDashboard.putData("RunningTestCommand", new RunningTestCommand());
 			
 			// SmartDashboard.putData("ClimbDown", new ClimbCommand(true));
 			// SmartDashboard.putData("ClimbUp", new ClimbCommand(false));

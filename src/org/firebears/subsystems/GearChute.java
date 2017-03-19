@@ -56,7 +56,7 @@ public class GearChute extends Subsystem {
     }
 
     public double getRangeFinderDistance() {
-        double distanceInInches = getRangeFinderVoltage() / VOLT_DIST_RATIO;
+        double distanceInInches = getRangeFinderVoltage() *110.5;// / VOLT_DIST_RATIO;
 //        double distanceInInches = getRangeFinderVoltage() * 107.5;
 
         return distanceInInches;

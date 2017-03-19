@@ -234,6 +234,8 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putNumber("NavX Angle:", RobotMap.navXBoard.getAngle());
 		SmartDashboard.putNumber("Dumper Servo Pos:", RobotMap.dumperdumperServo.get());
 		SmartDashboard.putBoolean("Vision On Target:", vision.isTargetVisible());
+		SmartDashboard.putNumber("ClimberCurrent", RobotMap.climberclimbMotor.getOutputCurrent());
+		
 	}
 
 }

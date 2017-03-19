@@ -24,11 +24,20 @@ public class RunningTestCommand extends CommandGroup {
         // e.g. if Command1 requires chassis, and Command2 requires arm,
         // a CommandGroup containing them would require both the chassis and the
         // arm.
-    	
+//    	addSequential(new IsVoltageOK());
     	addSequential(new EncoderTestCommand(2));
     	addSequential(new EncoderTestCommand(3));
     	addSequential(new EncoderTestCommand(4));
     	addSequential(new EncoderTestCommand(5));
+//    	addSequential(new EncoderTestCommand(11));
+//    	addSequential(new EncoderTestCommand(12));
+//    	addSequential(new EncoderTestCommand(13));
+
+
+
+
+//    	addSequential(new IsSonicOK());
+    	
 
     	
     	
