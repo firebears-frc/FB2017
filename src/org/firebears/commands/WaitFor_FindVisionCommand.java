@@ -5,20 +5,22 @@ import org.firebears.Robot;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
- * TODO: Remove unused command.  Raise the floor.
+ *Wait x seconds for Vision. If vision is connected or time expires the command ends.
  */
-public class GoUpCommand extends Command {
+public class WaitFor_FindVisionCommand extends Command {
+	
+	long timeout;
 
-    public GoUpCommand() {
+    public WaitFor_FindVisionCommand() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	requires(Robot.hopper);
+    	requires(Robot.chassis);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.hopper.goUp(0.5);
-    	
+    	Robot.vision.setLightRingOn();
+    	timeout = System.currentTimeMillis() + 1000 * 5;
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -27,12 +29,17 @@ public class GoUpCommand extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+        if (System.currentTimeMillis() >= timeout){
+        	return true;
+        }
+        if (Robot.vision.isTargetVisible() && Robot.vision.getAngle()> -17) {
+        	return true;
+        }
+    	return false;
     }
 
     // Called once after isFinished returns true
     protected void end() {
-    	Robot.hopper.stopHopper();
     }
 
     // Called when another command which requires one or more of the same

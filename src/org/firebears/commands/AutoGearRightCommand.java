@@ -32,7 +32,7 @@ public class AutoGearRightCommand extends CommandGroup {
     	// addSequential(new VisionLightRingCommand(true));
     	addSequential(new PlayRecordingCommand("recording/auto_gear_right_1.csv"));
     	addSequential(new WaitForVisionCommand());
-    	addSequential(new VisionRotate(false));
+    	addSequential(new VisionRotate());
     	addSequential(new VisionForwardIntoTarget());
     	addSequential(new WaitForGearCommand());
     	// TODO: Should match with AutoGearLeftCommand

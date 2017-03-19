@@ -14,19 +14,14 @@ import org.firebears.RobotMap;
 //import org.firebears.commands.defenses.RoughTerrainCommand;
 import org.firebears.util.LiquidCrystal;
 
-import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
- *
+ * Cycle through different autonomous's when the auto switch button is pressed, changing the LCD.
  */
 public class SelectAuto extends Command {
 //	DriverStation driverStation;
-
-
 	int x = 0;
-
 	
 	Command[] commandlist = {
 //			new StrafeInches(12, .5),
@@ -36,15 +31,11 @@ public class SelectAuto extends Command {
 			new AutoGearRightCommand(),
 	};
 
-
-
 	// double rf = Robot.shooter.getRangeFinderDistance();
 
 	public SelectAuto() {
 		// requires(Robot.chassis);
 //    	driverStation = DriverStation.getInstance();
-
-
 	}
 	
 //	public void debug(){
@@ -61,9 +52,6 @@ public class SelectAuto extends Command {
 
 		lcd.home();
 		lcd.print("Auto:");
-		
-		
-
 	}
 
 	public void execute() {

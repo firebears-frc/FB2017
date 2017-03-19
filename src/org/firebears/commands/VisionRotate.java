@@ -2,8 +2,6 @@ package org.firebears.commands;
 
 import org.firebears.*;
 
-import edu.wpi.first.wpilibj.Relay;
-import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.PIDCommand;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import static org.firebears.RobotMap.boundAngle;
@@ -18,17 +16,15 @@ public class VisionRotate extends PIDCommand {
 	float driveValue;
 	long timeout;
 	double targetAngle;
-	protected double SPEED = 0.15;
-	protected double angleTolerance = 1.0;
-	
-	private boolean useTilt = false;
+	private static final double SPEED = 0.15;
+	private static final double ANGLE_TOLERANCE = 1.0;
 	
 	//Amount the command overshoots from each given angle
-	public final double offsetFrom20 = /*10.5;Practice Value:*/ 12;		//Previous Values: //10;//4.2;
-	public final double offsetFrom10 = /*5;Practice Value:*/ 6.7;		//Previous Values: //6;//2.6;
-	public final double offsetFrom0 = /*0.1;Practice Value:*/ .4;		//Previous Values: //2;//.1;
+	public final double offsetFrom20 = /*10.5;Practice Value:*/ 5.2;		//Previous Values: //10;//4.2;
+	public final double offsetFrom10 = /*5;Practice Value:*/ 2.5;		//Previous Values: //6;//2.6;
+	public final double offsetFrom0 = /*0.1;Practice Value:*/ .2;		//Previous Values: //2;//.1;
 	
-    public VisionRotate(boolean p_useTilt) {
+    public VisionRotate() {
     	//PID Values not correct
     	super(0.5, 0.0, 0.0);
         requires(Robot.chassis);
@@ -36,61 +32,55 @@ public class VisionRotate extends PIDCommand {
         
         getPIDController().setContinuous(true);
 		getPIDController().setInputRange(-180.0, 180.0);
-		getPIDController().setAbsoluteTolerance(angleTolerance);
-		
-		useTilt = p_useTilt;
+		getPIDController().setAbsoluteTolerance(ANGLE_TOLERANCE);		
     }
     
-    private double getOffset(double startAngle) {
-    	double offsetAnswer;
-    	offsetAnswer = startAngle * ((offsetFrom20 - offsetFrom10)/10) + offsetFrom0;
-    	return offsetAnswer;
-    }
+    //TODO  a)Futz with PID and speed without offset to get as close as possible to correct turn angle. 
+    //    	If initial angle beyond 20 degrees we may be getting a false "valid" reading from vision, check this out.
+    //		If we skip over the value less than 1, (in isFinished()) this will continue to timeout!
+    //TODO  b)Swing robot from 20degrees off and write down error from smart dashboard, average 3 times, do the same for 10 degrees
+    //TODO  c)Align robot with target so robot exactly perpendicular with target and camera aligned with target, get zero offset. 
+    //TODO  d)Then uncomment getOffset() in initialize and verify within 1 degree in  turn.
     
-    private double getAngleDifference() {
-		return boundAngle(getNavXAngle() - targetAngle);
-	}
+   
     
     // Called just before this Command runs the first time
     protected void initialize() {
     	Robot.vision.setLightRingOn();
     	timeout = System.currentTimeMillis() + 1000 * 10;
-    	if(useTilt) {
-    		turnValue = Robot.vision.getTilt() * 4;
-    	}else{
-    		turnValue = Robot.vision.getAngle();
-    	}
+    	turnValue = Robot.vision.getAngle();
     	targetAngle = boundAngle(getNavXAngle() + turnValue - getOffset(turnValue));
     	getPIDController().setSetpoint(0);
     	SmartDashboard.putNumber("VisionTarget:", targetAngle);
     }
-
+    
+    //To compensate for camera angle error and PID over/under error (Redneck I in PID)
+    private double getOffset(double startAngle) {
+    	double offsetAnswer;
+    	offsetAnswer = startAngle * ((offsetFrom20 - offsetFrom10)/10) + offsetFrom0;//y = m*x + b
+    	return offsetAnswer;
+    }
+    
+ 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	if (Robot.vision.isTargetVisible() == false){
-			end();
-		}
-    	if (Math.abs(getAngleDifference()) <= 5){
-    		SPEED = 0.15;
-    	}
     }
 
     // Make this return true when this Command no longer needs to run execute()
+    //If we skip over the value less than 1, this will continue to timeout!
     protected boolean isFinished() {
     	double difference = getAngleDifference();
-    	SmartDashboard.putNumber("Angle Difference:", difference);
-//    	SmartDashboard.putString("End:", "" + difference);
-    	if (System.currentTimeMillis() >= timeout){
+    	SmartDashboard.putNumber("Angle Difference:", difference);  
+    	if (System.currentTimeMillis() >= timeout || Math.abs(difference) < ANGLE_TOLERANCE) {
     		return true;
-    	}
-    	
-    	if (Math.abs(difference) < angleTolerance){
-//        	Robot.vision.setLightRingOff();
-    		return true;
-    	}
-    	
+    	}    	
     	return false;
     }
+    
+    
+    private double getAngleDifference() {
+		return boundAngle(getNavXAngle() - targetAngle);//This function in robot map!
+	}
 
     // Called once after isFinished returns true
     protected void end() {

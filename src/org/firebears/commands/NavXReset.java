@@ -5,7 +5,7 @@ import org.firebears.RobotMap;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
- *
+ * Command to reset the NavX, only called from the smart dashboard.
  */
 public class NavXReset extends Command {
 

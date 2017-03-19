@@ -1,16 +1,16 @@
 package org.firebears.commands;
 
-import org.firebears.Robot;
 import org.firebears.RobotMap;
 
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
- *
+ * TODO: Is this needed?
  */
 public class PitchWheelStop extends Command {
 
+	double d = 70;
+	
     public PitchWheelStop() {
 //    	requires(Robot.climber);
         // Use requires() here to declare subsystem dependencies
@@ -20,7 +20,6 @@ public class PitchWheelStop extends Command {
     // Called just before this Command runs the first time
     protected void initialize() {
     }
-    double d = 70;
 
     // Called repeatedly when this Command is scheduled to run
     public void execute() {

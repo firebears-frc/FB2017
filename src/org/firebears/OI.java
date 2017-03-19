@@ -120,8 +120,7 @@ public class OI {
 		if (RobotMap.DEBUG) {
 			SmartDashboard.putData("Turn:", new AutoRotate((float) 90.0));
 			SmartDashboard.putData("Reset NavX:", new NavXReset());
-			SmartDashboard.putData("Original VisionTurn:", new VisionRotate(false));
-			SmartDashboard.putData("Bar Ratio VisionTurn:", new VisionRotate(true));
+			SmartDashboard.putData("VisionTurn:", new VisionRotate());
 			SmartDashboard.putData("StartRecording", new StartMotionRecordCommand());
 			SmartDashboard.putData("StopRecording", new StopMotionRecordCommand());
 			SmartDashboard.putData("PlayRecording", new PlayRecordingCommand());

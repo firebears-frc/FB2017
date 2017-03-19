@@ -200,12 +200,6 @@ public class Robot extends IterativeRobot {
 		vision.update();
 		// pitchwheelStop.execute();
 
-		if (RobotMap.gearSensor.get() == true) {
-			SmartDashboard.putString("?", "True");
-		} else {
-			SmartDashboard.putString("?", "false");
-		}
-
 		if ((count++) % 15 == 0) {
 			lights.teleopMode();
 			displayStatus();
@@ -233,9 +227,8 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putNumber("Corrected NavX Angle:", boundAngle((float) RobotMap.navXBoard.getAngle()));
 		SmartDashboard.putNumber("NavX Angle:", RobotMap.navXBoard.getAngle());
 		SmartDashboard.putNumber("Dumper Servo Pos:", RobotMap.dumperdumperServo.get());
-		SmartDashboard.putBoolean("Vision On Target:", vision.isTargetVisible());
 		SmartDashboard.putNumber("ClimberCurrent", RobotMap.climberclimbMotor.getOutputCurrent());
-		
+		SmartDashboard.putBoolean("Is Target Visible:", vision.isTargetVisible());
 	}
 
 }
