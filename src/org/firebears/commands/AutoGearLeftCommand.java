@@ -37,8 +37,8 @@ public class AutoGearLeftCommand extends CommandGroup {
     	addSequential(new VisionForwardIntoTarget());
     	addSequential(new WaitForGearCommand());
 //// add the command below for the left recording after delivering the gear.
-//    	addSequential(new PlayRecordingCommand("recording/auto_gear_left_2.csv"));
-//    	addSequential(new VisionLightRingCommand(false));
+    	addSequential(new PlayRecordingCommand("recording/auto_gear_left_2.csv"));
+    	addSequential(new VisionLightRingCommand(false));
    
     }
 }

@@ -66,7 +66,7 @@ public class Lights extends Subsystem {
 			setStrip(Lights.STRIP_CHASSIS_FRONT2, Lights.ANIM_EXPLODING_R_W_B);
 			setStrip(Lights.STRIP_CHASSIS_BOTTOM2, Lights.ANIM_EXPLODING_R_W_B);
 		} else {
-			// if (Robot.vision.isLightRingOn()) {
+//			 if (Robot.vision.isLightRingOn()) { 
 			if (Robot.gearChute.isGearInChute()) {
 				setStrip(Lights.STRIP_CHASSIS_BACK1, Lights.ANIM_FAIL);
 				setStrip(Lights.STRIP_CHASSIS_BACK2, Lights.ANIM_FAIL);
