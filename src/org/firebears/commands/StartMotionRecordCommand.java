@@ -16,7 +16,7 @@ import org.firebears.Robot;
 import java.io.*;
 
 /**
- *
+ * Command called from the smartDashboard that starts saving joystick input to a playable file.
  */
 public class StartMotionRecordCommand extends Command {
 	static boolean recording = false;

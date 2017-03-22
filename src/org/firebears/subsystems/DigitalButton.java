@@ -6,6 +6,9 @@ import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.buttons.Trigger;
 import edu.wpi.first.wpilibj.command.Command;
 
+/**
+ * Subsystem for the button that changes autonomous modes.
+ */
 public class DigitalButton extends Trigger {
 
 	private boolean prevValue = false;

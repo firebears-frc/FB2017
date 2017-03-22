@@ -8,7 +8,7 @@ import static org.firebears.RobotMap.boundAngle;
 import static org.firebears.RobotMap.getNavXAngle;
 
 /**
- *
+ * Vision rotation used in autonomous.
  */
 public class VisionRotate extends PIDCommand {
 

@@ -3,18 +3,14 @@ package org.firebears.commands;
 import org.firebears.Robot;
 import org.firebears.RobotMap;
 
-import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.PIDCommand;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
- *
+ * Smart Dashoard only command to strafe straight.
  */
 public class StrafeStraightCommand extends PIDCommand {
 
 	protected final double SPEED = 0.3;
-	
-
 	protected final double DRIFTCOMPENSATION = 0.0;//Hack for Competition RObot			
 	
 	long timeout;

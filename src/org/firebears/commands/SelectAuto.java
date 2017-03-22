@@ -3,15 +3,6 @@ package org.firebears.commands;
 
 import org.firebears.Robot;
 import org.firebears.RobotMap;
-//import org.firebears.commands.defenses.ChevalDeFriseCommand;
-//import org.firebears.commands.defenses.FlatCommand;
-//import org.firebears.commands.defenses.FlatfiveCommand;
-//import org.firebears.commands.defenses.LowBarCommand;
-//import org.firebears.commands.defenses.MoatCommand;
-//import org.firebears.commands.defenses.PortcullisCommand;
-//import org.firebears.commands.defenses.RampartsCommand;
-//import org.firebears.commands.defenses.RockWallCommand;
-//import org.firebears.commands.defenses.RoughTerrainCommand;
 import org.firebears.util.LiquidCrystal;
 
 import edu.wpi.first.wpilibj.command.Command;

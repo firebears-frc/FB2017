@@ -3,11 +3,10 @@ package org.firebears.commands;
 import org.firebears.Robot;
 import org.firebears.RobotMap;
 
-import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.PIDCommand;
 
 /**
- *
+ * TODO: Remove unused command.
  */		
 		// TODO Make it work when motor turns in different direction.
 public class StrafeInches extends PIDCommand {
