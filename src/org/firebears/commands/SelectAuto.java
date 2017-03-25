@@ -5,7 +5,9 @@ import org.firebears.Robot;
 import org.firebears.RobotMap;
 import org.firebears.util.LiquidCrystal;
 
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  * Cycle through different autonomous's when the auto switch button is pressed, changing the LCD.
@@ -66,19 +68,13 @@ public class SelectAuto extends Command {
 		lcd.home();
 		lcd.print("Auto:");
 		
-		
-		
-		
-		
 		lcd.home();
 		
 		String name = commandlist[x].toString();
 		
     	lcd.print(name);
     	
-
-
-		
+    	SmartDashboard.putString("Autonomous:", name);
 
 		// Note: if the lcd goes out of bounds of the lcd it will send an error
 		// and disable the INTER ROBOT

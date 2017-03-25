@@ -126,7 +126,7 @@ public class OI {
 			SmartDashboard.putData("PlayRecording", new PlayRecordingCommand());
 //			SmartDashboard.putData("PlayRecording(1)", new PlayRecordingCommand("recording/auto_gear_middle_1.csv"));
 			SmartDashboard.putData("Vision Drive:", new VisionForwardIntoTarget());
-			SmartDashboard.putData("Strafe (hopefully) Straight:", new StrafeStraightCommand());
+			SmartDashboard.putData("Strafe Straight:", new StrafeStraightCommand());
 			SmartDashboard.putData("Angle Adjust:", new VisionAngleAdjustCommand());
 			SmartDashboard.putData("Vision Group Command (3 step):", new VisionCommandGroup());
 			SmartDashboard.putData("Vision Hybrid Command", new VisionHybridCommand());

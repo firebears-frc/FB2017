@@ -51,7 +51,7 @@ public class VisionRotate extends PIDCommand {
     	turnValue = Robot.vision.getAngle();
     	targetAngle = boundAngle(getNavXAngle() + turnValue - getOffset(turnValue));
     	getPIDController().setSetpoint(0);
-    	SmartDashboard.putNumber("VisionTarget:", targetAngle);
+    	SmartDashboard.putNumber("Vision Angle:", targetAngle);
     }
     
     //To compensate for camera angle error and PID over/under error (Redneck I in PID)
