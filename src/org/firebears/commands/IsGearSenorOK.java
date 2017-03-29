@@ -21,12 +21,18 @@ public class IsGearSenorOK extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
+		LiquidCrystal lcd = RobotMap.lcd;
+		lcd.clear();
+    	
     	currentPos = Robot.gearChute.isGearInChute();
     	
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+		LiquidCrystal lcd = RobotMap.lcd;
+		lcd.setCursor(0, 1);
+		lcd.print("" + Robot.gearChute.isGearInChute());
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -34,12 +40,10 @@ public class IsGearSenorOK extends Command {
 		LiquidCrystal lcd = RobotMap.lcd;
 		
     	if(currentPos == false && Robot.gearChute.isGearInChute() == false){
-    		lcd.clear();
     		lcd.home();
     		lcd.print("GearChuteSensor!");
     		return false;
     	}if(currentPos == true && Robot.gearChute.isGearInChute() == true){
-    		lcd.clear();
     		lcd.home();
     		lcd.print("GearChuteSensor!");
     		return false;

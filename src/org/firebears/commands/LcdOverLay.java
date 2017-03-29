@@ -23,23 +23,23 @@ public class LcdOverLay extends Command {
     public void initialize() {
     }
     
-    public void disabled(){
-    	LiquidCrystal lcd = RobotMap.lcd;
-
-//		lcd.clear();
-		lcd.setCursor(6, 3);
-
-		lcd.print("Disabled");
-	}
-	public void enabled(){
-		LiquidCrystal lcd = RobotMap.lcd;
-
-//		lcd.clear();
-		lcd.setCursor(6, 3);
-		lcd.print(" ");
-		lcd.setCursor(7, 3);
-		lcd.print("Enabled");
-	}
+//    public void disabled(){
+//    	LiquidCrystal lcd = RobotMap.lcd;
+//
+////		lcd.clear();
+//		lcd.setCursor(6, 3);
+//
+//		lcd.print("Disabled");
+//	}
+//	public void enabled(){
+//		LiquidCrystal lcd = RobotMap.lcd;
+//
+////		lcd.clear();
+//		lcd.setCursor(6, 3);
+//		lcd.print(" ");
+//		lcd.setCursor(7, 3);
+//		lcd.print("Enabled");
+//	}
 
     // Called repeatedly when this Command is scheduled to run
     public void execute() {
@@ -56,6 +56,8 @@ public class LcdOverLay extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
+    	LiquidCrystal lcd = RobotMap.lcd;
+    	lcd.clear();
     }
 
     // Called when another command which requires one or more of the same

@@ -21,6 +21,8 @@ public class EncoderTestCommand extends Command {
 
 	// Called just before this Command runs the first time
 	protected void initialize() {
+		LiquidCrystal lcd = RobotMap.lcd;
+		lcd.clear();
 
 		
 		}
@@ -29,10 +31,17 @@ public class EncoderTestCommand extends Command {
 	protected void execute() {
 //		Robot.chassis.drive(0, .5, 0);
 //		RobotMap.chassisfrontLeft.set(50);
+		LiquidCrystal lcd = RobotMap.lcd;
+
+		
+		
 
 		
 		if(talonNum == 2){
 			RobotMap.chassisfrontLeft.set(50);
+			lcd.print("" + RobotMap.chassisfrontLeft.getEncVelocity());
+			lcd.print("" + RobotMap.chassisfrontLeft.getEncPosition());
+			
 
 		}else if(talonNum == 3){
 			RobotMap.chassisfrontRight.set(50);	
@@ -62,43 +71,36 @@ public class EncoderTestCommand extends Command {
 		LiquidCrystal lcd = RobotMap.lcd;
 
 		if(talonNum == 2 && RobotMap.chassisfrontLeft.getEncVelocity() < 30){
-			lcd.clear();
     		lcd.home();
     		lcd.print("Talon2FL/SIM");
 			
 			return false;
 		}else if(talonNum == 3 && RobotMap.chassisfrontRight.getEncVelocity() < 30){
-			lcd.clear();
-    		lcd.home();
+			lcd.home();
     		lcd.print("Talon3FR/SIM");
 			
 			return false;
 		}else if(talonNum == 4 && RobotMap.chassisrearLeft.getEncVelocity() < 30){
-			lcd.clear();
     		lcd.home();
     		lcd.print("Talon4RL/SIM");
 			
 			return false;
 		}else if(talonNum == 5 && RobotMap.chassisrearRight.getEncVelocity() < 30){
-			lcd.clear();
     		lcd.home();
     		lcd.print("Talon5RR/SIM");
 			
 			return false;
 		}else if(talonNum == 11 && RobotMap.climberclimbMotor.getOutputCurrent() > 5){
-			lcd.clear();
     		lcd.home();
     		lcd.print("Talon11Climber/SIM");
 			
 			return false;
 		}else if(talonNum == 12 && RobotMap.floorfloorLift.getOutputCurrent() < 5){
-			lcd.clear();
     		lcd.home();
     		lcd.print("Talon12Floor/SIM");
 			
 			return false;
 		}else if(talonNum == 13 && RobotMap.acquisitionacquisitionMotor.getOutputCurrent() < 5){
-			lcd.clear();
     		lcd.home();
     		lcd.print("Talon13acq/SIM");
 			
@@ -112,6 +114,9 @@ public class EncoderTestCommand extends Command {
 
 	// Called once after isFinished returns true
 	protected void end() {
+		LiquidCrystal lcd = RobotMap.lcd;
+		lcd.clear();
+
 		RobotMap.chassisfrontLeft.set(0);
 		RobotMap.chassisfrontRight.set(0);
 		RobotMap.chassisrearRight.set(0);

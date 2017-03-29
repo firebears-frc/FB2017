@@ -138,7 +138,7 @@ public class Robot extends IterativeRobot {
 	 */
 	public void disabledInit() {
 		count = 0;
-		lcdol.disabled();
+//		lcdol.disabled();
 		vision.setLightRingOff();
 	}
 
@@ -180,7 +180,7 @@ public class Robot extends IterativeRobot {
 
 	public void teleopInit() {
 		count = 0;
-		lcdol.enabled();
+//		lcdol.enabled();
 		vision.setLightRingOff();
 
 		// RobotMap.gearLightRing.set(Relay.Value.kForward);

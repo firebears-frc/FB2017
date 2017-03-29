@@ -98,6 +98,8 @@ public class SelectAuto extends Command {
 	}
 
 	protected void end() {
+    	LiquidCrystal lcd = RobotMap.lcd;
+    	lcd.clear();
 	}
 
 	protected void interrupted() {
