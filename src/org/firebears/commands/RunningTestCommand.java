@@ -9,8 +9,10 @@ public class RunningTestCommand extends CommandGroup {
 
     public RunningTestCommand() {
 //      addSequential(new IsGearSenorOK());
-    	addSequential(new IsSonicOK());
+//    	addSequential(new IsNavxOK());
+//    	addSequential(new IsSonicOK());
     	addSequential(new IsVoltageOK());
+    	addSequential(new EveryThingisOK());
 //    	addSequential(new EncoderTestCommand(2));
 //    	addSequential(new EncoderTestCommand(3));
 //    	addSequential(new EncoderTestCommand(4));
