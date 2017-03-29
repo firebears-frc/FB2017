@@ -19,7 +19,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 
 
 /**
- *
+ * Move the climbing mechanism.
  */
 public class Climber extends Subsystem {
 

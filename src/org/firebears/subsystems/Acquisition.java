@@ -19,7 +19,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 
 
 /**
- *
+ * Turn on/off fuel acquisition.
  */
 public class Acquisition extends Subsystem {
 
