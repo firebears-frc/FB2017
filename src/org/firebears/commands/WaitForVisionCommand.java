@@ -32,7 +32,7 @@ public class WaitForVisionCommand extends Command {
         if (System.currentTimeMillis() >= timeout){
         	return true;
         }
-        if (Robot.vision.isTargetVisible() && Robot.vision.getAngle()> -17) {
+        if (Robot.vision.isTargetVisible()) {
         	return true;
         }
     	return false;
