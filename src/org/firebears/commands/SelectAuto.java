@@ -17,8 +17,8 @@ public class SelectAuto extends Command {
 	int x = 0;
 	
 	Command[] commandlist = {
-//			new StrafeInches(12, .5),
-//			new MoveForwardInches(12),
+			new StrafeInches(12, .5),
+			new MoveForwardInches(12),
 			new AutoGearLeftCommand(),
 			new AutoGearMiddleCommand(),
 			new AutoGearRightCommand(),
@@ -62,9 +62,9 @@ public class SelectAuto extends Command {
 		
 		if (x >= commandlist.length){
     		x = 0;
-        	Robot.autonomousCommand = commandlist[x];
-
     	}
+    	Robot.autonomousCommand = commandlist[x];
+
 		lcd.home();
 		lcd.print("Auto:");
 		
@@ -74,7 +74,7 @@ public class SelectAuto extends Command {
 		
     	lcd.print(name);
     	
-    	SmartDashboard.putString("Autonomous:", name);
+//    	SmartDashboard.putString("Autonomous:", name);
 
 		// Note: if the lcd goes out of bounds of the lcd it will send an error
 		// and disable the INTER ROBOT
