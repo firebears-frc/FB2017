@@ -34,7 +34,7 @@ public class MoveForwardInches extends PIDCommand {
     }
     
     public double toInches(double EncoderValue){
-    	return EncoderValue/40;//26.5
+    	return EncoderValue/20;//26.5
     }
 
     // Called just before this Command runs the first time
