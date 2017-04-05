@@ -8,7 +8,10 @@ import edu.wpi.first.wpilibj.command.WaitCommand;
  */
 public class AutoGearLeftCommand extends CommandGroup {
 
-    public AutoGearLeftCommand() {
+    private static final String RECORDING_2 = "recording/auto_gear_left_2.csv";
+	private static final String RECORDING_1 = "recording/auto_gear_left_1.csv";
+
+	public AutoGearLeftCommand() {
     	
 //    	addSequential(new MoveForwardInches(36, .66));
 //    	addSequential(new WaitCommand(.2));
@@ -30,16 +33,15 @@ public class AutoGearLeftCommand extends CommandGroup {
     	
     	
     	// TODO: Should add this line.
-    	// addSequential(new VisionLightRingCommand(true));
-// drive forward and turn 30 degrees right
-    	addSequential(new PlayRecordingCommand("recording/auto_gear_left_1.csv"));
+		//addSequential(new MoveForwardInches(2*12));
+    	addSequential(new VisionLightRingCommand(true));
+    	addSequential(new PlayRecordingCommand(RECORDING_1));
     	addSequential(new WaitForVisionCommand());
     	addSequential(new VisionRotate());
     	addSequential(new VisionForwardIntoTarget());
     	addSequential(new WaitForGearCommand());
     	addSequential(new WaitCommand(2.0));
-//// add the command below for the left recording after delivering the gear.
-    	addSequential(new PlayRecordingCommand("recording/auto_gear_left_2.csv"));
+    	addSequential(new PlayRecordingCommand(RECORDING_2));
     	addSequential(new VisionLightRingCommand(false));
    
     }
