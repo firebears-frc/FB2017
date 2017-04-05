@@ -24,6 +24,13 @@ public class EncoderTestCommand extends Command {
 		LiquidCrystal lcd = RobotMap.lcd;
 		lcd.clear();
 
+		RobotMap.chassisfrontLeft.set(0);
+		RobotMap.chassisfrontRight.set(0);
+		RobotMap.chassisrearRight.set(0);
+		RobotMap.climberclimbMotor.set(0);
+		RobotMap.floorfloorLift.set(0);
+		RobotMap.acquisitionacquisitionMotor.set(0);
+
 		
 		}
 
@@ -38,19 +45,35 @@ public class EncoderTestCommand extends Command {
 
 		
 		if(talonNum == 2){
-			RobotMap.chassisfrontLeft.set(50);
+			RobotMap.chassisfrontLeft.set(150);
+			lcd.setCursor(0, 1);
 			lcd.print("" + RobotMap.chassisfrontLeft.getEncVelocity());
+			lcd.setCursor(0, 2);
 			lcd.print("" + RobotMap.chassisfrontLeft.getEncPosition());
+			
 			
 
 		}else if(talonNum == 3){
-			RobotMap.chassisfrontRight.set(50);	
+			RobotMap.chassisfrontRight.set(150);
+			lcd.setCursor(0, 1);
+			lcd.print("" + RobotMap.chassisfrontRight.getEncVelocity());
+			lcd.setCursor(0, 2);
+			lcd.print("" + RobotMap.chassisfrontRight.getEncPosition());
+			
 
 		}else if(talonNum == 4){
-			RobotMap.chassisrearLeft.set(50);	
+			RobotMap.chassisrearLeft.set(150);	
+			lcd.setCursor(0, 1);
+			lcd.print("" + RobotMap.chassisrearLeft.getEncVelocity());
+			lcd.setCursor(0, 2);
+			lcd.print("" + RobotMap.chassisrearLeft.getEncPosition());
 
 		}else if(talonNum == 5){
-			RobotMap.chassisrearRight.set(50);	
+			RobotMap.chassisrearRight.set(150);	
+			lcd.setCursor(0, 1);
+			lcd.print("" + RobotMap.chassisrearRight.getEncVelocity());
+			lcd.setCursor(0, 2);
+			lcd.print("" + RobotMap.chassisrearRight.getEncPosition());
 
 		}else if(talonNum == 11){
 			RobotMap.climberclimbMotor.set(1);	
@@ -59,7 +82,7 @@ public class EncoderTestCommand extends Command {
 			RobotMap.floorfloorLift.set(1);	
 
 		}else if(talonNum == 13){
-			RobotMap.acquisitionacquisitionMotor.set(50);	
+			RobotMap.acquisitionacquisitionMotor.set(.25);	
 
 		}
 		
@@ -70,39 +93,49 @@ public class EncoderTestCommand extends Command {
 	protected boolean isFinished() {
 		LiquidCrystal lcd = RobotMap.lcd;
 
-		if(talonNum == 2 && RobotMap.chassisfrontLeft.getEncVelocity() < 30){
+		if(talonNum == 2 && Math.abs(RobotMap.chassisfrontLeft.getEncVelocity()) < 30){
     		lcd.home();
     		lcd.print("Talon2FL/SIM");
+    		RobotMap.chassisfrontLeft.set(0);
+    		
 			
 			return false;
-		}else if(talonNum == 3 && RobotMap.chassisfrontRight.getEncVelocity() < 30){
+		}else if(talonNum == 3 && Math.abs(RobotMap.chassisfrontRight.getEncVelocity()) < 30){
 			lcd.home();
     		lcd.print("Talon3FR/SIM");
+    		RobotMap.chassisfrontRight.set(0);
+    		
 			
 			return false;
-		}else if(talonNum == 4 && RobotMap.chassisrearLeft.getEncVelocity() < 30){
+		}else if(talonNum == 4 && Math.abs(RobotMap.chassisrearLeft.getEncVelocity()) < 30){
     		lcd.home();
     		lcd.print("Talon4RL/SIM");
+    		RobotMap.chassisrearLeft.set(0);
+    		
 			
 			return false;
-		}else if(talonNum == 5 && RobotMap.chassisrearRight.getEncVelocity() < 30){
+		}else if(talonNum == 5 && Math.abs(RobotMap.chassisrearRight.getEncVelocity()) < 30){
     		lcd.home();
     		lcd.print("Talon5RR/SIM");
+    		RobotMap.chassisrearRight.set(0);
 			
 			return false;
 		}else if(talonNum == 11 && RobotMap.climberclimbMotor.getOutputCurrent() > 5){
     		lcd.home();
     		lcd.print("Talon11Climber/SIM");
+    		RobotMap.climberclimbMotor.set(0);
 			
 			return false;
 		}else if(talonNum == 12 && RobotMap.floorfloorLift.getOutputCurrent() < 5){
     		lcd.home();
     		lcd.print("Talon12Floor/SIM");
+    		RobotMap.floorfloorLift.set(0);
 			
 			return false;
-		}else if(talonNum == 13 && RobotMap.acquisitionacquisitionMotor.getOutputCurrent() < 5){
+		}else if(talonNum == 13 && RobotMap.acquisitionacquisitionMotor.getOutputCurrent() < 2){
     		lcd.home();
     		lcd.print("Talon13acq/SIM");
+    		RobotMap.acquisitionacquisitionMotor.set(0);
 			
 			return false;
 		}else{
@@ -119,7 +152,9 @@ public class EncoderTestCommand extends Command {
 
 		RobotMap.chassisfrontLeft.set(0);
 		RobotMap.chassisfrontRight.set(0);
+		RobotMap.chassisrearLeft.set(0);
 		RobotMap.chassisrearRight.set(0);
+		
 		RobotMap.climberclimbMotor.set(0);
 		RobotMap.floorfloorLift.set(0);
 		RobotMap.acquisitionacquisitionMotor.set(0);

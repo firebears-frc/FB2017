@@ -45,9 +45,9 @@ public class IsVoltageOK extends Command {
     protected boolean isFinished() {
 		LiquidCrystal lcd = RobotMap.lcd;
 
-    	if(driverStation.getBatteryVoltage() < 13 ){
+    	if(driverStation.getBatteryVoltage() < 12.7 ){
     		lcd.home();
-    		lcd.print("BAT<13!");
+    		lcd.print("BAT<12.7!");
     		return false;
     	}else{
             return true;

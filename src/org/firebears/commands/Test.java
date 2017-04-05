@@ -8,9 +8,9 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
  */
 public class Test extends CommandGroup {
 
-	public Test(Command defense_command) {
+	public Test() {
 		// requires(Robot.chassis);
-		addSequential(defense_command);
+//		addSequential(defense_command);
 		// addSequential(new AimAndShootCommand());
 		// Add Commands here:
 		// e.g. addSequential(new Command1());
