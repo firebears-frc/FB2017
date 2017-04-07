@@ -76,10 +76,10 @@ public class EncoderTestCommand extends Command {
 			lcd.print("" + RobotMap.chassisrearRight.getEncPosition());
 
 		}else if(talonNum == 11){
-			RobotMap.climberclimbMotor.set(1);	
+			RobotMap.climberclimbMotor.set(.5);	
 
 		}else if(talonNum == 12){
-			RobotMap.floorfloorLift.set(1);	
+			RobotMap.floorfloorLift.set(.75);	
 
 		}else if(talonNum == 13){
 			RobotMap.acquisitionacquisitionMotor.set(.25);	
@@ -120,13 +120,13 @@ public class EncoderTestCommand extends Command {
     		RobotMap.chassisrearRight.set(0);
 			
 			return false;
-		}else if(talonNum == 11 && RobotMap.climberclimbMotor.getOutputCurrent() > 5){
+		}else if(talonNum == 11 && RobotMap.climberclimbMotor.getOutputCurrent() < 2){
     		lcd.home();
     		lcd.print("Talon11Climber/SIM");
     		RobotMap.climberclimbMotor.set(0);
 			
 			return false;
-		}else if(talonNum == 12 && RobotMap.floorfloorLift.getOutputCurrent() < 5){
+		}else if(talonNum == 12 && RobotMap.floorfloorLift.getOutputCurrent() < 2){
     		lcd.home();
     		lcd.print("Talon12Floor/SIM");
     		RobotMap.floorfloorLift.set(0);

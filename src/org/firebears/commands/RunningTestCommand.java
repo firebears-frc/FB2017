@@ -15,8 +15,8 @@ public class RunningTestCommand extends CommandGroup {
     	addSequential(new EncoderTestCommand(3));
     	addSequential(new EncoderTestCommand(4));
     	addSequential(new EncoderTestCommand(5));
-//    	addSequential(new EncoderTestCommand(11));
-//    	addSequential(new EncoderTestCommand(12));
+    	addSequential(new EncoderTestCommand(11));
+    	addSequential(new EncoderTestCommand(12));
     	addSequential(new EncoderTestCommand(13));
     	addSequential(new IsNavxOK());
     	addSequential(new IsGearSenorOK());

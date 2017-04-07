@@ -8,8 +8,8 @@ import edu.wpi.first.wpilibj.command.WaitCommand;
  */
 public class AutoGearLeftCommand extends CommandGroup {
 
-    private static final String RECORDING_2 = "recording/auto_gear_left_2.csv";
-	private static final String RECORDING_1 = "recording/auto_gear_left_1.csv";
+    private static final String RECORDING_2 = "recording/auto_gear_right_2.csv";
+	private static final String RECORDING_1 = "recording/auto_gear_right_1.csv";
 
 	public AutoGearLeftCommand() {
     	
@@ -35,13 +35,13 @@ public class AutoGearLeftCommand extends CommandGroup {
     	// TODO: Should add this line.
 		//addSequential(new MoveForwardInches(2*12));
     	addSequential(new VisionLightRingCommand(true));
-    	addSequential(new PlayRecordingCommand(RECORDING_1));
+    	addSequential(new MirrorPlay(RECORDING_1));
     	addSequential(new WaitForVisionCommand());
     	addSequential(new VisionRotate());
     	addSequential(new VisionForwardIntoTarget());
     	addSequential(new WaitForGearCommand());
     	addSequential(new WaitCommand(2.0));
-    	addSequential(new PlayRecordingCommand(RECORDING_2));
+    	addSequential(new MirrorPlay(RECORDING_2));
     	addSequential(new VisionLightRingCommand(false));
    
     }

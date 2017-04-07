@@ -99,7 +99,7 @@ public class OI {
 		floorGoUp.whileHeld(new DumpCommand(.75));
 		
 		floorGoDown = new JoystickButton(joystick2, 5);
-		floorGoDown.whileHeld(new LiftFloorCommand(.75));
+		floorGoDown.whileHeld(new LiftFloorCommand(.5));
 		
 		acquisitionToggle = new JoystickButton(joystick2, 2);
 		acquisitionToggle.whenPressed(new AcquireCommand(true));
@@ -141,7 +141,8 @@ public class OI {
 			SmartDashboard.putData("Autonomous Right Test thing:", new AutoGearRightCommand());
 			SmartDashboard.putData("Drive To Gear:", new VisionForwardIntoTarget());
 			SmartDashboard.putData("RunningTestCommand", new RunningTestCommand());
-			
+			SmartDashboard.putData("MirrorPlay", new MirrorPlay());
+
 			// SmartDashboard.putData("ClimbDown", new ClimbCommand(true));
 			// SmartDashboard.putData("ClimbUp", new ClimbCommand(false));
 		}

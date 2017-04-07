@@ -220,7 +220,7 @@ public class RobotMap {
         climberclimbMotor = new CANTalon(11);
         LiveWindow.addActuator("Climber", "climbMotor", climberclimbMotor);
         
-    	acquisitionacquisitionMotor = new CANTalon(13);
+    	acquisitionacquisitionMotor = new CANTalon(13);//Should be 14 for competition
         LiveWindow.addActuator("Acquisition", "acquisitionMotor", acquisitionacquisitionMotor);
         
         gearSensor = new DigitalInput(1);
