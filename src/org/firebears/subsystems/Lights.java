@@ -21,6 +21,8 @@ public class Lights extends Subsystem {
 		table = NetworkTable.getTable("lights");
 		setStrip(STRIP_CHASSIS_FRONT1, ANIM_FIRE);
 		setStrip(STRIP_CHASSIS_BACK1, ANIM_FIRE);
+		setStrip(STRIP_CHASSIS_BACK3, ANIM_FIRE);
+		setStrip(STRIP_CHASSIS_BACK4, ANIM_FIRE);
 		setStrip(STRIP_CHASSIS_BOTTOM1, ANIM_FIRE);
 		setStrip(STRIP_CHASSIS_FRONT2, ANIM_FIRE);
 		setStrip(STRIP_CHASSIS_BACK2, ANIM_FIRE);
@@ -48,6 +50,8 @@ public class Lights extends Subsystem {
 		if (isCelebrateMode) {
 			setStrip(Lights.STRIP_SIGNAL, Lights.ANIM_EXPLODE);
 			setStrip(Lights.STRIP_CHASSIS_BACK1, Lights.ANIM_EXPLODE);
+			setStrip(Lights.STRIP_CHASSIS_BACK3, Lights.ANIM_EXPLODE);
+			setStrip(Lights.STRIP_CHASSIS_BACK4, Lights.ANIM_EXPLODE);
 			setStrip(Lights.STRIP_CHASSIS_FRONT1, Lights.ANIM_EXPLODE);
 			setStrip(Lights.STRIP_CHASSIS_BOTTOM1, Lights.ANIM_EXPLODE);
 			setStrip(Lights.STRIP_CHASSIS_BACK2, Lights.ANIM_EXPLODE);
@@ -60,6 +64,8 @@ public class Lights extends Subsystem {
 		if (Robot.climber.isRunning()) {
 			setStrip(Lights.STRIP_SIGNAL, Lights.ANIM_EXPLODING_R_W_B);
 			setStrip(Lights.STRIP_CHASSIS_BACK1, Lights.ANIM_EXPLODING_R_W_B);
+			setStrip(Lights.STRIP_CHASSIS_BACK3, Lights.ANIM_EXPLODING_R_W_B);
+			setStrip(Lights.STRIP_CHASSIS_BACK4, Lights.ANIM_EXPLODING_R_W_B);
 			setStrip(Lights.STRIP_CHASSIS_FRONT1, Lights.ANIM_EXPLODING_R_W_B);
 			setStrip(Lights.STRIP_CHASSIS_BOTTOM1, Lights.ANIM_EXPLODING_R_W_B);
 			setStrip(Lights.STRIP_CHASSIS_BACK2, Lights.ANIM_EXPLODING_R_W_B);
@@ -67,17 +73,20 @@ public class Lights extends Subsystem {
 			setStrip(Lights.STRIP_CHASSIS_BOTTOM2, Lights.ANIM_EXPLODING_R_W_B);
 		} else {
 //			 if (Robot.vision.isLightRingOn()) { 
-			if (Robot.gearChute.isGearInChute()) {
+			if (!Robot.gearChute.isGearInChute()) {
 				setStrip(Lights.STRIP_CHASSIS_BACK1, Lights.ANIM_FAIL);
 				setStrip(Lights.STRIP_CHASSIS_BACK2, Lights.ANIM_FAIL);
-			} else if (Robot.vision.isTargetVisible()) {
-				if (range <= 20) {
-					setStrip(Lights.STRIP_SIGNAL, Lights.ANIM_RANGE);
-					setStrip(Lights.STRIP_CHASSIS_BACK1, Lights.ANIM_RANGE);
-				}
-			} else
-
-			if (Robot.gearChute.isGearInChute()) {
+				setStrip(Lights.STRIP_CHASSIS_BACK3, Lights.ANIM_FAIL);
+				setStrip(Lights.STRIP_CHASSIS_BACK4, Lights.ANIM_FAIL);
+//			} else if (Robot.vision.isTargetVisible()) {
+//				if (range <= 20) {
+//					setStrip(Lights.STRIP_SIGNAL, Lights.ANIM_RANGE);
+//					setStrip(Lights.STRIP_CHASSIS_BACK1, Lights.ANIM_RANGE);
+//				}
+			} 
+			else if (Robot.gearChute.isGearInChute()) {
+				setStrip(Lights.STRIP_CHASSIS_BACK1, Lights.ANIM_SUCCESS);
+				setStrip(Lights.STRIP_CHASSIS_BACK2, Lights.ANIM_SUCCESS);
 				setStrip(Lights.STRIP_CHASSIS_BACK1, Lights.ANIM_SUCCESS);
 				setStrip(Lights.STRIP_CHASSIS_BACK2, Lights.ANIM_SUCCESS);
 			}
@@ -118,6 +127,8 @@ public class Lights extends Subsystem {
 		String anim = getAllianceColor();
 		setStrip(Lights.STRIP_SIGNAL, anim);
 		setStrip(Lights.STRIP_CHASSIS_BACK1, anim);
+		setStrip(Lights.STRIP_CHASSIS_BACK3, anim);
+		setStrip(Lights.STRIP_CHASSIS_BACK4, anim);
 		setStrip(Lights.STRIP_CHASSIS_FRONT1, anim);
 		setStrip(Lights.STRIP_CHASSIS_BOTTOM1, anim);
 		setStrip(Lights.STRIP_CHASSIS_BACK2, anim);
@@ -142,6 +153,8 @@ public class Lights extends Subsystem {
 	public static final String STRIP_CHASSIS_FRONT2 = "strip_chassis_front2";
 	public static final String STRIP_CHASSIS_BACK1 = "strip_chassis_back1";
 	public static final String STRIP_CHASSIS_BACK2 = "strip_chassis_back2";
+	public static final String STRIP_CHASSIS_BACK3 = "strip_chassis_back3";
+	public static final String STRIP_CHASSIS_BACK4 = "strip_chassis_back4";
 	public static final String STRIP_CHASSIS_BOTTOM1 = "strip_chassis_bottom1";
 	public static final String STRIP_CHASSIS_BOTTOM2 = "strip_chassis_bottom2";
 	public static final String STRIP_SIGNAL = "strip_signal";
