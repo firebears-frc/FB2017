@@ -39,14 +39,14 @@ public class OI {
     public JoystickButton dumpBalls;
     public JoystickButton RunningTest;
 	public Joystick joystick1;
-	public Joystick joystick2;
+//	public Joystick joystick2;
 	public DigitalButton autoSwichButton;
 
 	public OI() {
 
 		
 
-		joystick2 = new Joystick(1);
+	//	joystick2 = new Joystick(1);
 
 		joystick1 = new Joystick(0);
 		
@@ -96,19 +96,19 @@ public class OI {
 //		visionToGear = new JoystickButton(joystick2, 1);
 //		visionToGear.whenPressed(new VisionCommandGroup());
 		
-		floorGoUp = new JoystickButton(joystick2, 1);
+		floorGoUp = new JoystickButton(joystick1, 4);
 		floorGoUp.whileHeld(new DumpCommand(.75));
 		
-		floorGoDown = new JoystickButton(joystick2, 5);
+		floorGoDown = new JoystickButton(joystick1, 6);
 		floorGoDown.whileHeld(new LiftFloorCommand(.5));
 		
-		acquisitionToggle = new JoystickButton(joystick2, 2);
+		acquisitionToggle = new JoystickButton(joystick1, 2);
 		acquisitionToggle.whenPressed(new AcquireCommand(true));
 		acquisitionToggle.whenReleased(new AcquireCommand(false));
 
 		//CelebrationButton: Joystick 2, button 3
 		
-		climbRope = new JoystickButton(joystick2, 4);
+		climbRope = new JoystickButton(joystick1, 1);
 		climbRope.whileHeld(new ClimbCommand(-1.0));
 		
 //		dumpBalls = new JoystickButton(joystick2, 5);
@@ -154,8 +154,8 @@ public class OI {
 		return joystick1;
 	}
 
-	public Joystick getJoystick2() {
-		return joystick2;
-	}
+//	public Joystick getJoystick2() {
+//		return joystick2;
+//	}
 
 }
