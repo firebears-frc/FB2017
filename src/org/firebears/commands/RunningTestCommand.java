@@ -10,7 +10,7 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class RunningTestCommand extends CommandGroup {
 
     public RunningTestCommand() {
-    	addSequential(new IsVoltageOK());
+    	addSequential(new IsVoltageOK(),5);
     	addSequential(new EncoderTestCommand(2));
     	addSequential(new EncoderTestCommand(3));
     	addSequential(new EncoderTestCommand(4));

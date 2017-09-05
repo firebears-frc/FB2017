@@ -17,8 +17,6 @@ public class SelectAuto extends Command {
 	int x = 0;
 	
 	Command[] commandlist = {
-			new StrafeInches(12, .5),
-			new MoveForwardInches(12),
 			new AutoGearLeftCommand(),
 			new AutoGearMiddleCommand(),
 			new AutoGearRightCommand(),

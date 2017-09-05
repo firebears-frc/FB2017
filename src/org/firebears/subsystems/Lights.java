@@ -71,56 +71,60 @@ public class Lights extends Subsystem {
 			setStrip(Lights.STRIP_CHASSIS_BACK2, Lights.ANIM_EXPLODING_R_W_B);
 			setStrip(Lights.STRIP_CHASSIS_FRONT2, Lights.ANIM_EXPLODING_R_W_B);
 			setStrip(Lights.STRIP_CHASSIS_BOTTOM2, Lights.ANIM_EXPLODING_R_W_B);
+			return;
 		} else {
-//			 if (Robot.vision.isLightRingOn()) { 
-			if (!Robot.gearChute.isGearInChute()) {
-				setStrip(Lights.STRIP_CHASSIS_BACK1, Lights.ANIM_FAIL);
-				setStrip(Lights.STRIP_CHASSIS_BACK2, Lights.ANIM_FAIL);
-				setStrip(Lights.STRIP_CHASSIS_BACK3, Lights.ANIM_FAIL);
-				setStrip(Lights.STRIP_CHASSIS_BACK4, Lights.ANIM_FAIL);
-//			} else if (Robot.vision.isTargetVisible()) {
-//				if (range <= 20) {
+//			if (Robot.vision.isTargetVisible()) {
+//				if (range <= 200) {
 //					setStrip(Lights.STRIP_SIGNAL, Lights.ANIM_RANGE);
 //					setStrip(Lights.STRIP_CHASSIS_BACK1, Lights.ANIM_RANGE);
-//				}
-			} 
-			else if (Robot.gearChute.isGearInChute()) {
+//					setStrip(STRIP_CHASSIS_FRONT1, ANIM_RANGE);
+//					setStrip(STRIP_CHASSIS_FRONT2, ANIM_RANGE);
+//					setStrip(STRIP_CHASSIS_BACK2, ANIM_RANGE);
+//					return;
+//			}
+			 if (Robot.gearChute.isGearInChute()) {
 				setStrip(Lights.STRIP_CHASSIS_BACK1, Lights.ANIM_SUCCESS);
 				setStrip(Lights.STRIP_CHASSIS_BACK2, Lights.ANIM_SUCCESS);
-				setStrip(Lights.STRIP_CHASSIS_BACK1, Lights.ANIM_SUCCESS);
-				setStrip(Lights.STRIP_CHASSIS_BACK2, Lights.ANIM_SUCCESS);
+				return;
+			} else {
+				setStrip(STRIP_CHASSIS_BACK1, ANIM_FAIL);
+				setStrip(STRIP_CHASSIS_BACK2, ANIM_FAIL);
 			}
 		}
-		if (!Robot.acquisition.isNotRunning()) {
-			if (Robot.acquisition.isRunningForward()) {
-				setStrip(Lights.STRIP_CHASSIS_FRONT1, Lights.ANIM_SWEEPERFORWARDS);
-				setStrip(Lights.STRIP_CHASSIS_FRONT2, Lights.ANIM_SWEEPERFORWARDS);
-			}
-			if (Robot.acquisition.isRunningBackward()) {
-				setStrip(Lights.STRIP_CHASSIS_FRONT1, Lights.ANIM_SWEEPERBACKWARDS);
-				setStrip(Lights.STRIP_CHASSIS_FRONT2, Lights.ANIM_SWEEPERBACKWARDS);
-			}
-		} else {
-			if (Robot.hopper.isFloorHigh()) {
-				setStrip(Lights.STRIP_CHASSIS_FRONT1, Lights.ANIM_HIGH);
-				setStrip(Lights.STRIP_CHASSIS_FRONT2, Lights.ANIM_HIGH);
-			}
-			if (Robot.hopper.isFloorLow()) {
-				setStrip(Lights.STRIP_CHASSIS_FRONT1, Lights.ANIM_LOW);
-				setStrip(Lights.STRIP_CHASSIS_FRONT2, Lights.ANIM_LOW);
-			}
-			if (Robot.hopper.isGoingDown()) {
+		setStrip(STRIP_CHASSIS_FRONT1, ANIM_FIRE);
+		setStrip(STRIP_CHASSIS_FRONT2, ANIM_FIRE);
+//		if (!Robot.acquisition.isNotRunning()) {
+//			if (Robot.acquisition.isRunningForward()) {
+//				setStrip(Lights.STRIP_CHASSIS_FRONT1, Lights.ANIM_SWEEPERFORWARDS);
+//				setStrip(Lights.STRIP_CHASSIS_FRONT2, Lights.ANIM_SWEEPERFORWARDS);
+//			}
+//			if (Robot.acquisition.isRunningBackward()) {
+//				setStrip(Lights.STRIP_CHASSIS_FRONT1, Lights.ANIM_SWEEPERBACKWARDS);
+//				setStrip(Lights.STRIP_CHASSIS_FRONT2, Lights.ANIM_SWEEPERBACKWARDS);
+//			}
+//		} else {
+//			if (Robot.hopper.isFloorHigh()) {
+//				setStrip(Lights.STRIP_CHASSIS_FRONT1, Lights.ANIM_HIGH);
+//				setStrip(Lights.STRIP_CHASSIS_FRONT2, Lights.ANIM_HIGH);
+//			}
+//			if (Robot.hopper.isFloorLow()) {
+//				setStrip(Lights.STRIP_CHASSIS_FRONT1, Lights.ANIM_LOW);
+//				setStrip(Lights.STRIP_CHASSIS_FRONT2, Lights.ANIM_LOW);
+//			}
+//			if (Robot.hopper.isGoingDown()) {
 
-			}
-			if (Robot.hopper.isGoingUp()) {
+//			}
+//			if (Robot.hopper.isGoingUp()) {
 
-			}
-		}
+//			}
+//		}
 	}
 
 	public void autonomousMode() {
-		setStrip(STRIP_CHASSIS_BOTTOM1, ANIM_IGNITE);
-		setStrip(STRIP_CHASSIS_BOTTOM2, ANIM_IGNITE);
+		setStrip(STRIP_CHASSIS_BACK1, ANIM_IGNITE);
+		setStrip(STRIP_CHASSIS_BACK2, ANIM_IGNITE);
+		setStrip(STRIP_CHASSIS_FRONT1, ANIM_IGNITE);
+		setStrip(STRIP_CHASSIS_FRONT2, ANIM_IGNITE);
 	}
 
 	public void disabledMode() {
@@ -138,6 +142,7 @@ public class Lights extends Subsystem {
 
 	public void celebrateMode(boolean celebrate) {
 		isCelebrateMode = celebrate;
+		return;
 	}
 
 	protected String getAllianceColor() {
