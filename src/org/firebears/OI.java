@@ -17,6 +17,7 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.command.Scheduler;
 
 import org.firebears.subsystems.*;
+import org.firebears.util.RobotReport;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -41,13 +42,15 @@ public class OI {
 	public Joystick joystick2;
 	public DigitalButton autoSwichButton;
 
-	public OI() {
+	public OI(RobotReport report) {
 
 		
 
 		joystick2 = new Joystick(1);
+		report.addJoystick(1, "secondary joystick", joystick2);
 
 		joystick1 = new Joystick(0);
+		report.addJoystick(0, "drive's joystick", joystick1);
 		
 		//for putting the gear on autonomously, currently does nothing though
 //		autoGear = new JoystickButton(joystick2, 12);
@@ -55,7 +58,9 @@ public class OI {
 		//Buttons for Joystick
 		
 		RunningTest = new JoystickButton(joystick1, 11);
-		RunningTest.whenPressed(new RunningTestCommand());
+		RunningTestCommand runningTest = new RunningTestCommand();
+		RunningTest.whenPressed(runningTest);
+		report.addJoystickButton(0, 11, "Run system test", runningTest);
 //		acquisitionToggle = new JoystickButton(joystick2, 8);
 //		acquisitionToggle.whenPressed(new AcquireCommand());
 //
@@ -84,7 +89,9 @@ public class OI {
 //		climbRope.whileHeld(new ClimbCommand(-1.0));
 
 		autoSwichButton = new DigitalButton(0);
-		autoSwichButton.whenActive(new SelectAuto());
+		SelectAuto autonomousSelectCommand = new SelectAuto();
+		autoSwichButton.whenActive(autonomousSelectCommand);
+        report.addDigitalIO(0, "autonomous select button", autonomousSelectCommand);
 		
 //		floorGoUp = new JoystickButton(joystick1, 11);
 //		floorGoUp.whenPressed(new DumpCommand());
@@ -96,19 +103,27 @@ public class OI {
 //		visionToGear.whenPressed(new VisionCommandGroup());
 		
 		floorGoUp = new JoystickButton(joystick2, 1);
-		floorGoUp.whileHeld(new DumpCommand(.75));
+		DumpCommand dumpCommand = new DumpCommand(.75);
+		floorGoUp.whileHeld(dumpCommand);
+		report.addJoystickButton(1, 1, "Dump", dumpCommand);
 		
 		floorGoDown = new JoystickButton(joystick2, 5);
-		floorGoDown.whileHeld(new LiftFloorCommand(.5));
+		LiftFloorCommand liftFloorCommand = new LiftFloorCommand(.5);
+		floorGoDown.whileHeld(liftFloorCommand);
+		report.addJoystickButton(1, 5, "Lift Floor", liftFloorCommand);
 		
 		acquisitionToggle = new JoystickButton(joystick2, 2);
-		acquisitionToggle.whenPressed(new AcquireCommand(true));
+		AcquireCommand acquireCommand = new AcquireCommand(true);
+		acquisitionToggle.whenPressed(acquireCommand);
 		acquisitionToggle.whenReleased(new AcquireCommand(false));
+		report.addJoystickButton(1, 2, "Acquisition", acquireCommand);
 
 		//CelebrationButton: Joystick 2, button 3
 		
 		climbRope = new JoystickButton(joystick2, 4);
-		climbRope.whileHeld(new ClimbCommand(-1.0));
+		ClimbCommand climbCommand = new ClimbCommand(-1.0);
+		climbRope.whileHeld(climbCommand);
+		report.addJoystickButton(1, 4, "Climb", climbCommand);
 		
 //		dumpBalls = new JoystickButton(joystick2, 5);
 //		dumpBalls.whenPressed(new DumpCommand());
@@ -140,7 +155,7 @@ public class OI {
 			SmartDashboard.putData("Autonomous Left Test thing:", new AutoGearLeftCommand());
 			SmartDashboard.putData("Autonomous Right Test thing:", new AutoGearRightCommand());
 			SmartDashboard.putData("Drive To Gear:", new VisionForwardIntoTarget());
-			SmartDashboard.putData("RunningTestCommand", new RunningTestCommand());
+			SmartDashboard.putData("RunningTestCommand", runningTest);
 			SmartDashboard.putData("MirrorPlay", new MirrorPlay());
 
 			// SmartDashboard.putData("ClimbDown", new ClimbCommand(true));

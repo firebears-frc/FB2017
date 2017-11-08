@@ -72,4 +72,9 @@ public class DumpCommand extends Command {
 	protected void interrupted() {
 		end();
 	}
+	
+	@Override
+	public String toString() {
+		return "DumpCommand(" + speed + ")";
+	}
 }

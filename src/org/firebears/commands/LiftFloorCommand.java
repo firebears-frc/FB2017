@@ -43,4 +43,9 @@ public class LiftFloorCommand extends Command {
     protected void interrupted() {
     	end();
     }
+    
+	@Override
+	public String toString() {
+		return "LiftFloorCommand(" + speed + ")";
+	}
 }

@@ -13,7 +13,7 @@ package org.firebears.subsystems;
 
 import org.firebears.RobotMap;
 import org.firebears.commands.*;
-import com.ctre.CANTalon;
+import org.firebears.util.CANTalon;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 
