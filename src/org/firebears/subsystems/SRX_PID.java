@@ -15,7 +15,9 @@ import org.firebears.RobotMap;
 import org.firebears.commands.JoyCon;
 
 import org.firebears.util.CANTalon;
-import org.firebears.util.CANTalon.TalonControlMode;
+
+import com.ctre.phoenix.MotorControl.ControlMode;
+
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -76,7 +78,7 @@ public class SRX_PID extends Subsystem {
     {
     	SmartDashboard.putNumber("SubJoy", speed);
     	double targetSpeed = speed * 650d;//pulses per 100ms?? ie 1700 or 4000rpm, which way is it??? Someone sneak in a conversion??
-    	cANTalon1.changeControlMode(TalonControlMode.Speed);
+    	cANTalon1.changeControlMode(ControlMode.Velocity);
     	SmartDashboard.putNumber("SubJoyTgt", targetSpeed);
     	//SmartDashboard.putNumber("Speed = ",cANTalon1. )
     	cANTalon1.set(targetSpeed);
