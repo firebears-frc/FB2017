@@ -47,33 +47,33 @@ public class EncoderTestCommand extends Command {
 		if(talonNum == 2){
 			RobotMap.chassisfrontLeft.set(150);
 			lcd.setCursor(0, 1);
-			lcd.print("" + RobotMap.chassisfrontLeft.getEncVelocity());
+			lcd.print("" + RobotMap.chassisfrontLeft.getSelectedSensorVelocity());
 			lcd.setCursor(0, 2);
-			lcd.print("" + RobotMap.chassisfrontLeft.getEncPosition());
+			lcd.print("" + RobotMap.chassisfrontLeft.getSelectedSensorPosition());
 			
 			
 
 		}else if(talonNum == 3){
 			RobotMap.chassisfrontRight.set(150);
 			lcd.setCursor(0, 1);
-			lcd.print("" + RobotMap.chassisfrontRight.getEncVelocity());
+			lcd.print("" + RobotMap.chassisfrontRight.getSelectedSensorVelocity());
 			lcd.setCursor(0, 2);
-			lcd.print("" + RobotMap.chassisfrontRight.getEncPosition());
+			lcd.print("" + RobotMap.chassisfrontRight.getSelectedSensorPosition());
 			
 
 		}else if(talonNum == 4){
 			RobotMap.chassisrearLeft.set(150);	
 			lcd.setCursor(0, 1);
-			lcd.print("" + RobotMap.chassisrearLeft.getEncVelocity());
+			lcd.print("" + RobotMap.chassisrearLeft.getSelectedSensorVelocity());
 			lcd.setCursor(0, 2);
-			lcd.print("" + RobotMap.chassisrearLeft.getEncPosition());
+			lcd.print("" + RobotMap.chassisrearLeft.getSelectedSensorPosition());
 
 		}else if(talonNum == 5){
 			RobotMap.chassisrearRight.set(150);	
 			lcd.setCursor(0, 1);
-			lcd.print("" + RobotMap.chassisrearRight.getEncVelocity());
+			lcd.print("" + RobotMap.chassisrearRight.getSelectedSensorVelocity());
 			lcd.setCursor(0, 2);
-			lcd.print("" + RobotMap.chassisrearRight.getEncPosition());
+			lcd.print("" + RobotMap.chassisrearRight.getSelectedSensorPosition());
 
 		}else if(talonNum == 11){
 			RobotMap.climberclimbMotor.set(.5);	
@@ -93,28 +93,28 @@ public class EncoderTestCommand extends Command {
 	protected boolean isFinished() {
 		LiquidCrystal lcd = RobotMap.lcd;
 
-		if(talonNum == 2 && Math.abs(RobotMap.chassisfrontLeft.getEncVelocity()) < 30){
+		if(talonNum == 2 && Math.abs(RobotMap.chassisfrontLeft.getSelectedSensorVelocity()) < 30){
     		lcd.home();
     		lcd.print("Talon2FL/SIM");
     		RobotMap.chassisfrontLeft.set(0);
     		
 			
 			return false;
-		}else if(talonNum == 3 && Math.abs(RobotMap.chassisfrontRight.getEncVelocity()) < 30){
+		}else if(talonNum == 3 && Math.abs(RobotMap.chassisfrontRight.getSelectedSensorVelocity()) < 30){
 			lcd.home();
     		lcd.print("Talon3FR/SIM");
     		RobotMap.chassisfrontRight.set(0);
     		
 			
 			return false;
-		}else if(talonNum == 4 && Math.abs(RobotMap.chassisrearLeft.getEncVelocity()) < 30){
+		}else if(talonNum == 4 && Math.abs(RobotMap.chassisrearLeft.getSelectedSensorVelocity()) < 30){
     		lcd.home();
     		lcd.print("Talon4RL/SIM");
     		RobotMap.chassisrearLeft.set(0);
     		
 			
 			return false;
-		}else if(talonNum == 5 && Math.abs(RobotMap.chassisrearRight.getEncVelocity()) < 30){
+		}else if(talonNum == 5 && Math.abs(RobotMap.chassisrearRight.getSelectedSensorVelocity()) < 30){
     		lcd.home();
     		lcd.print("Talon5RR/SIM");
     		RobotMap.chassisrearRight.set(0);

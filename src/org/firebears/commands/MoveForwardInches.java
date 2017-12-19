@@ -40,11 +40,11 @@ public class MoveForwardInches extends PIDCommand {
     // Called just before this Command runs the first time
     protected void initialize() {
     	timeout = System.currentTimeMillis() + 1000 * 5;
-    	startDistance = toInches(RobotMap.chassisfrontLeft.getEncPosition());
+    	startDistance = toInches(RobotMap.chassisfrontLeft.getSelectedSensorPosition());
     	targetDistance = startDistance - moveDistance;
     	getPIDController().setSetpoint(targetDistance);
     	
-    	System.out.println("Vision Forward Move " + moveDistance + "inches, Start At " + (toInches(RobotMap.chassisfrontLeft.getEncPosition()) - targetDistance) + " degrees off");
+    	System.out.println("Vision Forward Move " + moveDistance + "inches, Start At " + (toInches(RobotMap.chassisfrontLeft.getSelectedSensorPosition()) - targetDistance) + " degrees off");
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -57,7 +57,7 @@ public class MoveForwardInches extends PIDCommand {
     		System.out.println("Vision Forward: Timeout");
     		return true;
     	}
-    	if (Math.abs(toInches(RobotMap.chassisfrontLeft.getEncPosition()) - targetDistance) < tolerance) {
+    	if (Math.abs(toInches(RobotMap.chassisfrontLeft.getSelectedSensorPosition()) - targetDistance) < tolerance) {
     		System.out.println("Vision Forward: Within Tolerance");
     		return true;
     	}
@@ -67,7 +67,7 @@ public class MoveForwardInches extends PIDCommand {
     // Called once after isFinished returns true
     protected void end() {
     	Robot.chassis.stopDriving();
-    	System.out.println("Vision Forward Start At " + (toInches(RobotMap.chassisfrontLeft.getEncPosition()) - targetDistance) + " degrees off");
+    	System.out.println("Vision Forward Start At " + (toInches(RobotMap.chassisfrontLeft.getSelectedSensorPosition()) - targetDistance) + " degrees off");
     }
 
     // Called when another command which requires one or more of the same
@@ -78,7 +78,7 @@ public class MoveForwardInches extends PIDCommand {
 
 	@Override
 	protected double returnPIDInput() {
-		return toInches(RobotMap.chassisfrontLeft.getEncPosition());
+		return toInches(RobotMap.chassisfrontLeft.getSelectedSensorPosition());
 	}
 
 	@Override

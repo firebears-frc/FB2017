@@ -224,14 +224,14 @@ public class Robot extends IterativeRobot {
 
 	protected void displayStatus() {
 		SmartDashboard.putString("gearInChute", gearChute.isGearInChute() ? "true" : "false");
-		SmartDashboard.putNumber("EfrontLeft distT2", RobotMap.chassisfrontLeft.getEncPosition());
-		SmartDashboard.putNumber("EfrontLeft rateT2", RobotMap.chassisfrontLeft.getEncVelocity());
-		SmartDashboard.putNumber("EfrontRight distT3", RobotMap.chassisfrontRight.getEncPosition());
-		SmartDashboard.putNumber("EfrontRight rateT3", RobotMap.chassisfrontRight.getEncVelocity());
-		SmartDashboard.putNumber("ErearLeft distT4", RobotMap.chassisrearLeft.getEncPosition());
-		SmartDashboard.putNumber("ErearLeft rateT4", RobotMap.chassisrearLeft.getEncVelocity());
-		SmartDashboard.putNumber("ErearRight distT5", RobotMap.chassisrearRight.getEncPosition());
-		SmartDashboard.putNumber("ErearRight rateT5", RobotMap.chassisrearRight.getEncVelocity());
+		SmartDashboard.putNumber("EfrontLeft distT2", RobotMap.chassisfrontLeft.getSelectedSensorPosition());
+		SmartDashboard.putNumber("EfrontLeft rateT2", RobotMap.chassisfrontLeft.getSelectedSensorVelocity());
+		SmartDashboard.putNumber("EfrontRight distT3", RobotMap.chassisfrontRight.getSelectedSensorPosition());
+		SmartDashboard.putNumber("EfrontRight rateT3", RobotMap.chassisfrontRight.getSelectedSensorVelocity());
+		SmartDashboard.putNumber("ErearLeft distT4", RobotMap.chassisrearLeft.getSelectedSensorPosition());
+		SmartDashboard.putNumber("ErearLeft rateT4", RobotMap.chassisrearLeft.getSelectedSensorVelocity());
+		SmartDashboard.putNumber("ErearRight distT5", RobotMap.chassisrearRight.getSelectedSensorPosition());
+		SmartDashboard.putNumber("ErearRight rateT5", RobotMap.chassisrearRight.getSelectedSensorVelocity());
 		SmartDashboard.putNumber("DistanceInInches", Robot.gearChute.getRangeFinderDistance());
 		SmartDashboard.putNumber("Corrected NavX Angle:", boundAngle((float) RobotMap.navXBoard.getAngle()));
 		SmartDashboard.putNumber("NavX Angle:", RobotMap.navXBoard.getAngle());
