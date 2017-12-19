@@ -1,18 +1,4 @@
-# FB2017, as of 2017.12.17
-
-## Digital IOs
-
-* 0 = autonomous select button : SelectAuto
-* 1 = gearSensor : edu.wpi.first.wpilibj.DigitalInput@67c3bb
-
-## Analog Inputs
-
-* 0 = rangeFinder : edu.wpi.first.wpilibj.AnalogInput@1646c37
-* 1 = rangeFinder2 : edu.wpi.first.wpilibj.AnalogInput@181eda8
-
-## PWMs
-
-* 0 = dumperServo : edu.wpi.first.wpilibj.Servo@191beef
+# FB2017, as of 2017.12.18
 
 ## CAN
 
@@ -24,9 +10,23 @@
 * 12 = floorLift : CANTalon(12)
 * 13 = acquisitionMotor : CANTalon(13)
 
-## Relays
+## DIO
 
-* 0 = gearLightRing : edu.wpi.first.wpilibj.Relay@17050dc
+* 0 = autonomous select button : SelectAuto
+* 1 = gearSensor : edu.wpi.first.wpilibj.DigitalInput@f1e4fa
+
+## RELAY
+
+* 0 = gearLightRing : edu.wpi.first.wpilibj.Relay@1e0aca6
+
+## ANALOG IN
+
+* 0 = rangeFinder : edu.wpi.first.wpilibj.AnalogInput@f7f36a
+* 1 = rangeFinder2 : edu.wpi.first.wpilibj.AnalogInput@86f2f1
+
+## PWM
+
+* 0 = dumperServo : edu.wpi.first.wpilibj.Servo@ad9418
 
 ## Other Configuration
 
@@ -34,9 +34,9 @@
 
 ## Joysticks
 
-* 0 = drive's joystick : edu.wpi.first.wpilibj.Joystick@ee9593
+* 0 = drive's joystick : edu.wpi.first.wpilibj.Joystick@5bef66
     * 11 = Run system test : RunningTestCommand
-* 1 = secondary joystick : edu.wpi.first.wpilibj.Joystick@107ec20
+* 1 = secondary joystick : edu.wpi.first.wpilibj.Joystick@af7cc2
     * 1 = Dump : DumpCommand(0.75)
     * 2 = Acquisition : AcquireCommand
     * 4 = Climb : ClimbCommand(1.0)
@@ -44,7 +44,7 @@
 
 ## DriverStation
 
-* DS voltage = 11.98
+* DS voltage = 12.01
 * alliance = Red
 
 ## Power Distribution Panel
@@ -127,7 +127,7 @@
 * availableProcessors = 2
 * totalMemory = 6,094,848
 * maxMemory = 97,320,960
-* freeMemory = 3,066,976
+* freeMemory = 2,934,408
 
 ## Java classpath
 
