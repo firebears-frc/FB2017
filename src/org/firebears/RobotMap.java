@@ -80,7 +80,7 @@ public class RobotMap {
 	static double m_ff = 0;
 	static int m_izone = 256;
 	static double m_I = 0;
-	static double m_rampRate = 10;
+	static double m_rampRate = 1;
 	static int m_profile = 0;
 	static int m_CountPerRev = 255;// ****Magnetic
 
@@ -96,62 +96,64 @@ public class RobotMap {
 
 		chassisfrontLeft = new CANTalon(2);
 		chassisfrontLeft.changeControlMode(ControlMode.Velocity);
-		chassisfrontLeft.setFeedbackDevice(FeedbackDevice.QuadEncoder);// is this covered above with the
-																		// sRX_PIDQuadratureEncoder1 ?????
-		chassisfrontLeft.reverseSensor(false);// is this covered above with the sRX_PIDQuadratureEncoder1 ?????
+		chassisfrontLeft.setFeedbackDevice(FeedbackDevice.QuadEncoder);
+		chassisfrontLeft.reverseSensor(false);
 		chassisfrontLeft.configNominalOutputVoltage(+0.0d, -0.0d);// Forward/reverse threshold
 		chassisfrontLeft.configPeakOutputVoltage(+12.0d, -12.0d);
 		chassisfrontLeft.setPID(m_P, m_I, m_D, m_ff, m_izone, m_rampRate, m_profile);
 		chassisfrontLeft.configEncoderCodesPerRev(m_CountPerRev);//
 		chassisfrontLeft.enableBrakeMode(CHASSIS_BRAKE_MODE);
 		chassisfrontLeft.enable();
-		LiveWindow.addActuator("Chassis", "frontLeft", chassisfrontLeft);
+		chassisfrontLeft.setName("Chassis", "frontLeft");
+		LiveWindow.add(chassisfrontLeft);
 		report.addCAN(2, "frontLeft", chassisfrontLeft);
 
 		chassisfrontRight = new CANTalon(3);
 		chassisfrontRight.changeControlMode(ControlMode.Velocity);
-		chassisfrontRight.setFeedbackDevice(FeedbackDevice.QuadEncoder);// is this covered above with the
-																		// sRX_PIDQuadratureEncoder1 ?????
-		chassisfrontRight.reverseSensor(false);// is this covered above with the sRX_PIDQuadratureEncoder1 ?????
+		chassisfrontRight.setFeedbackDevice(FeedbackDevice.QuadEncoder);
+		chassisfrontRight.reverseSensor(false);
 		chassisfrontRight.configNominalOutputVoltage(+0.0d, -0.0d);// Forward/reverse threshold
 		chassisfrontRight.configPeakOutputVoltage(+12.0d, -12.0d);
 		chassisfrontRight.setPID(m_P, m_I, m_D, m_ff, m_izone, m_rampRate, m_profile);
 		chassisfrontRight.configEncoderCodesPerRev(m_CountPerRev);//
 		chassisfrontRight.enableBrakeMode(CHASSIS_BRAKE_MODE);
 		chassisfrontRight.enable();
-		LiveWindow.addActuator("Chassis", "frontRight", chassisfrontRight);
+		chassisfrontRight.setName("Chassis", "frontRight");
+		LiveWindow.add(chassisfrontRight);
 		report.addCAN(3, "frontRight", chassisfrontRight);
 
 		chassisrearLeft = new CANTalon(4);
 		chassisrearLeft.changeControlMode(ControlMode.Velocity);
-		chassisrearLeft.setFeedbackDevice(FeedbackDevice.QuadEncoder);// is this covered above with the
-																		// sRX_PIDQuadratureEncoder1 ?????
-		chassisrearLeft.reverseSensor(false);// is this covered above with the sRX_PIDQuadratureEncoder1 ?????
+		chassisrearLeft.setFeedbackDevice(FeedbackDevice.QuadEncoder);
+		chassisrearLeft.reverseSensor(false);
 		chassisrearLeft.configNominalOutputVoltage(+0.0d, -0.0d);// Forward/reverse threshold
 		chassisrearLeft.configPeakOutputVoltage(+12.0d, -12.0d);
 		chassisrearLeft.setPID(m_P, m_I, m_D, m_ff, m_izone, m_rampRate, m_profile);
 		chassisrearLeft.configEncoderCodesPerRev(m_CountPerRev);//
 		chassisrearLeft.enableBrakeMode(CHASSIS_BRAKE_MODE);
 		chassisrearLeft.enable();
-		LiveWindow.addActuator("Chassis", "frontRight", chassisrearLeft);
+		chassisrearLeft.setName("Chassis", "rearLeft");
+		LiveWindow.add(chassisrearLeft);
 		report.addCAN(4, "frontRight", chassisrearLeft);
 
 		chassisrearRight = new CANTalon(5);
 		chassisrearRight.changeControlMode(ControlMode.Velocity);
-		chassisrearRight.setFeedbackDevice(FeedbackDevice.QuadEncoder);// is this covered above with the
-																		// sRX_PIDQuadratureEncoder1 ?????
-		chassisrearRight.reverseSensor(false);// is this covered above with the sRX_PIDQuadratureEncoder1 ?????
+		chassisrearRight.setFeedbackDevice(FeedbackDevice.QuadEncoder);
+		chassisrearRight.reverseSensor(false);
 		chassisrearRight.configNominalOutputVoltage(+0.0d, -0.0d);// Forward/reverse threshold
 		chassisrearRight.configPeakOutputVoltage(+12.0d, -12.0d);
 		chassisrearRight.setPID(m_P, m_I, m_D, m_ff, m_izone, m_rampRate, m_profile);
 		chassisrearRight.configEncoderCodesPerRev(m_CountPerRev);//
 		chassisrearRight.enableBrakeMode(CHASSIS_BRAKE_MODE);
 		chassisrearRight.enable();
-		LiveWindow.addActuator("Chassis", "rearRight", chassisrearRight);
+		chassisrearRight.setName("Chassis", "rearRight");
+		LiveWindow.add(chassisrearRight);
 		report.addCAN(5, "rearRight", chassisrearRight);
 
-		chassisrobotDrive = new MecanumDrive(chassisfrontLeft, chassisrearLeft, chassisfrontRight, chassisrearRight);
 
+		chassisrobotDrive = new MecanumDrive(chassisfrontLeft, chassisrearLeft,
+				chassisfrontRight, chassisrearRight);
+		
 		chassisrobotDrive.setSafetyEnabled(true);
 		chassisrobotDrive.setExpiration(0.1);
 		// chassisrobotDrive.setSensitivity(0.0);
@@ -203,15 +205,18 @@ public class RobotMap {
 		report.addPWM(0, "dumperServo", dumperdumperServo);
 
 		floorfloorLift = new CANTalon(12);
-		LiveWindow.addActuator("Floor", "floorLift", floorfloorLift);
+        floorfloorLift.setName("Floor", "floorLift");
+        LiveWindow.add(floorfloorLift);
 		report.addCAN(12, "floorLift", floorfloorLift);
 
 		climberclimbMotor = new CANTalon(11);
-		LiveWindow.addActuator("Climber", "climbMotor", climberclimbMotor);
+        climberclimbMotor.setName("Climber", "climbMotor");
+        LiveWindow.add(climberclimbMotor);
 		report.addCAN(11, "climbMotor", climberclimbMotor);
 
 		acquisitionacquisitionMotor = new CANTalon(13);// Should be 14 for competition
-		LiveWindow.addActuator("Acquisition", "acquisitionMotor", acquisitionacquisitionMotor);
+    	acquisitionacquisitionMotor.setName("Acquisition", "acquisitionMotor");
+        LiveWindow.add(acquisitionacquisitionMotor);
 		report.addCAN(13, "acquisitionMotor", acquisitionacquisitionMotor);
 
 		gearSensor = new DigitalInput(1);
