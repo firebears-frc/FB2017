@@ -16,7 +16,7 @@ import org.firebears.commands.JoyCon;
 
 import org.firebears.util.CANTalon;
 
-import com.ctre.phoenix.MotorControl.ControlMode;
+import com.ctre.phoenix.motorcontrol.ControlMode;
 
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.command.Subsystem;

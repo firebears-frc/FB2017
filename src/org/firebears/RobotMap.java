@@ -15,8 +15,8 @@ import org.firebears.util.LiquidCrystal;
 import org.firebears.util.LiquidCrystal_roboRio;
 import org.firebears.util.RobotReport;
 
-import com.ctre.phoenix.MotorControl.ControlMode;
-import com.ctre.phoenix.MotorControl.FeedbackDevice;
+import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.kauailabs.navx.frc.AHRS;
 
 import edu.wpi.cscore.UsbCamera;
