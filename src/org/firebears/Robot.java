@@ -224,19 +224,19 @@ public class Robot extends IterativeRobot {
 
 	protected void displayStatus() {
 		SmartDashboard.putString("gearInChute", gearChute.isGearInChute() ? "true" : "false");
-		SmartDashboard.putNumber("EfrontLeft distT2", RobotMap.chassisfrontLeft.getSelectedSensorPosition());
-		SmartDashboard.putNumber("EfrontLeft rateT2", RobotMap.chassisfrontLeft.getSelectedSensorVelocity());
-		SmartDashboard.putNumber("EfrontRight distT3", RobotMap.chassisfrontRight.getSelectedSensorPosition());
-		SmartDashboard.putNumber("EfrontRight rateT3", RobotMap.chassisfrontRight.getSelectedSensorVelocity());
-		SmartDashboard.putNumber("ErearLeft distT4", RobotMap.chassisrearLeft.getSelectedSensorPosition());
-		SmartDashboard.putNumber("ErearLeft rateT4", RobotMap.chassisrearLeft.getSelectedSensorVelocity());
-		SmartDashboard.putNumber("ErearRight distT5", RobotMap.chassisrearRight.getSelectedSensorPosition());
-		SmartDashboard.putNumber("ErearRight rateT5", RobotMap.chassisrearRight.getSelectedSensorVelocity());
+		SmartDashboard.putNumber("EfrontLeft distT2", RobotMap._chassisfrontLeft.getSelectedSensorPosition(RobotMap.pidIdx));
+		SmartDashboard.putNumber("EfrontLeft rateT2", RobotMap._chassisfrontLeft.getSelectedSensorVelocity(RobotMap.pidIdx));
+		SmartDashboard.putNumber("EfrontRight distT3", RobotMap._chassisfrontRight.getSelectedSensorPosition(RobotMap.pidIdx));
+		SmartDashboard.putNumber("EfrontRight rateT3", RobotMap._chassisfrontRight.getSelectedSensorVelocity(RobotMap.pidIdx));
+		SmartDashboard.putNumber("ErearLeft distT4", RobotMap._chassisrearLeft.getSelectedSensorPosition(RobotMap.pidIdx));
+		SmartDashboard.putNumber("ErearLeft rateT4", RobotMap._chassisrearLeft.getSelectedSensorVelocity(RobotMap.pidIdx));
+		SmartDashboard.putNumber("ErearRight distT5", RobotMap._chassisrearRight.getSelectedSensorPosition(RobotMap.pidIdx));
+		SmartDashboard.putNumber("ErearRight rateT5", RobotMap._chassisrearRight.getSelectedSensorVelocity(RobotMap.pidIdx));
 		SmartDashboard.putNumber("DistanceInInches", Robot.gearChute.getRangeFinderDistance());
 		SmartDashboard.putNumber("Corrected NavX Angle:", boundAngle((float) RobotMap.navXBoard.getAngle()));
 		SmartDashboard.putNumber("NavX Angle:", RobotMap.navXBoard.getAngle());
 		SmartDashboard.putNumber("Dumper Servo Pos:", RobotMap.dumperdumperServo.get());
-		SmartDashboard.putNumber("ClimberCurrent", RobotMap.climberclimbMotor.getOutputCurrent());
+		SmartDashboard.putNumber("ClimberCurrent", RobotMap._climberclimbMotor.getOutputCurrent());
 		SmartDashboard.putBoolean("Is Target Visible:", vision.isTargetVisible());
 	}
 

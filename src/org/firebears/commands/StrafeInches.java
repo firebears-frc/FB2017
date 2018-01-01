@@ -36,10 +36,10 @@ public class StrafeInches extends PIDCommand {
 	// Called just before this Command runs the first time
 	protected void initialize() {
 		if(SPEED < 0){
-			incoder = RobotMap.chassisfrontLeft.getSelectedSensorPosition();
+			incoder = RobotMap._chassisfrontLeft.getSelectedSensorPosition(RobotMap.pidIdx);
 			in = -1;
 		}else{
-			incoder = RobotMap.chassisrearLeft.getSelectedSensorPosition();
+			incoder = RobotMap._chassisrearLeft.getSelectedSensorPosition(RobotMap.pidIdx);
 			in = 1;
 		}
 
@@ -60,7 +60,7 @@ public class StrafeInches extends PIDCommand {
 			System.out.println("Strafe: Timeout");
 			return true;
 		}
-		if (Math.abs(toInches(RobotMap.chassisrearLeft.getSelectedSensorPosition()) - targetDistance) < tolerance) {
+		if (Math.abs(toInches(RobotMap._chassisrearLeft.getSelectedSensorPosition(RobotMap.pidIdx)) - targetDistance) < tolerance) {
 			System.out.println("Strafe: Within Tolerance");
 			return true;
 		}
@@ -82,7 +82,7 @@ public class StrafeInches extends PIDCommand {
 	@Override
 	protected double returnPIDInput() {
 		// TODO Auto-generated method stub
-		return toInches(RobotMap.chassisrearLeft.getSelectedSensorPosition());
+		return toInches(RobotMap._chassisrearLeft.getSelectedSensorPosition(RobotMap.pidIdx));
 	}
 
 	@Override

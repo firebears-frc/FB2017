@@ -28,16 +28,16 @@ public class PitchWheelStop extends Command {
     	double PR = Math.abs(P + R);
 //(RobotMap.navXBoard.getPitch() > d || RobotMap.navXBoard.getPitch() < -d) || (RobotMap.navXBoard.getRoll() > d || RobotMap.navXBoard.getRoll() < -d)
     	if( PR > d ){
-			RobotMap.chassisfrontLeft.disable();
-			RobotMap.chassisfrontRight.disable();
-			RobotMap.chassisrearLeft.disable();
-			RobotMap.chassisrearRight.disable();
+			RobotMap.chassisfrontLeft.stopMotor();
+			RobotMap.chassisfrontRight.stopMotor();
+			RobotMap.chassisrearLeft.stopMotor();
+			RobotMap.chassisrearRight.stopMotor();
 //			SmartDashboard.putString("?", "Disabled");
 		}else {
-			RobotMap.chassisfrontLeft.enable();
-			RobotMap.chassisfrontRight.enable();
-			RobotMap.chassisrearLeft.enable();
-			RobotMap.chassisrearRight.enable();
+			RobotMap.chassisfrontLeft.set(0);
+			RobotMap.chassisfrontRight.set(0);
+			RobotMap.chassisrearLeft.set(0);
+			RobotMap.chassisrearRight.set(0);
 //			SmartDashboard.putString("?", "Enabled");
 
 		}

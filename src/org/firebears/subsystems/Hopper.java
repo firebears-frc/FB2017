@@ -1,9 +1,9 @@
 package org.firebears.subsystems;
 
 import org.firebears.RobotMap;
-import org.firebears.util.CANTalon;
 
 import edu.wpi.first.wpilibj.Servo;
+import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
@@ -13,7 +13,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class Hopper extends Subsystem {
 	
-    private final CANTalon floorLift = RobotMap.floorfloorLift;
+    private final SpeedController floorLift = RobotMap.floorfloorLift;
     private final Servo dumperServo = RobotMap.dumperdumperServo;
     
     private boolean floorGoingUp = false;

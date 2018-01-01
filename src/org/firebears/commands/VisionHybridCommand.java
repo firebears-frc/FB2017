@@ -36,7 +36,7 @@ public class VisionHybridCommand extends PIDCommand {
     protected void initialize() {
     	moveDistance = -1.0 * (Robot.vision.getDistance() * Math.sin(Robot.vision.getAngle() * Math.PI / 180));
     	timeout = System.currentTimeMillis() + 1000 * 5;
-    	startDistance = toInches(RobotMap.chassisfrontLeft.getSelectedSensorPosition());
+    	startDistance = toInches(RobotMap._chassisfrontLeft.getSelectedSensorPosition(RobotMap.pidIdx));
     	targetDistance = startDistance - moveDistance;
     	getPIDController().setSetpoint(targetDistance);
     	
@@ -52,7 +52,7 @@ public class VisionHybridCommand extends PIDCommand {
     	if (System.currentTimeMillis() >= timeout){
     		return true;
     	}
-    	if (Math.abs(toInches(RobotMap.chassisfrontLeft.getSelectedSensorPosition()) - targetDistance) < tolerance) {
+    	if (Math.abs(toInches(RobotMap._chassisfrontLeft.getSelectedSensorPosition(RobotMap.pidIdx)) - targetDistance) < tolerance) {
     		return true;
     	}
         return false;
@@ -72,7 +72,7 @@ public class VisionHybridCommand extends PIDCommand {
 	@Override
 	protected double returnPIDInput() {
 		// TODO Auto-generated method stub
-		return toInches(RobotMap.chassisfrontLeft.getSelectedSensorPosition());
+		return toInches(RobotMap._chassisfrontLeft.getSelectedSensorPosition(RobotMap.pidIdx));
 	}
 
     public double getAngleDifference(){
