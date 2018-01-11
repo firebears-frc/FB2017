@@ -40,11 +40,11 @@ public class MoveForwardInches extends PIDCommand {
     // Called just before this Command runs the first time
     protected void initialize() {
     	timeout = System.currentTimeMillis() + 1000 * 5;
-    	startDistance = toInches(RobotMap._chassisfrontLeft.getSelectedSensorPosition(RobotMap.pidIdx));
+    	startDistance = toInches(RobotMap.chassisfrontLeft.getSelectedSensorPosition(RobotMap.PID_IDX));
     	targetDistance = startDistance - moveDistance;
     	getPIDController().setSetpoint(targetDistance);
     	
-    	System.out.println("Vision Forward Move " + moveDistance + "inches, Start At " + (toInches(RobotMap._chassisfrontLeft.getSelectedSensorPosition(RobotMap.pidIdx)) - targetDistance) + " degrees off");
+    	System.out.println("Vision Forward Move " + moveDistance + "inches, Start At " + (toInches(RobotMap.chassisfrontLeft.getSelectedSensorPosition(RobotMap.PID_IDX)) - targetDistance) + " degrees off");
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -57,7 +57,7 @@ public class MoveForwardInches extends PIDCommand {
     		System.out.println("Vision Forward: Timeout");
     		return true;
     	}
-    	if (Math.abs(toInches(RobotMap._chassisfrontLeft.getSelectedSensorPosition(RobotMap.pidIdx)) - targetDistance) < tolerance) {
+    	if (Math.abs(toInches(RobotMap.chassisfrontLeft.getSelectedSensorPosition(RobotMap.PID_IDX)) - targetDistance) < tolerance) {
     		System.out.println("Vision Forward: Within Tolerance");
     		return true;
     	}
@@ -67,7 +67,7 @@ public class MoveForwardInches extends PIDCommand {
     // Called once after isFinished returns true
     protected void end() {
     	Robot.chassis.stopDriving();
-    	System.out.println("Vision Forward Start At " + (toInches(RobotMap._chassisfrontLeft.getSelectedSensorPosition(RobotMap.pidIdx)) - targetDistance) + " degrees off");
+    	System.out.println("Vision Forward Start At " + (toInches(RobotMap.chassisfrontLeft.getSelectedSensorPosition(RobotMap.PID_IDX)) - targetDistance) + " degrees off");
     }
 
     // Called when another command which requires one or more of the same
@@ -78,7 +78,7 @@ public class MoveForwardInches extends PIDCommand {
 
 	@Override
 	protected double returnPIDInput() {
-		return toInches(RobotMap._chassisfrontLeft.getSelectedSensorPosition(RobotMap.pidIdx));
+		return toInches(RobotMap.chassisfrontLeft.getSelectedSensorPosition(RobotMap.PID_IDX));
 	}
 
 	@Override

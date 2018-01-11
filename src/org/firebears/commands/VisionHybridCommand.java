@@ -2,8 +2,6 @@ package org.firebears.commands;
 
 import org.firebears.Robot;
 import org.firebears.RobotMap;
-
-import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.PIDCommand;
 
 /**
@@ -36,7 +34,7 @@ public class VisionHybridCommand extends PIDCommand {
     protected void initialize() {
     	moveDistance = -1.0 * (Robot.vision.getDistance() * Math.sin(Robot.vision.getAngle() * Math.PI / 180));
     	timeout = System.currentTimeMillis() + 1000 * 5;
-    	startDistance = toInches(RobotMap._chassisfrontLeft.getSelectedSensorPosition(RobotMap.pidIdx));
+    	startDistance = toInches(RobotMap.chassisfrontLeft.getSelectedSensorPosition(RobotMap.PID_IDX));
     	targetDistance = startDistance - moveDistance;
     	getPIDController().setSetpoint(targetDistance);
     	
@@ -52,7 +50,7 @@ public class VisionHybridCommand extends PIDCommand {
     	if (System.currentTimeMillis() >= timeout){
     		return true;
     	}
-    	if (Math.abs(toInches(RobotMap._chassisfrontLeft.getSelectedSensorPosition(RobotMap.pidIdx)) - targetDistance) < tolerance) {
+    	if (Math.abs(toInches(RobotMap.chassisfrontLeft.getSelectedSensorPosition(RobotMap.PID_IDX)) - targetDistance) < tolerance) {
     		return true;
     	}
         return false;
@@ -72,7 +70,7 @@ public class VisionHybridCommand extends PIDCommand {
 	@Override
 	protected double returnPIDInput() {
 		// TODO Auto-generated method stub
-		return toInches(RobotMap._chassisfrontLeft.getSelectedSensorPosition(RobotMap.pidIdx));
+		return toInches(RobotMap.chassisfrontLeft.getSelectedSensorPosition(RobotMap.PID_IDX));
 	}
 
     public double getAngleDifference(){
