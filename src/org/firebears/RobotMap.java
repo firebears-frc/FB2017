@@ -221,7 +221,7 @@ public class RobotMap {
   }
 
   /**
-   * @return the angle wrapped into the range -180 to 180.
+   * @return the angle wrapped into the range -180 to 180...
    */
   public static double boundAngle(double angle) {
     while (angle > 180) {
