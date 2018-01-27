@@ -30,8 +30,8 @@ public class VisionRotate extends PIDCommand {
         requires(Robot.chassis);
 //        driveValue = (float)distance;
         
-        getPIDController().setContinuous(true);
 		getPIDController().setInputRange(-180.0, 180.0);
+        getPIDController().setContinuous(true);
 		getPIDController().setAbsoluteTolerance(ANGLE_TOLERANCE);		
     }
     

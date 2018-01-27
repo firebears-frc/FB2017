@@ -17,6 +17,7 @@ public class VisionForwardIntoTarget extends PIDCommand {
 	double startAngle;
 	double currentAngle;
 	double tolerance = 2.5;
+	static int SLOWDOWN_DISTANCE = 24;
 
 	public VisionForwardIntoTarget() {
 		super(0.025, 0.0, 0.0);
@@ -46,7 +47,7 @@ public class VisionForwardIntoTarget extends PIDCommand {
 			return true;
 		}
 
-		if (Robot.gearChute.getRangeFinderDistance() < 8) {
+		if (Robot.gearChute.getRangeFinderDistance() < 12) {
 			return true;
 		}
 		return false;
@@ -67,7 +68,7 @@ public class VisionForwardIntoTarget extends PIDCommand {
 
 	@Override
 	protected void usePIDOutput(double output) {
-		double speed = (Robot.gearChute.getRangeFinderDistance() < 24) ? -0.10 : -0.30;
+		double speed = (Robot.gearChute.getRangeFinderDistance() < SLOWDOWN_DISTANCE) ? -0.10 : -0.30;
 		Robot.chassis.drive(0.0, speed, output);
 	}
 }

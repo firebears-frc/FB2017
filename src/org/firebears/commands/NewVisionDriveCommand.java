@@ -9,17 +9,17 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 /**
  * Move the robot forward x inches at a specific speed or .25 if no speed is specified.
  */
-public class MoveForwardInches extends PIDCommand {
+public class NewVisionDriveCommand extends PIDCommand {
 
 	double moveDistance;
 	double startDistance;
 	double targetDistance;
 	double timeout;
-	protected final double SPEED;
+	protected final double SPEED = .225;
 	protected final double tolerance = 0.25;
 	final double ENCODER_RATIO = 30;//34.75;
 	
-    public MoveForwardInches(double inches, double speed) {
+    public NewVisionDriveCommand() {
     	super(.025, 0.0, 0.0);
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
@@ -27,12 +27,7 @@ public class MoveForwardInches extends PIDCommand {
     	
     	getPIDController().setAbsoluteTolerance(tolerance);
     	
-    	SPEED = speed;
-    	moveDistance = inches;
-    }
-    
-    public MoveForwardInches(double inches) {
-    	this(inches, .25);
+    	
     }
     
     public double toInches(double EncoderValue){
@@ -48,11 +43,13 @@ public class MoveForwardInches extends PIDCommand {
     protected void initialize() {
     	timeout = System.currentTimeMillis() + 1000 * 10;
     	startDistance = toInches(RobotMap.chassisfrontLeft.getSelectedSensorPosition(RobotMap.PID_IDX));
-    	targetDistance = startDistance + moveDistance;
+    	moveDistance = Robot.testvision.getDistance();
+    	targetDistance = startDistance + moveDistance - 4;
     	getPIDController().setSetpoint(targetDistance);
     	
     	SmartDashboard.putNumber("Start", startDistance);
     	SmartDashboard.putNumber("target", targetDistance);
+    	SmartDashboard.putNumber("Distance", moveDistance);
     	
     	System.out.println("Vision Forward Move " + moveDistance + "inches, Start At " + (toInches(RobotMap.chassisfrontLeft.getSelectedSensorPosition(RobotMap.PID_IDX)) - targetDistance) + " degrees off");
     }

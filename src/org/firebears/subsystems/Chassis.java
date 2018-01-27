@@ -38,7 +38,7 @@ public class Chassis extends Subsystem {
     driveX = x;
     driveY = y;
     driveRotation = rotation;
-    robotDrive.driveCartesian(x * -1, y * -1, rotation, angle);
+    robotDrive.driveCartesian(x * 1, y * -1, rotation * -1, angle);
   }
 
   /**

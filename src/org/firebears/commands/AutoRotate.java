@@ -25,8 +25,8 @@ public class AutoRotate extends PIDCommand {
         turnValue = angle;
 //        driveValue = (float)distance;
         
-        getPIDController().setContinuous(true);
 		getPIDController().setInputRange(-180.0, 180.0);
+        getPIDController().setContinuous(true);
 		getPIDController().setAbsoluteTolerance(angleTolerance);
     }
     

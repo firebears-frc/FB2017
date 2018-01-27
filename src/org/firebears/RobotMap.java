@@ -49,7 +49,7 @@ public class RobotMap {
   public static final int CAN_FLOOR_LIFT = 12;
   public static final int CAN_ACQUISITION = 13;
   public static final boolean CLOSED_LOOP_DRIVING = true;
-  public static final int COUNT_PER_REV = 255;
+  public static final int COUNT_PER_REV = 2; //255;
   public static final int PID_IDX = 0;
   public static final int TIMEOUT_MS = 10;
 
@@ -86,11 +86,11 @@ public class RobotMap {
   public static AHRS navXBoard;
 
   static double m_P = 3.0f;// 1.25
+  static double m_I = 0;
   static double m_D = 0;
   static double m_ff = 0;
   static int m_izone = 256;
-  static double m_I = 0;
-  static double m_rampRate = 1;
+  static double m_rampRate = .03;
   static int m_profile = 0;
 
 
@@ -99,22 +99,26 @@ public class RobotMap {
 
     chassisfrontLeft = new CANTalon(CAN_FRONT_LEFT);
     chassisfrontLeft.setName("Chassis", "frontLeft");
-    chassisfrontLeft.setNeutralMode(CHASSIS_BRAKE_MODE ? NeutralMode.Brake : NeutralMode.Coast);
+    chassisfrontLeft.setNeutralMode(NeutralMode.Brake);
+//    chassisfrontLeft.setNeutralMode(CHASSIS_BRAKE_MODE ? NeutralMode.Brake : NeutralMode.Coast);
     report.addCAN(CAN_FRONT_LEFT, "frontLeft", chassisfrontLeft);
 
     chassisfrontRight = new CANTalon(CAN_FRONT_RIGHT);
     chassisfrontRight.setName("Chassis", "frontRight");
-    chassisfrontRight.setNeutralMode(CHASSIS_BRAKE_MODE ? NeutralMode.Brake : NeutralMode.Coast);
+    chassisfrontRight.setNeutralMode(NeutralMode.Brake);
+//    chassisfrontRight.setNeutralMode(CHASSIS_BRAKE_MODE ? NeutralMode.Brake : NeutralMode.Coast);
     report.addCAN(CAN_FRONT_RIGHT, "frontRight", chassisfrontRight);
 
     chassisrearLeft = new CANTalon(CAN_REAR_LEFT);
     chassisrearLeft.setName("Chassis", "rearLeft");
-    chassisrearLeft.setNeutralMode(CHASSIS_BRAKE_MODE ? NeutralMode.Brake : NeutralMode.Coast);
+    chassisrearLeft.setNeutralMode(NeutralMode.Brake);
+//    chassisrearLeft.setNeutralMode(CHASSIS_BRAKE_MODE ? NeutralMode.Brake : NeutralMode.Coast);
     report.addCAN(CAN_REAR_LEFT, "frontRight", chassisrearLeft);
 
     chassisrearRight = new CANTalon(CAN_REAR_RIGHT);
     chassisrearRight.setName("Chassis", "rearRight");
-    chassisrearRight.setNeutralMode(CHASSIS_BRAKE_MODE ? NeutralMode.Brake : NeutralMode.Coast);
+    chassisrearRight.setNeutralMode(NeutralMode.Brake);
+//    chassisrearRight.setNeutralMode(CHASSIS_BRAKE_MODE ? NeutralMode.Brake : NeutralMode.Coast);
     report.addCAN(CAN_REAR_RIGHT, "rearRight", chassisrearRight);
 
     chassisrobotDrive =
@@ -237,6 +241,7 @@ public class RobotMap {
   static class CANTalon extends WPI_TalonSRX {
     public CANTalon(int deviceNumber) {
       super(deviceNumber);
+//      setSafetyEnabled(false);
     }
 
     @Override

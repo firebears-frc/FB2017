@@ -145,7 +145,7 @@ public class OI {
 			SmartDashboard.putData("Angle Adjust:", new VisionAngleAdjustCommand());
 			SmartDashboard.putData("Vision Group Command (3 step):", new VisionCommandGroup());
 			SmartDashboard.putData("Vision Hybrid Command", new VisionHybridCommand());
-			SmartDashboard.putData("Drive Forward:", new MoveForwardInches(24,.1));
+			SmartDashboard.putData("Drive Forward:", new MoveForwardInches(20,.25));
 			SmartDashboard.putData("Servo Toggle:", new DumperServoToggleCommand());
 			SmartDashboard.putData("Light ring on:", new VisionLightRingCommand(true));
 			SmartDashboard.putData("Light ring off:", new VisionLightRingCommand(false));
@@ -157,6 +157,10 @@ public class OI {
 			SmartDashboard.putData("Drive To Gear:", new VisionForwardIntoTarget());
 			SmartDashboard.putData("RunningTestCommand", runningTest);
 			SmartDashboard.putData("MirrorPlay", new MirrorPlay());
+			SmartDashboard.putData("New Vision Turn Command", new NewVisionRotateCommand());
+			SmartDashboard.putNumber("New Vision Test Angle", 10);
+//			SmartDashboard.putData("New Vision Group", new NewVisionCommand(-Robot.testvision.getAngleX(), Robot.testvision.getAngleY()));
+			SmartDashboard.putData("New Vision Group", new NewVisionCommand());
 
 			// SmartDashboard.putData("ClimbDown", new ClimbCommand(true));
 			// SmartDashboard.putData("ClimbUp", new ClimbCommand(false));
